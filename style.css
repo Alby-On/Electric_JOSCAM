@@ -198,3 +198,28 @@ footer { text-align: center; padding: 2rem; font-size: 0.9rem; color: var(--text
     }
     .tooltip-wsp { display: none; } /* Ocultar tooltip en móviles para no estorbar */
 }
+/* Ajuste para el contenedor del logo */
+.navbar .logo {
+    display: flex;
+    align-items: center;
+}
+
+/* Ajuste de la imagen del logo */
+.logo-img {
+    height: 50px; /* Ajusta la altura según prefieras */
+    width: auto;  /* Mantiene la proporción */
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+.logo-img:hover {
+    transform: scale(1.05); /* Efecto sutil al pasar el mouse */
+}
+
+/* Asegúrate de que la navbar tenga espacio suficiente */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 5%;
+}
