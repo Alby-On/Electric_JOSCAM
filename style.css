@@ -1,0 +1,129 @@
+/* Variables de color */
+:root {
+    --dark: #1a1a1a;
+    --dark-light: #2d2d2d;
+    --accent: #007bff; /* Azul Eléctrico */
+    --highlight: #ff9800; /* Naranja Seguridad */
+    --white: #ffffff;
+    --text-gray: #cccccc;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: var(--dark);
+    color: var(--white);
+    line-height: 1.6;
+}
+
+/* Navbar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 5%;
+    background: rgba(26, 26, 26, 0.95);
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+    border-bottom: 2px solid var(--accent);
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.logo span { color: var(--accent); }
+
+.nav-links {
+    display: flex;
+    list-style: none;
+}
+
+.nav-links li a {
+    color: var(--white);
+    text-decoration: none;
+    margin-left: 2rem;
+    transition: 0.3s;
+}
+
+.nav-links li a:hover { color: var(--accent); }
+
+/* Hero Section */
+.hero {
+    height: 100vh;
+    background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
+                url('https://images.unsplash.com/photo-1557597774-9d2739f85a76?auto=format&fit=crop&w=1350&q=80'); /* Imagen de referencia de cámaras/servidores */
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 0 20px;
+}
+
+.hero h1 {
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+}
+
+.cta-button {
+    display: inline-block;
+    padding: 1rem 2rem;
+    background: var(--highlight);
+    color: var(--dark);
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 5px;
+    margin-top: 2rem;
+    transition: transform 0.3s;
+}
+
+.cta-button:hover { transform: scale(1.05); }
+
+/* Services */
+.services { padding: 5rem 5%; background: var(--dark-light); }
+.section-title { text-align: center; margin-bottom: 3rem; font-size: 2.5rem; }
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.service-card {
+    background: var(--dark);
+    padding: 2rem;
+    border-radius: 10px;
+    border-bottom: 4px solid var(--accent);
+    text-align: center;
+}
+
+.service-card .icon { font-size: 3rem; margin-bottom: 1rem; }
+
+/* Expert Badge Section */
+.expert-badge {
+    padding: 4rem 5%;
+    background: var(--accent);
+    text-align: center;
+}
+
+.badge-container h2 { margin-bottom: 1rem; }
+.seal {
+    display: inline-block;
+    margin-top: 1.5rem;
+    padding: 0.5rem 1rem;
+    border: 2px solid white;
+    font-weight: bold;
+}
+
+footer { text-align: center; padding: 2rem; font-size: 0.9rem; color: var(--text-gray); }
