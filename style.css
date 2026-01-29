@@ -127,31 +127,43 @@ body {
 }
 
 footer { text-align: center; padding: 2rem; font-size: 0.9rem; color: var(--text-gray); }
-/* Botón Flotante de WhatsApp */
+/* Botón Flotante de WhatsApp - Forzado */
 .whatsapp-float {
-    position: fixed;
-    width: 60px;
-    height: 60px;
-    bottom: 40px;
-    right: 40px;
-    background-color: #25d366;
-    color: #FFF;
-    border-radius: 50px;
+    position: fixed !important;
+    width: 65px !important;
+    height: 65px !important;
+    bottom: 30px !important;
+    right: 30px !important; /* Lo moví a la derecha */
+    background-color: #25d366 !important; /* Verde WhatsApp */
+    color: #FFF !important;
+    border-radius: 50px !important;
     text-align: center;
-    font-size: 35px;
-    box-shadow: 2px 2px 10px rgba(0,0,0,0.5);
-    z-index: 1000;
-    display: flex;
+    box-shadow: 2px 5px 15px rgba(0,0,0,0.3);
+    z-index: 99999 !important; /* Para que siempre esté arriba de todo */
+    display: flex !important;
     align-items: center;
     justify-content: center;
-    text-decoration: none;
-    transition: all 0.3s ease;
+    text-decoration: none !important;
+    transition: transform 0.3s ease;
 }
 
 .whatsapp-float:hover {
     transform: scale(1.1);
-    background-color: #128c7e;
-    color: #FFF;
+    background-color: #128c7e !important;
+}
+
+/* Si el icono no carga, esto pone una "W" blanca grande como respaldo */
+.whatsapp-float::before {
+    content: 'W'; 
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+    font-size: 30px;
+}
+
+/* Si FontAwesome carga, ocultamos la "W" y usamos el icono */
+.whatsapp-float i {
+    font-size: 35px;
+    display: none; /* Se activa si logras cargar la librería */
 }
 
 /* Tooltip (Mensaje pequeño al lado del botón) */
