@@ -1,9 +1,10 @@
-/* Variables de color */
+/* Variables de color actualizadas según el LOGO */
 :root {
     --dark: #1a1a1a;
     --dark-light: #2d2d2d;
-    --accent: #007bff; /* Azul Eléctrico */
-    --highlight: #ff9800; /* Naranja Seguridad */
+    --accent: #00b300; /* Verde Eléctrico extraído del logo */
+    --accent-hover: #008f00;
+    --gray-spa: #6c757d; /* Gris del "SpA" para detalles técnicos */
     --white: #ffffff;
     --text-gray: #cccccc;
 }
@@ -12,7 +13,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
 }
 
 body {
@@ -21,26 +22,36 @@ body {
     line-height: 1.6;
 }
 
-/* Navbar */
+/* --- NAVBAR --- */
 .navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1rem 5%;
-    background: rgba(26, 26, 26, 0.95);
+    padding: 0.8rem 5%;
+    background: rgba(26, 26, 26, 0.98);
     position: fixed;
     width: 100%;
     z-index: 1000;
-    border-bottom: 2px solid var(--accent);
+    border-bottom: 3px solid var(--accent); /* Línea verde característica */
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
 }
 
 .logo {
-    font-size: 1.5rem;
-    font-weight: bold;
-    letter-spacing: 1px;
+    display: flex;
+    align-items: center;
 }
 
-.logo span { color: var(--accent); }
+.logo-img {
+    height: 55px; /* Tamaño ideal para visibilidad */
+    width: auto;
+    display: block;
+    transition: transform 0.3s ease;
+    filter: drop-shadow(0px 0px 2px rgba(255,255,255,0.1));
+}
+
+.logo-img:hover {
+    transform: scale(1.05);
+}
 
 .nav-links {
     display: flex;
@@ -51,16 +62,22 @@ body {
     color: var(--white);
     text-decoration: none;
     margin-left: 2rem;
+    font-weight: 500;
     transition: 0.3s;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
 }
 
-.nav-links li a:hover { color: var(--accent); }
+.nav-links li a:hover {
+    color: var(--accent);
+}
 
-/* Hero Section */
+/* --- HERO SECTION --- */
 .hero {
     height: 100vh;
-    background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
-                url('https://images.unsplash.com/photo-1557597774-9d2739f85a76?auto=format&fit=crop&w=1350&q=80'); /* Imagen de referencia de cámaras/servidores */
+    background: linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.75)), 
+                url('https://images.unsplash.com/photo-1557597774-9d2739f85a76?auto=format&fit=crop&w=1350&q=80');
     background-size: cover;
     background-position: center;
     display: flex;
@@ -74,25 +91,38 @@ body {
     font-size: 3.5rem;
     margin-bottom: 1rem;
     text-transform: uppercase;
+    border-left: 8px solid var(--accent); /* Detalle visual verde */
+    padding-left: 15px;
+    display: inline-block;
 }
 
 .cta-button {
     display: inline-block;
-    padding: 1rem 2rem;
-    background: var(--highlight);
-    color: var(--dark);
+    padding: 1.2rem 2.5rem;
+    background: var(--accent);
+    color: var(--white);
     text-decoration: none;
     font-weight: bold;
-    border-radius: 5px;
+    border-radius: 4px;
     margin-top: 2rem;
-    transition: transform 0.3s;
+    transition: all 0.3s;
+    text-transform: uppercase;
 }
 
-.cta-button:hover { transform: scale(1.05); }
+.cta-button:hover {
+    background: var(--accent-hover);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0, 179, 0, 0.3);
+}
 
-/* Services */
+/* --- SERVICES --- */
 .services { padding: 5rem 5%; background: var(--dark-light); }
-.section-title { text-align: center; margin-bottom: 3rem; font-size: 2.5rem; }
+.section-title { 
+    text-align: center; 
+    margin-bottom: 3rem; 
+    font-size: 2.5rem; 
+    color: var(--white);
+}
 
 .services-grid {
     display: grid;
@@ -102,124 +132,76 @@ body {
 
 .service-card {
     background: var(--dark);
-    padding: 2rem;
-    border-radius: 10px;
-    border-bottom: 4px solid var(--accent);
+    padding: 2.5rem;
+    border-radius: 12px;
+    border-top: 5px solid var(--accent); /* Invertido para variar el diseño */
     text-align: center;
+    transition: 0.3s;
 }
 
-.service-card .icon { font-size: 3rem; margin-bottom: 1rem; }
+.service-card:hover {
+    transform: translateY(-10px);
+    background: #222;
+}
 
-/* Expert Badge Section */
+.service-card .icon { 
+    font-size: 3.5rem; 
+    margin-bottom: 1.5rem; 
+    filter: drop-shadow(0 0 5px var(--accent)); /* Brillo verde en iconos */
+}
+
+/* --- EXPERT BADGE (Verde) --- */
 .expert-badge {
-    padding: 4rem 5%;
-    background: var(--accent);
+    padding: 5rem 5%;
+    background: linear-gradient(135deg, var(--accent) 0%, #008000 100%);
     text-align: center;
+    color: white;
 }
 
-.badge-container h2 { margin-bottom: 1rem; }
+.badge-container h2 { font-size: 2.2rem; margin-bottom: 1rem; }
+
 .seal {
     display: inline-block;
     margin-top: 1.5rem;
-    padding: 0.5rem 1rem;
-    border: 2px solid white;
+    padding: 0.8rem 1.5rem;
+    border: 3px solid white;
     font-weight: bold;
+    text-transform: uppercase;
 }
 
-footer { text-align: center; padding: 2rem; font-size: 0.9rem; color: var(--text-gray); }
-/* Botón Flotante de WhatsApp - Forzado */
+/* --- FOOTER --- */
+footer { 
+    text-align: center; 
+    padding: 3rem; 
+    font-size: 0.9rem; 
+    color: var(--text-gray); 
+    background: var(--dark);
+    border-top: 1px solid var(--dark-light);
+}
+
+/* --- WHATSAPP FLOAT --- */
 .whatsapp-float {
     position: fixed !important;
     width: 65px !important;
     height: 65px !important;
     bottom: 30px !important;
-    right: 30px !important; /* Lo moví a la derecha */
-    background-color: #25d366 !important; /* Verde WhatsApp */
+    right: 30px !important;
+    background-color: #25d366 !important;
     color: #FFF !important;
     border-radius: 50px !important;
-    text-align: center;
-    box-shadow: 2px 5px 15px rgba(0,0,0,0.3);
-    z-index: 99999 !important; /* Para que siempre esté arriba de todo */
     display: flex !important;
     align-items: center;
     justify-content: center;
     text-decoration: none !important;
-    transition: transform 0.3s ease;
+    z-index: 9999;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.4);
 }
 
-.whatsapp-float:hover {
-    transform: scale(1.1);
-    background-color: #128c7e !important;
-}
+.whatsapp-float i { font-size: 35px; }
 
-/* Si el icono no carga, esto pone una "W" blanca grande como respaldo */
-.whatsapp-float::before {
-    content: 'W'; 
-    font-family: Arial, sans-serif;
-    font-weight: bold;
-    font-size: 30px;
-}
-
-/* Si FontAwesome carga, ocultamos la "W" y usamos el icono */
-.whatsapp-float i {
-    font-size: 35px;
-    display: none; /* Se activa si logras cargar la librería */
-}
-
-/* Tooltip (Mensaje pequeño al lado del botón) */
-.tooltip-wsp {
-    position: absolute;
-    right: 75px;
-    background-color: #2d2d2d;
-    color: white;
-    padding: 8px 15px;
-    border-radius: 5px;
-    font-size: 14px;
-    white-space: nowrap;
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.3s;
-    border: 1px solid var(--accent);
-}
-
-.whatsapp-float:hover .tooltip-wsp {
-    opacity: 1;
-    visibility: visible;
-}
-
-/* Ajuste para móviles */
-@media screen and (max-width: 768px) {
-    .whatsapp-float {
-        width: 50px;
-        height: 50px;
-        bottom: 20px;
-        right: 20px;
-        font-size: 30px;
-    }
-    .tooltip-wsp { display: none; } /* Ocultar tooltip en móviles para no estorbar */
-}
-/* Ajuste para el contenedor del logo */
-.navbar .logo {
-    display: flex;
-    align-items: center;
-}
-
-/* Ajuste de la imagen del logo */
-.logo-img {
-    height: 50px; /* Ajusta la altura según prefieras */
-    width: auto;  /* Mantiene la proporción */
-    display: block;
-    transition: transform 0.3s ease;
-}
-
-.logo-img:hover {
-    transform: scale(1.05); /* Efecto sutil al pasar el mouse */
-}
-
-/* Asegúrate de que la navbar tenga espacio suficiente */
-.navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem 5%;
+/* --- RESPONSIVE --- */
+@media (max-width: 768px) {
+    .hero h1 { font-size: 2.2rem; }
+    .nav-links { display: none; } /* Podrías agregar un menú hamburguesa luego */
+    .logo-img { height: 45px; }
 }
