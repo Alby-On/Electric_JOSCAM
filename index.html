@@ -6,16 +6,17 @@
     <title>Electric_JOSCAM | Ingeniería en Seguridad y Electricidad</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
-    <style>
-        /* VARIABLES DE COLOR - Basadas en tu logo */
+<style>
+        /* VARIABLES DE COLOR - Versión Light Professional */
         :root {
-            --dark: #1a1a1a;
-            --dark-light: #2d2d2d;
-            --accent: #00b300; /* El verde de tu logo */
+            --dark: #ffffff;           /* Fondo principal blanco */
+            --dark-light: #f8f9fa;     /* Fondo secundario gris muy claro */
+            --accent: #00b300;         /* El verde de tu logo se mantiene */
             --accent-hover: #008f00;
-            --gray-spa: #6c757d; /* El gris de "SpA" */
-            --white: #ffffff;
-            --text-gray: #cccccc;
+            --gray-spa: #6c757d;       /* El gris de "SpA" */
+            --white: #212529;          /* Ahora el texto principal es oscuro para leerse sobre blanco */
+            --text-gray: #495057;      /* Texto secundario */
+            --navbar-bg: rgba(255, 255, 255, 0.98);
         }
 
         /* RESET GENERAL */
@@ -39,12 +40,12 @@
             justify-content: space-between;
             align-items: center;
             padding: 0.8rem 5%;
-            background: rgba(26, 26, 26, 0.98);
+            background: var(--navbar-bg);
             position: fixed;
             width: 100%;
             z-index: 1000;
             border-bottom: 3px solid var(--accent);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1); /* Sombra más suave para fondo blanco */
         }
 
         .logo-img {
@@ -69,7 +70,7 @@
             text-decoration: none;
             margin-left: 2rem;
             transition: 0.3s;
-            font-weight: 500;
+            font-weight: 600; /* Un poco más de peso para destacar en blanco */
             text-transform: uppercase;
             font-size: 0.9rem;
         }
@@ -82,13 +83,14 @@
             background: var(--accent);
             padding: 0.6rem 1.2rem;
             border-radius: 5px;
-            color: white !important;
+            color: #ffffff !important; /* El texto del botón siempre blanco */
         }
 
         /* HERO SECTION */
         .hero {
             height: 100vh;
-            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
+            /* Gradiente más claro para que las letras oscuras o blancas resalten según la imagen */
+            background: linear-gradient(rgba(255,255,255,0.4), rgba(255,255,255,0.4)), 
                         url('https://images.unsplash.com/photo-1557597774-9d2739f85a76?auto=format&fit=crop&w=1350&q=80');
             background-size: cover;
             background-position: center;
@@ -105,6 +107,8 @@
             text-transform: uppercase;
             border-left: 8px solid var(--accent);
             padding-left: 15px;
+            color: #1a1a1a; /* Título hero en oscuro */
+            text-shadow: 1px 1px 2px rgba(255,255,255,0.8);
         }
 
         .cta-button {
@@ -122,14 +126,14 @@
 
         .cta-button:hover {
             transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(0, 179, 0, 0.4);
+            box-shadow: 0 10px 20px rgba(0, 179, 0, 0.3);
             background: var(--accent-hover);
         }
 
         /* SERVICES */
         .services {
             padding: 6rem 5%;
-            background: var(--dark-light);
+            background: var(--dark-light); /* Fondo gris muy tenue */
         }
 
         .section-title {
@@ -137,6 +141,7 @@
             margin-bottom: 4rem;
             font-size: 2.5rem;
             text-transform: uppercase;
+            color: var(--white);
         }
 
         .services-grid {
@@ -146,16 +151,18 @@
         }
 
         .service-card {
-            background: var(--dark);
+            background: #ffffff; /* Tarjetas blancas puras */
             padding: 3rem 2rem;
             border-radius: 15px;
             border-top: 5px solid var(--accent);
             text-align: center;
             transition: transform 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05); /* Sombra sutil */
         }
 
         .service-card:hover {
             transform: translateY(-10px);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.1);
         }
 
         .service-card .icon {
@@ -169,6 +176,7 @@
             padding: 5rem 5%;
             background: linear-gradient(135deg, var(--accent) 0%, #006400 100%);
             text-align: center;
+            color: white; /* Este bloque se mantiene llamativo */
         }
 
         .seal {
@@ -184,9 +192,9 @@
         footer {
             text-align: center;
             padding: 3rem;
-            background: var(--dark);
+            background: #f1f3f5; /* Gris suave para el pie de página */
             color: var(--text-gray);
-            border-top: 1px solid var(--dark-light);
+            border-top: 1px solid #dee2e6;
         }
 
         /* WHATSAPP FLOAT */
@@ -201,7 +209,7 @@
             border-radius: 50px;
             text-align: center;
             font-size: 30px;
-            box-shadow: 2px 5px 15px rgba(0,0,0,0.3);
+            box-shadow: 2px 5px 15px rgba(0,0,0,0.2);
             z-index: 9999;
             display: flex;
             align-items: center;
@@ -218,8 +226,8 @@
         .tooltip-wsp {
             position: absolute;
             right: 75px;
-            background-color: var(--dark-light);
-            color: white;
+            background-color: #ffffff;
+            color: #1a1a1a;
             padding: 8px 15px;
             border-radius: 5px;
             font-size: 14px;
@@ -228,6 +236,7 @@
             visibility: hidden;
             transition: 0.3s;
             border: 1px solid var(--accent);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
 
         .whatsapp-float:hover .tooltip-wsp {
@@ -238,11 +247,11 @@
         /* RESPONSIVE */
         @media (max-width: 768px) {
             .hero h1 { font-size: 2.2rem; }
-            .nav-links { display: none; } /* Idealmente implementar menú móvil aquí */
+            .nav-links { display: none; }
             .navbar { padding: 0.5rem 5%; }
             .logo-img { height: 45px; }
         }
-    </style>
+</style>
 </head>
 <body>
 
