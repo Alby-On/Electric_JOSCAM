@@ -100,7 +100,27 @@
     .nav-links li a:hover {
         color: var(--accent);
     }
+    .nav-links li a {
+        color: var(--white);
+        text-decoration: none;
+        margin: 0 1rem;
+        transition: 0.3s;
+        font-weight: 600;
+        text-transform: uppercase;
+        font-size: 0.85rem;
+    }
 
+    /* ESTADO ACTIVO: Esto es lo que se activará con JS */
+    .nav-links li a.active {
+        color: var(--accent);
+        font-weight: 900; /* Negrita mucho más marcada */
+        border-bottom: 2px solid var(--accent);
+        padding-bottom: 5px;
+    }
+
+    .nav-links li a:hover {
+        color: var(--accent);
+    }
     /* Estilo Redes Sociales en Navbar */
     .nav-social a {
         color: var(--white);
@@ -867,6 +887,29 @@
         <i class="fab fa-whatsapp"></i>
         <span class="tooltip-wsp">¿Necesitas soporte técnico?</span>
     </a>
+<script>
+    window.addEventListener('scroll', () => {
+        let current = '';
+        const sections = document.querySelectorAll('section, header'); // Selecciona tus secciones
+        const navItems = document.querySelectorAll('.nav-links li a');
 
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop;
+            const sectionHeight = section.clientHeight;
+            // Si el scroll está dentro de la sección (con un margen de 150px)
+            if (pageYOffset >= (sectionTop - 150)) {
+                current = section.getAttribute('id');
+            }
+        });
+
+        navItems.forEach(a => {
+            a.classList.remove('active');
+            // Si el href del enlace contiene el ID de la sección actual, activa la negrita
+            if (a.getAttribute('href').includes(current)) {
+                a.classList.add('active');
+            }
+        });
+    });
+</script>
 </body>
 </html>
