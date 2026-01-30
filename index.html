@@ -258,39 +258,83 @@
         background: var(--dark-light);
     }
 
-    .section-title {
-        text-align: center;
-        margin-bottom: 4rem;
-        font-size: 2.5rem;
-        text-transform: uppercase;
-        color: var(--white);
-    }
-
     .services-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        /* Fuerza 3 columnas en pantallas grandes */
+        grid-template-columns: repeat(3, 1fr); 
         gap: 2.5rem;
+        max-width: 1200px;
+        margin: 0 auto;
     }
 
     .service-card {
         background: #ffffff;
-        padding: 3rem 2rem;
         border-radius: 15px;
-        border-top: 5px solid var(--accent);
+        overflow: hidden; /* Importante para que la foto respete las esquinas redondeadas */
+        border-bottom: 5px solid var(--accent);
         text-align: center;
-        transition: transform 0.3s ease;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
         box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        display: flex;
+        flex-direction: column;
     }
 
     .service-card:hover {
         transform: translateY(-10px);
-        box-shadow: 0 12px 30px rgba(0,0,0,0.1);
+        box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+    }
+
+    /* Espacio para la foto */
+    .service-img {
+        width: 100%;
+        height: 200px;
+        overflow: hidden;
+        background-color: #eee; /* Color de carga */
+    }
+
+    .service-img img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover; /* Ajusta la imagen sin deformarla */
+        transition: transform 0.5s ease;
+    }
+
+    .service-card:hover .service-img img {
+        transform: scale(1.1);
+    }
+
+    /* Contenido de la tarjeta */
+    .service-info {
+        padding: 2rem;
     }
 
     .service-card .icon {
-        font-size: 3.5rem;
-        margin-bottom: 1.5rem;
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
         display: block;
+    }
+
+    .service-card h3 {
+        margin-bottom: 1rem;
+        color: var(--white);
+    }
+
+    .service-card p {
+        font-size: 0.95rem;
+        color: var(--text-gray);
+    }
+
+    /* RESPONSIVE SERVICES */
+    @media (max-width: 1024px) {
+        .services-grid {
+            grid-template-columns: repeat(2, 1fr); /* 2 columnas en tablets */
+        }
+    }
+
+    @media (max-width: 768px) {
+        .services-grid {
+            grid-template-columns: 1fr; /* 1 columna en celulares */
+        }
     }
 
     /* EXPERT BADGE */
@@ -631,39 +675,69 @@
     <h2 class="section-title">Soluciones Especializadas</h2>
     <div class="services-grid">
         <div class="service-card">
-            <span class="icon">📹</span>
-            <h3>CCTV e Inteligencia Visual</h3>
-            <p>Diseño y montaje de sistemas de vigilancia IP con analítica avanzada para seguridad domiciliaria e industrial.</p>
+            <div class="service-img">
+                <img src="tu-foto-cctv.jpg" alt="CCTV">
+            </div>
+            <div class="service-info">
+                <span class="icon">📹</span>
+                <h3>CCTV e Inteligencia Visual</h3>
+                <p>Diseño y montaje de sistemas de vigilancia IP con analítica avanzada para seguridad domiciliaria e industrial.</p>
+            </div>
         </div>
 
         <div class="service-card">
-            <span class="icon">🏠</span>
-            <h3>Domótica y Automatización</h3>
-            <p>Transformamos espacios con control inteligente de iluminación, accesos y procesos industriales mediante tecnología IoT.</p>
+            <div class="service-img">
+                <img src="tu-foto-domotica.jpg" alt="Domótica">
+            </div>
+            <div class="service-info">
+                <span class="icon">🏠</span>
+                <h3>Domótica y Automatización</h3>
+                <p>Transformamos espacios con control inteligente de iluminación, accesos y procesos industriales mediante tecnología IoT.</p>
+            </div>
         </div>
 
         <div class="service-card">
-            <span class="icon">⚡</span>
-            <h3>Proyectos SEC y Empalmes</h3>
-            <p>Ejecución de empalmes eléctricos y tramitación de <strong>Certificado TE1</strong> para regularizar e inscribir sus instalaciones.</p>
+            <div class="service-img">
+                <img src="tu-foto-sec.jpg" alt="SEC">
+            </div>
+            <div class="service-info">
+                <span class="icon">⚡</span>
+                <h3>Proyectos SEC y Empalmes</h3>
+                <p>Ejecución de empalmes eléctricos y tramitación de <strong>Certificado TE1</strong> para regularizar e inscribir sus instalaciones.</p>
+            </div>
         </div>
 
         <div class="service-card">
-            <span class="icon">🛠️</span>
-            <h3>Continuidad Operativa</h3>
-            <p>Mantenimiento preventivo y correctivo de redes eléctricas y sistemas de seguridad para garantizar su funcionamiento 24/7.</p>
+            <div class="service-img">
+                <img src="tu-foto-mantenimiento.jpg" alt="Mantenimiento">
+            </div>
+            <div class="service-info">
+                <span class="icon">🛠️</span>
+                <h3>Continuidad Operativa</h3>
+                <p>Mantenimiento preventivo y correctivo de redes eléctricas y sistemas de seguridad para garantizar su funcionamiento 24/7.</p>
+            </div>
         </div>
 
         <div class="service-card">
-            <span class="icon">🛒</span>
-            <h3>Venta de Equipamiento</h3>
-            <p>Suministro de componentes eléctricos, cámaras y dispositivos de automatización de las mejores marcas del mercado.</p>
+            <div class="service-img">
+                <img src="tu-foto-venta.jpg" alt="Venta">
+            </div>
+            <div class="service-info">
+                <span class="icon">🛒</span>
+                <h3>Venta de Equipamiento</h3>
+                <p>Suministro de componentes eléctricos, cámaras y dispositivos de automatización de las mejores marcas del mercado.</p>
+            </div>
         </div>
 
         <div class="service-card">
-            <span class="icon">📊</span>
-            <h3>Ingeniería de Proyectos</h3>
-            <p>Asesoría técnica y generación de presupuestos a medida, equilibrando alta ingeniería con la inversión del cliente.</p>
+            <div class="service-img">
+                <img src="tu-foto-ingenieria.jpg" alt="Ingeniería">
+            </div>
+            <div class="service-info">
+                <span class="icon">📊</span>
+                <h3>Ingeniería de Proyectos</h3>
+                <p>Asesoría técnica y generación de presupuestos a medida, equilibrando alta ingeniería con la inversión del cliente.</p>
+            </div>
         </div>
     </div>
 </section>
