@@ -704,6 +704,56 @@
     font-size: 0.8rem;
     letter-spacing: 1px;
 }
+/* DISEÑO DE PIEZAS DE FONDO */
+.about-section {
+    position: relative;
+    overflow: hidden; /* Para que las piezas no se salgan de la sección */
+}
+
+.bg-shape {
+    position: absolute;
+    background-color: var(--accent);
+    opacity: 0.07; /* Muy sutil para no tapar el texto */
+    border-radius: 20px;
+    z-index: 1;
+    pointer-events: none; /* No interfieren con el mouse */
+}
+
+/* Pieza 1: Cuadrado giratorio arriba a la izquierda */
+.shape-1 {
+    width: 150px;
+    height: 150px;
+    top: 10%;
+    left: -50px;
+    transform: rotate(45deg);
+    animation: float 10s infinite alternate ease-in-out;
+}
+
+/* Pieza 2: Círculo a la derecha */
+.shape-2 {
+    width: 200px;
+    height: 200px;
+    bottom: 15%;
+    right: -80px;
+    border-radius: 50%;
+    animation: float 15s infinite alternate-reverse ease-in-out;
+}
+
+/* Pieza 3: Rectángulo pequeño centro-izquierda */
+.shape-3 {
+    width: 80px;
+    height: 80px;
+    top: 50%;
+    left: 15%;
+    opacity: 0.04;
+    animation: float 12s infinite alternate ease-in-out;
+}
+
+/* Animación de flotado suave */
+@keyframes float {
+    from { transform: translateY(0) rotate(0deg); }
+    to { transform: translateY(40px) rotate(15deg); }
+}
 </style>
 </head>
 <body>
@@ -753,9 +803,12 @@
     </header>
 
 <section id="nosotros" class="about-section">
-    <div class="container">
+    <div class="bg-shape shape-1"></div>
+    <div class="bg-shape shape-2"></div>
+    <div class="bg-shape shape-3"></div>
+
+    <div class="container" style="position: relative; z-index: 2;">
         <h2 class="section-title">Quiénes Somos</h2>
-        
         <div class="about-intro">
             <p>En <strong>Electric_JOSCAM SpA</strong>, fusionamos la experiencia técnica con la innovación tecnológica para ofrecer resultados de excelencia.</p>
         </div>
@@ -997,25 +1050,34 @@
 <script>
     window.addEventListener('scroll', () => {
         let current = '';
-        const sections = document.querySelectorAll('section, header'); // Selecciona tus secciones
+        const sections = document.querySelectorAll('section, header');
         const navItems = document.querySelectorAll('.nav-links li a');
+        const scrollValue = window.pageYOffset;
 
+        // 1. LÓGICA DE NAVBAR ACTIVA
         sections.forEach(section => {
             const sectionTop = section.offsetTop;
-            const sectionHeight = section.clientHeight;
-            // Si el scroll está dentro de la sección (con un margen de 150px)
-            if (pageYOffset >= (sectionTop - 150)) {
+            if (scrollValue >= (sectionTop - 150)) {
                 current = section.getAttribute('id');
             }
         });
 
         navItems.forEach(a => {
             a.classList.remove('active');
-            // Si el href del enlace contiene el ID de la sección actual, activa la negrita
             if (a.getAttribute('href').includes(current)) {
                 a.classList.add('active');
             }
         });
+
+        // 2. LÓGICA DE MOVIMIENTO DE PIEZAS VERDES (PARALLAX)
+        // Usamos condicionales para evitar errores si las piezas no existen en el DOM
+        const s1 = document.querySelector('.shape-1');
+        const s2 = document.querySelector('.shape-2');
+        const s3 = document.querySelector('.shape-3');
+
+        if(s1) s1.style.transform = `translateY(${scrollValue * 0.15}px) rotate(${45 + scrollValue * 0.05}deg)`;
+        if(s2) s2.style.transform = `translateY(${scrollValue * -0.1}px) rotate(${-scrollValue * 0.02}deg)`;
+        if(s3) s3.style.transform = `translateX(${scrollValue * 0.08}px)`;
     });
 </script>
 </body>
