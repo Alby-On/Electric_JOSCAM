@@ -86,48 +86,70 @@
             color: #ffffff !important; /* El texto del botón siempre blanco */
         }
 
-        /* HERO SECTION */
+       /* HERO CON SLIDESHOW DE FONDO */
         .hero {
             height: 100vh;
-            /* Gradiente más claro para que las letras oscuras o blancas resalten según la imagen */
-            background: linear-gradient(rgba(255,255,255,0.4), rgba(255,255,255,0.4)), 
-                        url('https://images.unsplash.com/photo-1557597774-9d2739f85a76?auto=format&fit=crop&w=1350&q=80');
-            background-size: cover;
-            background-position: center;
+            position: relative;
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
-            padding: 0 20px;
+            overflow: hidden;
+            background-color: #000; /* Fondo base negro para el fundido */
         }
 
-        .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
-            text-transform: uppercase;
-            border-left: 8px solid var(--accent);
-            padding-left: 15px;
-            color: #1a1a1a; /* Título hero en oscuro */
-            text-shadow: 1px 1px 2px rgba(255,255,255,0.8);
+        /* Capa para las imágenes animadas */
+        .hero-bg-slideshow {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
         }
 
-        .cta-button {
-            display: inline-block;
-            padding: 1.2rem 2.5rem;
-            background: var(--accent);
-            color: white;
-            text-decoration: none;
-            font-weight: bold;
-            border-radius: 5px;
-            margin-top: 2rem;
-            transition: all 0.3s ease;
-            text-transform: uppercase;
+        .hero-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            opacity: 0; /* Empiezan invisibles */
+            animation: imageFade 15s linear infinite; /* 15 segundos total */
+            filter: brightness(0.7) grayscale(30%); /* Ajuste de opacidad visual */
         }
 
-        .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(0, 179, 0, 0.3);
-            background: var(--accent-hover);
+        /* Imágenes específicas (Reemplaza las URLs por tus fotos) */
+        .slide-1 { background-image: url('https://images.unsplash.com/photo-1558467523-46113f1fcf72?auto=format&fit=crop&w=1350&q=80'); animation-delay: 0s; }
+        .slide-2 { background-image: url('https://images.unsplash.com/photo-1621905252507-b354bcadcabc?auto=format&fit=crop&w=1350&q=80'); animation-delay: 5s; }
+        .slide-3 { background-image: url('https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1350&q=80'); animation-delay: 10s; }
+
+        /* Capa de superposición para asegurar legibilidad del texto */
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.7); /* Opacidad blanca sobre las fotos */
+            z-index: 2;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 3;
+            max-width: 900px;
+        }
+
+        /* Animación del fundido */
+        @keyframes imageFade {
+            0% { opacity: 0; }
+            10% { opacity: 1; }
+            33% { opacity: 1; }
+            43% { opacity: 0; }
+            100% { opacity: 0; }
         }
 
         /* SERVICES */
@@ -337,7 +359,15 @@
         </ul>
     </nav>
 
-    <header id="inicio" class="hero">
+<header id="inicio" class="hero">
+        <div class="hero-bg-slideshow">
+            <div class="hero-slide slide-1"></div>
+            <div class="hero-slide slide-2"></div>
+            <div class="hero-slide slide-3"></div>
+        </div>
+        
+        <div class="hero-overlay"></div>
+
         <div class="hero-content">
             <h1>Seguridad Inteligente y Alta Ingeniería</h1>
             <p>Soluciones certificadas en CCTV, Automatización y Electricidad Industrial.</p>
