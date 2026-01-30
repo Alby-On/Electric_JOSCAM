@@ -815,6 +815,35 @@ footer {
 .footer-socials a:hover {
     color: var(--accent);
 }
+footer {
+    background-color: #222; /* Gris oscuro/negro profesional */
+    color: #ffffff;
+    padding: 30px 0;
+    text-align: center;
+}
+
+.footer-content {
+    display: flex;
+    flex-direction: column; /* Alinea logo arriba y texto abajo */
+    align-items: center;
+    gap: 15px; /* Espacio entre el logo y el texto */
+}
+
+.footer-logo {
+    height: 60px; /* Ajusta el tamaño según tu logo */
+    width: auto;
+    filter: brightness(0) invert(1); /* Opcional: vuelve el logo blanco si es oscuro */
+    transition: transform 0.3s ease;
+}
+
+.footer-logo:hover {
+    transform: scale(1.05); /* Efecto sutil al pasar el mouse */
+}
+
+footer p {
+    font-size: 0.9rem;
+    opacity: 0.8;
+}
 </style>
 </head>
 <body>
@@ -1097,18 +1126,12 @@ footer {
         <div class="logo-item"><img src="https://raw.githubusercontent.com/Alby-On/Electric_JOSCAM/main/images/marcas/sonoff.png" alt="SONOFF"></div>
     </div>
 </section>
-    <footer>
-        <div class="footer-content">
-            <img src="https://raw.githubusercontent.com/Alby-On/Electric_JOSCAM/main/images/Electric_JOSCAM_logo.png" alt="Electric_JOSCAM" class="logo-img" class="footer-logo">
-            
-            <p>&copy; 2026 Electric_JOSCAM SpA - Ingeniería Eléctrica y Seguridad</p>
-            
-            <div class="footer-socials">
-                <a href="#"><i class="fab fa-instagram"></i></a>
-                <a href="#"><i class="fab fa-linkedin"></i></a>
-            </div>
-        </div>
-    </footer>
+<footer>
+    <div class="footer-content">
+        <img src="logo.png" alt="Logo Electric_JOSCAM" class="footer-logo">
+        <p>&copy; 2026 Electric_JOSCAM SpA - Ingeniería Eléctrica y Seguridad</p>
+    </div>
+</footer>
     <a href="https://wa.me/56926327255?text=Hola%20Electric_JOSCAM,%20me%20gustaría%20solicitar%20una%20evaluación%20técnica." 
        class="whatsapp-float" 
        target="_blank" 
