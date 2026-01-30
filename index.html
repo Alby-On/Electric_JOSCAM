@@ -365,8 +365,7 @@
         opacity: 1;
         visibility: visible;
     }
-
-    /* CARRUSEL INFINITO BASE (GENERAL) */
+/* CARRUSEL INFINITO BASE (GENERAL) */
     .logos-section {
         padding: 3rem 0;
         background: var(--dark-light);
@@ -398,34 +397,39 @@
 
     .logos-slider {
         display: flex;
-        animation: scroll-infinito 20s linear infinite;
+        /* Ajustamos el ancho total para dar más espacio: 300px por logo */
+        width: calc(300px * 20); 
+        animation: scroll-infinito 30s linear infinite;
     }
 
     .logo-item {
+        /* Aumentamos el ancho de cada contenedor de logo para que no estén pegados */
+        width: 300px; 
         flex-shrink: 0;
         display: flex;
         justify-content: center;
         align-items: center;
+        padding: 0 20px;
     }
 
     .logo-item img {
-        height: 45px;
+        height: 50px; /* Un poco más grandes */
         width: auto;
-        max-width: 180px;
-        filter: grayscale(100%);
-        opacity: 0.5;
-        transition: 0.3s;
+        max-width: 200px;
+        /* ELIMINADO EL GRAYSCALE PARA QUE SE VEAN A COLOR */
+        filter: none; 
+        opacity: 1; /* Opacidad total */
+        transition: transform 0.3s ease;
     }
 
     .logo-item img:hover {
-        filter: grayscale(0%);
-        opacity: 1;
-        transform: scale(1.1);
+        transform: scale(1.15);
     }
 
     @keyframes scroll-infinito {
         0% { transform: translateX(0); }
-        100% { transform: translateX(calc(-250px * 6)); }
+        /* El salto debe coincidir con el ancho del logo (300px) * cantidad de logos únicos (10) */
+        100% { transform: translateX(calc(-300px * 10)); }
     }
 
     .logos-slider:hover {
@@ -445,6 +449,13 @@
         .navbar { padding: 0.5rem 5%; }
         .logo-img { height: 45px; }
         .cta-button { padding: 1rem 2rem; font-size: 0.9rem; }
+        
+        /* Ajuste de tamaño para móviles para que no se desborde */
+        .logo-item { width: 200px; }
+        @keyframes scroll-infinito {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(calc(-200px * 10)); }
+        }
     }
 </style>
 </head>
