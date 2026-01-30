@@ -86,6 +86,29 @@
         color: #ffffff !important;
     }
 
+    /* CARRUSEL SUPERIOR (Ajuste para Navbar Fixed) */
+    .logos-top {
+        margin-top: 85px; /* Evita que la Navbar tape el carrusel */
+        background: white !important;
+        padding: 1.5rem 0 !important;
+        border-bottom: 1px solid #eee;
+    }
+
+    .logos-top .logos-slider {
+        /* Ajuste para 10 logos (20 con copia) */
+        width: calc(200px * 20); 
+        animation: scroll-top 30s linear infinite;
+    }
+
+    .logos-top .logo-item {
+        width: 200px;
+    }
+
+    @keyframes scroll-top {
+        0% { transform: translateX(0); }
+        100% { transform: translateX(calc(-200px * 10)); }
+    }
+
     /* HERO CON SLIDESHOW DE FONDO E IMPACTO */
     @keyframes fadeInUp {
         from { opacity: 0; transform: translateY(30px); }
@@ -121,11 +144,10 @@
         background-size: cover;
         background-position: center;
         opacity: 0;
-        animation: imageFade 20s linear infinite; /* Aumentado por ser 4 imágenes */
+        animation: imageFade 20s linear infinite;
         filter: brightness(0.7) grayscale(30%);
     }
 
-    /* Imágenes específicas */
     .slide-1 { background-image: url('https://raw.githubusercontent.com/Alby-On/Electric_JOSCAM/main/images/fondos/camara.webp'); animation-delay: 0s; }
     .slide-2 { background-image: url('https://raw.githubusercontent.com/Alby-On/Electric_JOSCAM/main/images/fondos/camara2.webp'); animation-delay: 5s; }
     .slide-3 { background-image: url('https://raw.githubusercontent.com/Alby-On/Electric_JOSCAM/main/images/fondos/mantenimiento.webp'); animation-delay: 10s; }
@@ -178,7 +200,6 @@
         line-height: 1.6;
     }
 
-    /* BOTÓN CON FUERZA */
     .cta-button {
         display: inline-block;
         padding: 1.2rem 3rem;
@@ -319,7 +340,7 @@
         visibility: visible;
     }
 
-    /* CARRUSEL INFINITO SIN ESPACIOS */
+    /* CARRUSEL BASE */
     .logos-section {
         padding: 3rem 0;
         background: var(--dark-light);
@@ -351,12 +372,10 @@
 
     .logos-slider {
         display: flex;
-        width: calc(250px * 12);
         animation: scroll-infinito 20s linear infinite;
     }
 
     .logo-item {
-        width: 250px;
         flex-shrink: 0;
         display: flex;
         justify-content: center;
@@ -378,17 +397,13 @@
         transform: scale(1.1);
     }
 
-    @keyframes scroll-infinito {
-        0% { transform: translateX(0); }
-        100% { transform: translateX(calc(-250px * 6)); }
-    }
-
     .logos-slider:hover {
         animation-play-state: paused;
     }
 
     /* RESPONSIVE */
     @media (max-width: 768px) {
+        .logos-top { margin-top: 65px; }
         .hero h1 { font-size: 2rem; }
         .hero p { font-size: 1.1rem; }
         .nav-links { display: none; }
@@ -414,9 +429,9 @@
             <li><a href="#contacto" class="btn-contacto">Contacto</a></li>
         </ul>
     </nav>
-    <section class="logos-section">
+<section class="logos-section logos-top">
     <div class="logos-slider">
-        <div class="logo-item"><img src="https://raw.githubusercontent.com/Alby-On/Electric_JOSCAM/main/images/marcas/wd.png" alt="Western Digital Purple"></div>
+        <div class="logo-item"><img src="https://raw.githubusercontent.com/Alby-On/Electric_JOSCAM/main/images/marcas/wd.png" alt="Western Digital"></div>
         <div class="logo-item"><img src="https://raw.githubusercontent.com/Alby-On/Electric_JOSCAM/main/images/marcas/hikvision.png" alt="Hikvision"></div>
         <div class="logo-item"><img src="https://raw.githubusercontent.com/Alby-On/Electric_JOSCAM/main/images/marcas/axis.png" alt="AXIS"></div>
         <div class="logo-item"><img src="https://raw.githubusercontent.com/Alby-On/Electric_JOSCAM/main/images/marcas/btcino.png" alt="Btcino"></div>
@@ -427,7 +442,7 @@
         <div class="logo-item"><img src="https://raw.githubusercontent.com/Alby-On/Electric_JOSCAM/main/images/marcas/tplink.png" alt="TP-LINK"></div>
         <div class="logo-item"><img src="https://raw.githubusercontent.com/Alby-On/Electric_JOSCAM/main/images/marcas/sonoff.png" alt="SONOFF"></div>
 
-        <div class="logo-item"><img src="https://raw.githubusercontent.com/Alby-On/Electric_JOSCAM/main/images/marcas/wd.png" alt="Western Digital Purple"></div>
+        <div class="logo-item"><img src="https://raw.githubusercontent.com/Alby-On/Electric_JOSCAM/main/images/marcas/wd.png" alt="Western Digital"></div>
         <div class="logo-item"><img src="https://raw.githubusercontent.com/Alby-On/Electric_JOSCAM/main/images/marcas/hikvision.png" alt="Hikvision"></div>
         <div class="logo-item"><img src="https://raw.githubusercontent.com/Alby-On/Electric_JOSCAM/main/images/marcas/axis.png" alt="AXIS"></div>
         <div class="logo-item"><img src="https://raw.githubusercontent.com/Alby-On/Electric_JOSCAM/main/images/marcas/btcino.png" alt="Btcino"></div>
