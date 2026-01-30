@@ -704,55 +704,81 @@
     font-size: 0.8rem;
     letter-spacing: 1px;
 }
-/* DISEÑO DE PIEZAS DE FONDO */
+/* CONTENEDOR PRINCIPAL */
 .about-section {
     position: relative;
-    overflow: hidden; /* Para que las piezas no se salgan de la sección */
+    padding: 8rem 5%;
+    background: radial-gradient(circle at center, #ffffff 0%, #f0f2f5 100%);
+    overflow: hidden;
 }
 
+/* PIEZAS TECNOLÓGICAS DE FONDO */
 .bg-shape {
     position: absolute;
-    background-color: var(--accent);
-    opacity: 0.07; /* Muy sutil para no tapar el texto */
-    border-radius: 20px;
+    pointer-events: none;
     z-index: 1;
-    pointer-events: none; /* No interfieren con el mouse */
+    transition: transform 0.2s ease-out;
 }
 
-/* Pieza 1: Cuadrado giratorio arriba a la izquierda */
+/* Pieza 1: Un diamante con borde de neón */
 .shape-1 {
-    width: 150px;
-    height: 150px;
-    top: 10%;
-    left: -50px;
-    transform: rotate(45deg);
-    animation: float 10s infinite alternate ease-in-out;
+    width: 250px;
+    height: 250px;
+    top: -50px;
+    left: -100px;
+    border: 2px solid var(--accent);
+    box-shadow: 0 0 20px rgba(0, 179, 0, 0.2);
+    border-radius: 40px;
+    opacity: 0.15;
 }
 
-/* Pieza 2: Círculo a la derecha */
+/* Pieza 2: Círculos concéntricos (Efecto Radar/Tecnología) */
 .shape-2 {
-    width: 200px;
-    height: 200px;
-    bottom: 15%;
-    right: -80px;
+    width: 400px;
+    height: 400px;
+    bottom: -100px;
+    right: -150px;
+    border: 1px solid var(--accent);
     border-radius: 50%;
-    animation: float 15s infinite alternate-reverse ease-in-out;
+    opacity: 0.1;
+}
+.shape-2::after {
+    content: '';
+    position: absolute;
+    top: 50%; left: 50%;
+    width: 70%; height: 70%;
+    border: 1px dashed var(--accent);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
 }
 
-/* Pieza 3: Rectángulo pequeño centro-izquierda */
+/* Pieza 3: Líneas de circuito (Uso de un degradado lineal para simular cables) */
 .shape-3 {
-    width: 80px;
-    height: 80px;
-    top: 50%;
-    left: 15%;
-    opacity: 0.04;
-    animation: float 12s infinite alternate ease-in-out;
+    width: 300px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--accent), transparent);
+    top: 30%;
+    right: 10%;
+    opacity: 0.2;
+    transform: rotate(-45deg);
 }
 
-/* Animación de flotado suave */
-@keyframes float {
-    from { transform: translateY(0) rotate(0deg); }
-    to { transform: translateY(40px) rotate(15deg); }
+/* ANIMACIÓN DE ENTRADA PARA LAS TARJETAS */
+.about-item {
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(10px); /* Efecto cristal */
+    border: 1px solid rgba(0, 179, 0, 0.1);
+    position: relative;
+    z-index: 3;
+}
+
+.about-item:hover {
+    border-color: var(--accent);
+    box-shadow: 0 20px 40px rgba(0, 179, 0, 0.15);
+}
+
+.about-item i {
+    text-shadow: 0 0 10px rgba(0, 179, 0, 0.3);
 }
 </style>
 </head>
@@ -1069,15 +1095,24 @@
             }
         });
 
-        // 2. LÓGICA DE MOVIMIENTO DE PIEZAS VERDES (PARALLAX)
-        // Usamos condicionales para evitar errores si las piezas no existen en el DOM
+        // 2. LÓGICA DE MOVIMIENTO DE PIEZAS VERDES (PARALLAX MEJORADO)
         const s1 = document.querySelector('.shape-1');
         const s2 = document.querySelector('.shape-2');
         const s3 = document.querySelector('.shape-3');
 
-        if(s1) s1.style.transform = `translateY(${scrollValue * 0.15}px) rotate(${45 + scrollValue * 0.05}deg)`;
-        if(s2) s2.style.transform = `translateY(${scrollValue * -0.1}px) rotate(${-scrollValue * 0.02}deg)`;
-        if(s3) s3.style.transform = `translateX(${scrollValue * 0.08}px)`;
+        if(s1) {
+            // Movimiento compuesto: Desplazamiento + Rotación tecnológica
+            s1.style.transform = `translate(${scrollValue * 0.1}px, ${scrollValue * 0.05}px) rotate(${45 + scrollValue * 0.1}deg)`;
+        }
+        if(s2) {
+            // Efecto de expansión sutil al bajar (zoom técnico)
+            const scale = 1 + (scrollValue * 0.0002);
+            s2.style.transform = `translateY(${scrollValue * -0.08}px) scale(${scale})`;
+        }
+        if(s3) {
+            // Desplazamiento horizontal tipo "pulso"
+            s3.style.transform = `translateX(${scrollValue * 0.12}px) rotate(-45deg)`;
+        }
     });
 </script>
 </body>
