@@ -448,14 +448,83 @@
 
     footer p { font-size: 0.9rem; opacity: 0.8; }
 
-    /* POR QUÉ ELEGIRNOS */
-    .why-choose-us { background: var(--dark-light); padding: 4rem 2rem; text-align: center; }
+   /* =========================================
+       SECCIÓN POR QUÉ ELEGIRNOS (CORREGIDA)
+       ========================================= */
+    .why-choose-us { 
+        background: var(--dark-light); 
+        padding: 6rem 5%; 
+        text-align: center; 
+    }
 
-    .icon-box { font-size: 2.8rem; margin-bottom: 1.2rem; display: inline-block; }
+    /* Contenedor específico para forzar las 4 tarjetas juntas */
+    .why-choose-us .services-grid {
+        display: grid;
+        /* Forzamos 4 columnas en escritorio */
+        grid-template-columns: repeat(4, 1fr); 
+        gap: 1.5rem;
+        max-width: 1250px;
+        margin: 0 auto;
+        align-items: stretch; /* Hace que todas midan lo mismo de alto */
+    }
 
-    .color-1 { color: #00d4ff; } .color-2 { color: #2ecc71; } .color-3 { color: #f1c40f; } .color-4 { color: #e74c3c; }
+    /* Ajuste de las tarjetas para que no se deformen */
+    .why-choose-us .service-card {
+        background: var(--dark);
+        padding: 2.5rem 1.5rem;
+        border-radius: 12px;
+        border: 1px solid rgba(0, 0, 0, 0.05);
+        border-bottom: 4px solid var(--accent); /* Mantiene tu estilo */
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        height: auto;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
 
-    .animate-up { opacity: 0; animation: fadeInUp 0.8s ease forwards; }
+    .why-choose-us .icon-box { 
+        font-size: 3rem; 
+        margin-bottom: 1.5rem; 
+        display: block; 
+    }
+
+    /* Colores de iconos */
+    .color-1 { color: #00d4ff; } 
+    .color-2 { color: #2ecc71; } 
+    .color-3 { color: #f1c40f; } 
+    .color-4 { color: #e74c3c; }
+
+    .why-choose-us h4 {
+        margin-bottom: 1rem;
+        color: var(--white);
+        font-size: 1.2rem;
+        font-weight: 700;
+    }
+
+    .why-choose-us p {
+        font-size: 0.9rem;
+        color: var(--text-gray);
+        line-height: 1.5;
+    }
+
+    /* ANIMACIONES */
+    .animate-up { 
+        opacity: 0; 
+        animation: fadeInUp 0.8s ease forwards; 
+    }
+
+    /* Responsivo para que no se amontonen en pantallas pequeñas */
+    @media (max-width: 1024px) {
+        .why-choose-us .services-grid {
+            grid-template-columns: repeat(2, 1fr); /* 2x2 en tablets */
+        }
+    }
+
+    @media (max-width: 600px) {
+        .why-choose-us .services-grid {
+            grid-template-columns: 1fr; /* 1 columna en móviles */
+        }
+    }
 
     /* RESPONSIVE */
     @media (max-width: 1100px) { .services-grid { grid-template-columns: repeat(2, 1fr); } }
