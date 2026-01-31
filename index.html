@@ -7,18 +7,19 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
 <style>
-    /* 1. VARIABLES Y RESET */
+    /* VARIABLES DE COLOR */
     :root {
         --dark: #ffffff;
         --dark-light: #f8f9fa;
         --accent: #00b300;
         --accent-hover: #008f00;
+        --gray-spa: #6c757d;
         --white: #212529;
         --text-gray: #495057;
         --navbar-bg: rgba(255, 255, 255, 0.98);
-        --footer-bg: #222222;
     }
 
+    /* RESET GENERAL */
     * {
         margin: 0;
         padding: 0;
@@ -33,37 +34,13 @@
         line-height: 1.6;
     }
 
-    /* 2. COMPONENTES REUTILIZABLES */
-    section { padding: 6rem 5%; }
-    
-    .section-title {
+    section h2 {
         text-align: center;
         width: 100%;
         margin-bottom: 2rem;
-        font-size: 2rem;
     }
 
-    .cta-button {
-        display: inline-block;
-        padding: 1.2rem 3rem;
-        background: var(--accent);
-        color: white !important;
-        text-decoration: none;
-        font-weight: bold;
-        border-radius: 50px;
-        transition: all 0.4s ease;
-        box-shadow: 0 10px 20px rgba(0, 179, 0, 0.2);
-        text-transform: uppercase;
-        letter-spacing: 1px;
-        border: none;
-    }
-
-    .cta-button:hover {
-        transform: scale(1.05);
-        background: var(--accent-hover);
-    }
-
-    /* 3. NAVBAR */
+    /* NAVBAR */
     .navbar {
         display: flex;
         justify-content: space-between;
@@ -77,12 +54,35 @@
         box-shadow: 0 2px 10px rgba(0,0,0,0.1);
     }
 
-    .logo, .nav-social { flex: 1; display: flex; align-items: center; }
-    .nav-links { flex: 2; display: flex; justify-content: center; list-style: none; }
-    .nav-social { justify-content: flex-end; gap: 1.2rem; }
+    .logo, .nav-social {
+        flex: 1; 
+        display: flex;
+        align-items: center;
+    }
 
-    .logo-img { height: 55px; transition: 0.3s; }
-    .logo-img:hover { transform: scale(1.05); }
+    .nav-links {
+        flex: 2;
+        display: flex;
+        justify-content: center;
+        list-style: none;
+        align-items: center;
+    }
+
+    .nav-social {
+        justify-content: flex-end;
+        gap: 1.2rem;
+    }
+
+    .logo-img {
+        height: 55px;
+        width: auto;
+        display: block;
+        transition: transform 0.3s ease;
+    }
+
+    .logo-img:hover {
+        transform: scale(1.05);
+    }
 
     .nav-links li a {
         color: var(--white);
@@ -94,18 +94,36 @@
         font-size: 0.85rem;
     }
 
-    .nav-links li a:hover, .nav-links li a.active {
+    .nav-links li a:hover {
         color: var(--accent);
     }
 
-    .nav-links li a.active { border-bottom: 2px solid var(--accent); padding-bottom: 5px; }
+    .nav-links li a.active {
+        color: var(--accent);
+        font-weight: 900;
+        border-bottom: 2px solid var(--accent);
+        padding-bottom: 5px;
+    }
 
-    .nav-social a { color: var(--white); font-size: 1.2rem; transition: 0.3s; }
-    .nav-social a:hover { color: var(--accent); transform: translateY(-2px); }
+    .nav-social a {
+        color: var(--white);
+        font-size: 1.2rem;
+        transition: 0.3s;
+    }
 
-    .btn-contacto { background: var(--accent); padding: 0.6rem 1.2rem !important; border-radius: 5px; color: white !important; }
+    .nav-social a:hover {
+        color: var(--accent);
+        transform: translateY(-2px);
+    }
 
-    /* 4. HERO SECTION */
+    .btn-contacto {
+        background: var(--accent);
+        padding: 0.6rem 1.2rem;
+        border-radius: 5px;
+        color: #ffffff !important;
+    }
+
+    /* HERO */
     .hero {
         height: 100vh;
         position: relative;
@@ -114,119 +132,339 @@
         justify-content: center;
         text-align: center;
         overflow: hidden;
-        background: #000;
+        background-color: #000;
+    }
+
+    .hero-bg-slideshow {
+        position: absolute;
+        top: 0; left: 0; width: 100%; height: 100%;
+        z-index: 1;
     }
 
     .hero-slide {
         position: absolute;
         top: 0; left: 0; width: 100%; height: 100%;
-        background-size: cover; background-position: center;
-        opacity: 0; animation: imageFade 20s linear infinite;
-        filter: brightness(0.6);
+        background-size: cover;
+        background-position: center;
+        opacity: 0;
+        animation: imageFade 20s linear infinite;
+        filter: brightness(0.7) grayscale(30%);
     }
 
     .slide-1 { background-image: url('https://raw.githubusercontent.com/Alby-On/Electric_JOSCAM/main/images/fondos/camara.webp'); animation-delay: 0s; }
     .slide-2 { background-image: url('https://raw.githubusercontent.com/Alby-On/Electric_JOSCAM/main/images/fondos/camara2.webp'); animation-delay: 5s; }
     .slide-3 { background-image: url('https://raw.githubusercontent.com/Alby-On/Electric_JOSCAM/main/images/fondos/mantenimiento.webp'); animation-delay: 10s; }
+    .slide-4 { background-image: url('https://raw.githubusercontent.com/Alby-On/Electric_JOSCAM/main/images/fondos/tablero.webp'); animation-delay: 15s; }
 
-    .hero-content { position: relative; z-index: 3; color: white; padding: 0 20px; animation: fadeInUp 1.2s ease-out; }
-    
-    .hero h1 { font-size: clamp(2rem, 5vw, 3.5rem); margin-bottom: 1.5rem; text-transform: uppercase; font-weight: 800; }
-    .hero h1 span { display: block; color: var(--accent); font-size: 0.9rem; letter-spacing: 5px; margin-bottom: 10px; }
-    .hero p { font-size: 1.2rem; max-width: 700px; margin: 0 auto 2.5rem; }
+    .hero-overlay {
+        position: absolute;
+        top: 0; left: 0; width: 100%; height: 100%;
+        background: rgba(255, 255, 255, 0.75);
+        z-index: 2;
+    }
+
+    .hero-content {
+        position: relative;
+        z-index: 3;
+        max-width: 1000px;
+        padding: 0 20px;
+        animation: fadeInUp 1.2s ease-out;
+    }
+
+    .hero h1 {
+        font-size: clamp(2.5rem, 5vw, 4.2rem);
+        color: #1a1a1a;
+        margin-bottom: 1.5rem;
+        text-transform: uppercase;
+        font-weight: 800;
+        line-height: 1.1;
+        letter-spacing: -1px;
+    }
+
+    .hero h1 span {
+        display: block;
+        color: var(--accent);
+        font-size: 0.9rem;
+        letter-spacing: 5px;
+        margin-bottom: 10px;
+        font-weight: 600;
+    }
+
+    .hero p {
+        font-size: 1.25rem;
+        color: #333;
+        max-width: 750px;
+        margin: 0 auto 2.5rem;
+        border-top: 1px solid rgba(0,0,0,0.1);
+        padding-top: 1.5rem;
+        line-height: 1.6;
+    }
+
+    .cta-button {
+        display: inline-block;
+        padding: 1.2rem 3rem;
+        background: var(--accent);
+        color: white !important;
+        text-decoration: none;
+        font-weight: bold;
+        border-radius: 50px;
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        box-shadow: 0 10px 20px rgba(0, 179, 0, 0.2);
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+
+    .cta-button:hover {
+        transform: scale(1.05);
+        box-shadow: 0 15px 30px rgba(0, 179, 0, 0.4);
+        background: var(--accent-hover);
+    }
 
     @keyframes imageFade { 0%, 100% { opacity: 0; } 5%, 25% { opacity: 1; } 30% { opacity: 0; } }
     @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
 
-    /* 5. QUIÉNES SOMOS */
-    .about-section { position: relative; background: radial-gradient(circle at center, #ffffff 0%, #f0f2f5 100%); overflow: hidden; }
-    
-    .bg-shape { position: absolute; pointer-events: none; z-index: 1; opacity: 0.1; border: 1px solid var(--accent); }
-    .shape-1 { width: 250px; height: 250px; top: -50px; left: -100px; border-radius: 40px; transform: rotate(45deg); }
-    .shape-2 { width: 400px; height: 400px; bottom: -100px; right: -150px; border-radius: 50%; }
-
-    .about-grid { 
-        display: grid; 
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
-        gap: 2rem; max-width: 1100px; margin: 0 auto; 
+    /* SERVICIOS */
+    .services {
+        padding: 6rem 5%;
+        background: var(--dark-light);
+        text-align: center;
     }
 
-    .about-item { 
-        padding: 2.5rem; background: rgba(255, 255, 255, 0.9); 
-        border-radius: 15px; border: 1px solid rgba(0, 179, 0, 0.1); 
-        z-index: 2; transition: 0.3s;
+    .services-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr); 
+        gap: 2rem;
+        max-width: 1200px;
+        margin: 0 auto;
     }
 
-    .about-item:hover { transform: translateY(-10px); border-color: var(--accent); box-shadow: 0 15px 30px rgba(0,0,0,0.1); }
-    .about-item i { font-size: 2.5rem; color: var(--accent); margin-bottom: 1.5rem; }
-
-    .about-footer { display: flex; justify-content: center; gap: 1rem; margin-top: 3rem; flex-wrap: wrap; }
-    .seal-modern { padding: 0.5rem 1.5rem; border: 2px solid var(--accent); color: var(--accent); border-radius: 50px; font-weight: 700; font-size: 0.8rem; }
-
-    /* 6. SERVICIOS */
-    .services { background: var(--dark-light); }
-    .services-grid { 
-        display: grid; 
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
-        gap: 2rem; max-width: 1200px; margin: 0 auto; 
-    }
-
-    .service-card { 
-        background: white; border-radius: 15px; overflow: hidden; 
-        box-shadow: 0 5px 15px rgba(0,0,0,0.05); transition: 0.3s;
+    .service-card {
+        background: #ffffff;
+        border-radius: 15px;
+        overflow: hidden;
         border-bottom: 5px solid var(--accent);
+        transition: all 0.3s ease;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+        display: flex;
+        flex-direction: column;
+        height: 100%;
     }
 
-    .service-card:hover { transform: translateY(-10px); }
-    .service-img { height: 200px; overflow: hidden; }
-    .service-img img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
+    .service-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 35px rgba(0,0,0,0.12);
+    }
+
+    .service-img {
+        width: 100%;
+        height: 220px;
+        overflow: hidden;
+        position: relative;
+    }
+
+    .service-img img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+    }
+
     .service-card:hover .service-img img { transform: scale(1.1); }
-    .service-info { padding: 1.5rem; }
 
-    /* 7. POR QUÉ ELEGIRNOS */
-    .icon-box { font-size: 2.5rem; margin-bottom: 1rem; }
-    .color-1 { color: #00d4ff; } .color-2 { color: #2ecc71; } 
-    .color-3 { color: #f1c40f; } .color-4 { color: #e74c3c; }
-
-    /* 8. CONTACTO */
-    .contact-container { 
-        display: grid; grid-template-columns: 1fr 1.2fr; 
-        gap: 3rem; max-width: 1100px; margin: 0 auto; 
+    .service-info {
+        padding: 2rem;
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
     }
-    .info-item { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem; }
-    .info-item i { width: 45px; height: 45px; background: white; color: var(--accent); display: flex; align-items: center; justify-content: center; border-radius: 50%; }
-    
-    .contact-form-card { background: white; padding: 2.5rem; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
-    .form-group { margin-bottom: 1.2rem; text-align: left; }
-    .form-group label { display: block; margin-bottom: 0.4rem; font-weight: 600; }
-    .form-group input, .form-group textarea { width: 100%; padding: 0.8rem; border: 2px solid #eee; border-radius: 8px; outline: none; }
-    .form-group input:focus { border-color: var(--accent); }
 
-    /* 9. MARCAS (SLIDER) */
-    .logos-section { padding: 3rem 0; overflow: hidden; background: white; }
-    .logos-slider { display: flex; width: calc(200px * 20); animation: scroll-infinito 30s linear infinite; }
-    .logo-item { width: 200px; padding: 0 20px; flex-shrink: 0; }
-    .logo-item img { height: 40px; filter: grayscale(100%); opacity: 0.6; transition: 0.3s; }
-    .logo-item img:hover { filter: grayscale(0); opacity: 1; }
-    @keyframes scroll-infinito { 0% { transform: translateX(0); } 100% { transform: translateX(calc(-200px * 10)); } }
+    .service-card h3 {
+        margin-bottom: 1rem;
+        color: var(--white);
+        font-size: 1.4rem;
+        font-weight: 700;
+    }
 
-    /* 10. FOOTER & WSP */
-    footer { background: var(--footer-bg); color: white; padding: 3rem 1rem; text-align: center; }
-    .footer-logo { height: 60px; margin-bottom: 1rem; filter: brightness(0) invert(1); }
-    
+    .service-card p {
+        font-size: 0.95rem;
+        color: var(--text-gray);
+        line-height: 1.6;
+    }
+
+    /* WHATSAPP */
     .whatsapp-float {
-        position: fixed; bottom: 30px; right: 30px;
-        width: 60px; height: 60px; background: #25d366;
-        color: white; border-radius: 50%; display: flex;
-        align-items: center; justify-content: center;
-        font-size: 30px; z-index: 1000; text-decoration: none;
+        position: fixed;
+        width: 60px; height: 60px;
+        bottom: 30px; right: 30px;
+        background-color: #25d366;
+        color: #FFF;
+        border-radius: 50px;
+        text-align: center;
+        font-size: 30px;
+        box-shadow: 2px 5px 15px rgba(0,0,0,0.2);
+        z-index: 9999;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        transition: 0.3s;
     }
+
+    .whatsapp-float:hover { transform: scale(1.1); background-color: #128c7e; }
+
+    .tooltip-wsp {
+        position: absolute;
+        right: 75px;
+        background-color: #ffffff;
+        color: #1a1a1a;
+        padding: 8px 15px;
+        border-radius: 5px;
+        font-size: 14px;
+        white-space: nowrap;
+        opacity: 0;
+        visibility: hidden;
+        transition: 0.3s;
+        border: 1px solid var(--accent);
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+
+    .whatsapp-float:hover .tooltip-wsp { opacity: 1; visibility: visible; }
+
+    /* LOGOS MARCAS */
+    .logos-section {
+        padding: 3rem 0;
+        background: var(--dark-light);
+        overflow: hidden;
+        position: relative;
+        display: flex;
+        align-items: center;
+    }
+
+    .logos-slider {
+        display: flex;
+        width: calc(300px * 20); 
+        animation: scroll-infinito 30s linear infinite;
+    }
+
+    .logo-item {
+        width: 300px; 
+        flex-shrink: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 0 20px;
+    }
+
+    .logo-item img {
+        height: 50px;
+        width: auto;
+        transition: transform 0.3s ease;
+    }
+
+    .logo-item img:hover { transform: scale(1.15); }
+
+    @keyframes scroll-infinito { 0% { transform: translateX(0); } 100% { transform: translateX(calc(-300px * 10)); } }
+
+    /* CONTACTO */
+    .contact-section { padding: 6rem 5%; background-color: var(--dark-light); }
+
+    .contact-container {
+        max-width: 1100px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 1fr 1.2fr;
+        gap: 4rem;
+        align-items: start;
+    }
+
+    .info-items { display: flex; flex-direction: column; gap: 1.5rem; }
+
+    .info-item { display: flex; align-items: center; gap: 1rem; }
+
+    .info-item i {
+        width: 45px; height: 45px;
+        background: white;
+        color: var(--accent);
+        display: flex; align-items: center; justify-content: center;
+        border-radius: 50%;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        font-size: 1.2rem;
+    }
+
+    .info-item span { display: block; font-weight: bold; font-size: 0.9rem; color: var(--white); }
+
+    .contact-form-card { background: white; padding: 2.5rem; border-radius: 20px; box-shadow: 0 15px 40px rgba(0,0,0,0.08); }
+
+    .form-group { margin-bottom: 1.5rem; }
+
+    .form-group label { display: block; margin-bottom: 0.5rem; font-weight: 600; font-size: 0.9rem; color: var(--white); }
+
+    .form-group input, .form-group textarea {
+        width: 100%; padding: 0.8rem 1rem;
+        border: 2px solid #edf2f7;
+        border-radius: 8px; outline: none; transition: 0.3s;
+    }
+
+    .form-group input:focus, .form-group textarea:focus { border-color: var(--accent); box-shadow: 0 0 0 4px rgba(0, 179, 0, 0.1); }
+
+    /* QUIÉNES SOMOS */
+    .about-section { position: relative; padding: 8rem 5%; background: radial-gradient(circle at center, #ffffff 0%, #f0f2f5 100%); overflow: hidden; text-align: center; }
+
+    .about-intro { max-width: 800px; margin: 0 auto 3rem auto; font-size: 1.25rem; color: var(--text-gray); line-height: 1.8; }
+
+    .about-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; max-width: 1100px; margin: 0 auto 4rem auto; }
+
+    .about-item { padding: 2rem; background: rgba(255, 255, 255, 0.9); border-radius: 15px; transition: 0.3s; z-index: 3; position: relative; backdrop-filter: blur(10px); border: 1px solid rgba(0, 179, 0, 0.1); }
+
+    .about-item:hover { transform: translateY(-5px); border-color: var(--accent); box-shadow: 0 20px 40px rgba(0, 179, 0, 0.15); }
+
+    .about-item i { font-size: 2.5rem; color: var(--accent); margin-bottom: 1.5rem; text-shadow: 0 0 10px rgba(0, 179, 0, 0.3); }
+
+    .about-item h3 { margin-bottom: 1rem; color: var(--white); font-size: 1.3rem; }
+
+    .about-footer { display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap; }
+
+    .seal-modern { padding: 0.5rem 1.5rem; border: 2px solid var(--accent); color: var(--accent); border-radius: 50px; font-weight: 700; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 1px; }
+
+    .bg-shape { position: absolute; pointer-events: none; z-index: 1; transition: transform 0.2s ease-out; }
+
+    .shape-1 { width: 250px; height: 250px; top: -50px; left: -100px; border: 2px solid var(--accent); border-radius: 40px; opacity: 0.15; box-shadow: 0 0 20px rgba(0, 179, 0, 0.2); }
+
+    .shape-2 { width: 400px; height: 400px; bottom: -100px; right: -150px; border: 1px solid var(--accent); border-radius: 50%; opacity: 0.1; }
+
+    .shape-2::after { content: ''; position: absolute; top: 50%; left: 50%; width: 70%; height: 70%; border: 1px dashed var(--accent); border-radius: 50%; transform: translate(-50%, -50%); }
+
+    .shape-3 { width: 300px; height: 2px; background: linear-gradient(90deg, transparent, var(--accent), transparent); top: 30%; right: 10%; opacity: 0.2; transform: rotate(-45deg); }
+
+    /* FOOTER */
+    footer { background-color: #222; color: #ffffff; padding: 30px 0; text-align: center; border-top: 1px solid var(--dark-light); }
+
+    .footer-content { display: flex; flex-direction: column; align-items: center; gap: 15px; }
+
+    .footer-logo { height: 60px; width: auto; transition: transform 0.3s ease; }
+
+    .footer-logo:hover { transform: scale(1.05); }
+
+    footer p { font-size: 0.9rem; opacity: 0.8; }
+
+    /* POR QUÉ ELEGIRNOS */
+    .why-choose-us { background: var(--dark-light); padding: 4rem 2rem; text-align: center; }
+
+    .icon-box { font-size: 2.8rem; margin-bottom: 1.2rem; display: inline-block; }
+
+    .color-1 { color: #00d4ff; } .color-2 { color: #2ecc71; } .color-3 { color: #f1c40f; } .color-4 { color: #e74c3c; }
+
+    .animate-up { opacity: 0; animation: fadeInUp 0.8s ease forwards; }
 
     /* RESPONSIVE */
-    @media (max-width: 900px) {
-        .nav-links, .nav-social { display: none; }
-        .contact-container { grid-template-columns: 1fr; }
-        .hero h1 { font-size: 2.2rem; }
+    @media (max-width: 1100px) { .services-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 1024px) { .nav-links, .nav-social { display: none; } }
+    @media (max-width: 900px) { .contact-container { grid-template-columns: 1fr; } }
+    @media (max-width: 768px) {
+        .services-grid { grid-template-columns: 1fr; }
+        .logo-item { width: 200px; }
+        @keyframes scroll-infinito { 0% { transform: translateX(0); } 100% { transform: translateX(calc(-200px * 10)); } }
     }
 </style>
 </head>
@@ -234,51 +472,85 @@
 
 <nav class="navbar">
     <div class="logo">
-        <a href="#inicio"><img src="https://raw.githubusercontent.com/Alby-On/Electric_JOSCAM/main/images/Electric_JOSCAM_logo.png" alt="Logo" class="logo-img"></a>
+        <a href="#inicio">
+            <img src="https://raw.githubusercontent.com/Alby-On/Electric_JOSCAM/main/images/Electric_JOSCAM_logo.png" alt="Electric_JOSCAM" class="logo-img">
+        </a>
     </div>
+
     <ul class="nav-links">
         <li><a href="#inicio">Inicio</a></li>
-        <li><a href="#nosotros">Nosotros</a></li>
+        <li><a href="#nosotros">Quiénes Somos</a></li>
         <li><a href="#servicios">Servicios</a></li>
-        <li><a href="#porque-elegirnos">Por qué elegirnos</a></li>
+        <li><a href="#porque-elegirnos">Porque Elegirnos</a></li>
         <li><a href="#contacto" class="btn-contacto">Contacto</a></li>
     </ul>
+
     <div class="nav-social">
-        <a href="#"><i class="fab fa-instagram"></i></a>
-        <a href="#"><i class="fab fa-whatsapp"></i></a>
+        <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://www.instagram.com/electric_joscam_spa/" target="_blank"><i class="fab fa-instagram"></i></a>
+        <a href="https://wa.me/56926327255" target="_blank"><i class="fab fa-whatsapp"></i></a>
     </div>
 </nav>
 
 <header id="inicio" class="hero">
-    <div class="hero-slide slide-1"></div>
-    <div class="hero-slide slide-2"></div>
-    <div class="hero-slide slide-3"></div>
-    <div class="hero-content">
-        <h1><span>Ingeniería & Automatización</span>Seguridad Inteligente y Alta Ingeniería</h1>
-        <p>Soluciones certificadas en CCTV, Automatización Industrial y Electricidad SEC.</p>
-        <a href="#contacto" class="cta-button">Solicitar Evaluación</a>
-    </div>
+        <div class="hero-bg-slideshow">
+            <div class="hero-slide slide-1"></div>
+            <div class="hero-slide slide-2"></div>
+            <div class="hero-slide slide-3"></div>
+            <div class="hero-slide slide-4"></div>
+        </div>
+        <div class="hero-overlay"></div>
+
+        <div class="hero-content">
+            <h1>
+                <span>Ingeniería & Automatización</span>
+                Seguridad Inteligente <br>y Alta Ingeniería
+            </h1>
+            <p>
+                Soluciones integrales certificadas en <strong>CCTV</strong>, 
+                <strong>Automatización Industrial</strong> y <strong>Electricidad bajo Norma SEC</strong>.
+            </p>
+            <div class="hero-btns">
+                <a href="#contacto" class="cta-button">Solicitar Evaluación Técnica</a>
+            </div>
+        </div>
 </header>
 
 <section id="nosotros" class="about-section">
     <div class="bg-shape shape-1"></div>
     <div class="bg-shape shape-2"></div>
-    <div class="section-title"><h2>Quiénes Somos</h2></div>
-    <div class="about-grid">
-        <div class="about-item">
-            <i class="fas fa-microchip"></i>
-            <h3>Ingeniería Avanzada</h3>
-            <p>Liderados por un Ingeniero en Automatización, aplicamos tecnología de punta.</p>
+    <div class="bg-shape shape-3"></div>
+
+    <div class="container" style="position: relative; z-index: 2;">
+        <h2 class="section-title">Quiénes Somos</h2>
+        <div class="about-intro">
+            <p>En <strong>Electric_JOSCAM SpA</strong>, fusionamos la experiencia técnica con la innovación tecnológica para ofrecer resultados de excelencia.</p>
         </div>
-        <div class="about-item">
-            <i class="fas fa-bolt"></i>
-            <h3>Respaldo Técnico</h3>
-            <p>Técnico Nivel Superior garantizando cumplimiento de normativas vigentes.</p>
+
+        <div class="about-grid">
+            <div class="about-item">
+                <i class="fas fa-microchip"></i>
+                <h3>Ingeniería Avanzada</h3>
+                <p>Liderados por un <strong>Ingeniero en Automatización</strong>, aplicamos tecnología de punta en cada proyecto.</p>
+            </div>
+
+            <div class="about-item">
+                <i class="fas fa-bolt"></i>
+                <h3>Respaldo Técnico</h3>
+                <p>Contamos con <strong>Técnico Nivel Superior en Electricidad</strong>, garantizando cumplimiento de normativas vigentes.</p>
+            </div>
+
+            <div class="about-item">
+                <i class="fas fa-file-shield"></i>
+                <h3>Seguridad Legal</h3>
+                <p>Todas nuestras instalaciones y soluciones integrales cumplen estrictamente con los estándares de seguridad.</p>
+            </div>
         </div>
-        <div class="about-item">
-            <i class="fas fa-file-shield"></i>
-            <h3>Seguridad Legal</h3>
-            <p>Instalaciones bajo estándares de seguridad y normativa SEC.</p>
+
+        <div class="about-footer">
+            <span class="seal-modern">Compromiso</span>
+            <span class="seal-modern">Calidad</span>
+            <span class="seal-modern">Seguridad</span>
         </div>
     </div>
 </section>
@@ -287,99 +559,171 @@
     <h2 class="section-title">Soluciones Especializadas</h2>
     <div class="services-grid">
         <div class="service-card">
-            <div class="service-img"><img src="https://raw.githubusercontent.com/Alby-On/Electric_JOSCAM/main/images/servicios/cctv.webp" alt="CCTV"></div>
+            <div class="service-img">
+                <img src="https://raw.githubusercontent.com/Alby-On/Electric_JOSCAM/main/images/servicios/cctv.webp" alt="CCTV">
+            </div>
             <div class="service-info">
                 <h3>CCTV e Inteligencia Visual</h3>
-                <p>Sistemas de vigilancia IP con analítica avanzada.</p>
+                <p>Diseño y montaje de sistemas de vigilancia IP con analítica avanzada para seguridad domiciliaria e industrial.</p>
             </div>
         </div>
+
         <div class="service-card">
-            <div class="service-img"><img src="https://raw.githubusercontent.com/Alby-On/Electric_JOSCAM/main/images/servicios/domotica.webp" alt="Domótica"></div>
+            <div class="service-img">
+                <img src="https://raw.githubusercontent.com/Alby-On/Electric_JOSCAM/main/images/servicios/domotica.webp" alt="Domótica">
+            </div>
             <div class="service-info">
-                <h3>Domótica IoT</h3>
-                <p>Control inteligente de iluminación y accesos.</p>
+                <h3>Domótica y Automatización</h3>
+                <p>Transformamos espacios con control inteligente de iluminación, accesos y procesos industriales mediante tecnología IoT.</p>
             </div>
         </div>
+
         <div class="service-card">
-            <div class="service-img"><img src="https://raw.githubusercontent.com/Alby-On/Electric_JOSCAM/main/images/servicios/empalme.webp" alt="SEC"></div>
+            <div class="service-img">
+                <img src="https://raw.githubusercontent.com/Alby-On/Electric_JOSCAM/main/images/servicios/empalme.webp" alt="SEC">
+            </div>
             <div class="service-info">
-                <h3>Certificación TE1</h3>
-                <p>Tramitación SEC y ejecución de empalmes eléctricos.</p>
+                <h3>Proyectos SEC y Empalmes</h3>
+                <p>Ejecución de empalmes eléctricos y tramitación de <strong>Certificado TE1</strong> para regularizar e inscribir sus instalaciones.</p>
+            </div>
+        </div>
+
+        <div class="service-card">
+            <div class="service-img">
+                <img src="https://raw.githubusercontent.com/Alby-On/Electric_JOSCAM/main/images/servicios/mantenimiento.webp" alt="Mantenimiento">
+            </div>
+            <div class="service-info">
+                <h3>Continuidad Operativa</h3>
+                <p>Mantenimiento preventivo y correctivo de redes eléctricas y sistemas de seguridad para garantizar su funcionamiento 24/7.</p>
+            </div>
+        </div>
+
+        <div class="service-card">
+            <div class="service-img">
+                <img src="https://raw.githubusercontent.com/Alby-On/Electric_JOSCAM/main/images/servicios/venta.webp" alt="Venta">
+            </div>
+            <div class="service-info">
+                <h3>Venta de Equipamiento</h3>
+                <p>Suministro de componentes eléctricos, cámaras y dispositivos de automatización de las mejores marcas del mercado.</p>
+            </div>
+        </div>
+
+        <div class="service-card">
+            <div class="service-img">
+                <img src="https://raw.githubusercontent.com/Alby-On/Electric_JOSCAM/main/images/servicios/asesoria.webp" alt="Ingeniería">
+            </div>
+            <div class="service-info">
+                <h3>Ingeniería de Proyectos</h3>
+                <p>Asesoría técnica y generación de presupuestos a medida, equilibrando alta ingeniería con la inversión del cliente.</p>
             </div>
         </div>
     </div>
 </section>
 
-<section id="porque-elegirnos">
+<section id="porque-elegirnos" class="why-choose-us">
     <h2 class="section-title">¿Por qué elegirnos?</h2>
+    
     <div class="services-grid">
-        <div class="service-card" style="padding: 2rem; border-bottom: none; background: #f8f9fa;">
+        <div class="service-card animate-up">
             <div class="icon-box color-1"><i class="fas fa-user-graduate"></i></div>
             <h4>Respaldo Profesional</h4>
-            <p>Rigor científico en cada diseño y ejecución de proyecto.</p>
+            <p>Liderado por un <strong>Ingeniero en Automatización</strong> y <strong>Técnico Nivel Superior</strong>, garantizando rigor científico en cada proyecto.</p>
         </div>
-        <div class="service-card" style="padding: 2rem; border-bottom: none; background: #f8f9fa;">
+
+        <div class="service-card animate-up" style="animation-delay: 0.1s;">
             <div class="icon-box color-2"><i class="fas fa-hand-holding-usd"></i></div>
             <h4>Ingeniería de Costos</h4>
-            <p>Presupuestos optimizados según su capacidad de inversión.</p>
+            <p>Desarrollamos presupuestos técnicos optimizados que se ajustan a su capacidad de inversión sin sacrificar calidad ni seguridad.</p>
         </div>
-        <div class="service-card" style="padding: 2rem; border-bottom: none; background: #f8f9fa;">
+
+        <div class="service-card animate-up" style="animation-delay: 0.2s;">
             <div class="icon-box color-3"><i class="fas fa-file-contract"></i></div>
             <h4>Cumplimiento SEC</h4>
-            <p>Estricta adherencia a la normativa eléctrica chilena.</p>
+            <p>Todas nuestras instalaciones eléctricas y de control se ejecutan bajo la <strong>estricta normativa vigente</strong> para su total tranquilidad.</p>
+        </div>
+
+        <div class="service-card animate-up" style="animation-delay: 0.3s;">
+            <div class="icon-box color-4"><i class="fas fa-industry"></i></div>
+            <h4>Versatilidad Sectorial</h4>
+            <p>Experiencia comprobada tanto en el sector <strong>domiciliario</strong> como en el <strong>industrial</strong> de alta exigencia.</p>
         </div>
     </div>
 </section>
 
-<section id="contacto" class="services" style="background: white;">
+<section id="contacto" class="contact-section">
     <div class="contact-container">
-        <div class="contact-info" style="text-align: left;">
-            <h2 class="section-title" style="text-align: left;">Contáctanos</h2>
-            <div class="info-item"><i class="fas fa-envelope"></i> <p>contacto@electricjoscam.cl</p></div>
-            <div class="info-item"><i class="fas fa-phone-alt"></i> <p>+56 9 2632 7255</p></div>
-            <div class="info-item"><i class="fas fa-map-marker-alt"></i> <p>Treguaco, Ñuble, Chile</p></div>
+        <div class="contact-info">
+            <h2 class="section-title" style="text-align: left; margin-bottom: 1rem;">Contáctanos</h2>
+            <p>Estamos listos para asesorarte en tus proyectos de seguridad y electricidad.</p>
+            
+            <div class="info-items">
+                <div class="info-item">
+                    <i class="fas fa-envelope"></i>
+                    <div><span>Email</span><p>contacto@electricjoscam.cl</p></div>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-phone-alt"></i>
+                    <div><span>Teléfono</span><p>+56 9 2632 7255</p></div>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <div><span>Ubicación</span><p>Treguaco, Ñuble, Chile</p></div>
+                </div>
+            </div>
         </div>
+
         <div class="contact-form-card">
-            <form>
-                <div class="form-group"><label>Nombre</label><input type="text" required></div>
-                <div class="form-group"><label>Email</label><input type="email" required></div>
-                <div class="form-group"><label>Mensaje</label><textarea rows="4"></textarea></div>
-                <button type="submit" class="cta-button" style="width:100%">Enviar</button>
+            <form action="#">
+                <div class="form-group"><label>Nombre Completo</label><input type="text" placeholder="Tu nombre..." required></div>
+                <div class="form-group"><label>Correo Electrónico</label><input type="email" placeholder="ejemplo@correo.com" required></div>
+                <div class="form-group"><label>Asunto</label><input type="text" placeholder="¿En qué podemos ayudarte?"></div>
+                <div class="form-group"><label>Mensaje</label><textarea rows="5" placeholder="Escribe los detalles de tu requerimiento..."></textarea></div>
+                <button type="submit" class="cta-button" style="width: 100%; border: none; cursor: pointer;">Enviar Mensaje</button>
             </form>
         </div>
     </div>
 </section>
 
-<div class="logos-section">
+<section class="logos-section">
     <div class="logos-slider">
+        <div class="logo-item"><img src="https://raw.githubusercontent.com/Alby-On/Electric_JOSCAM/main/images/marcas/wd.png" alt="WD"></div>
         <div class="logo-item"><img src="https://raw.githubusercontent.com/Alby-On/Electric_JOSCAM/main/images/marcas/hikvision.png" alt="Hikvision"></div>
-        <div class="logo-item"><img src="https://raw.githubusercontent.com/Alby-On/Electric_JOSCAM/main/images/marcas/schneider.png" alt="Schneider"></div>
-        <div class="logo-item"><img src="https://raw.githubusercontent.com/Alby-On/Electric_JOSCAM/main/images/marcas/tplink.png" alt="TP-Link"></div>
+        <div class="logo-item"><img src="https://raw.githubusercontent.com/Alby-On/Electric_JOSCAM/main/images/marcas/axis.png" alt="AXIS"></div>
+        <div class="logo-item"><img src="https://raw.githubusercontent.com/Alby-On/Electric_JOSCAM/main/images/marcas/btcino.png" alt="Btcino"></div>
         <div class="logo-item"><img src="https://raw.githubusercontent.com/Alby-On/Electric_JOSCAM/main/images/marcas/dahua.png" alt="Dahua"></div>
-        <div class="logo-item"><img src="https://raw.githubusercontent.com/Alby-On/Electric_JOSCAM/main/images/marcas/hikvision.png" alt="Hikvision"></div>
+        <div class="logo-item"><img src="https://raw.githubusercontent.com/Alby-On/Electric_JOSCAM/main/images/marcas/ezviz.png" alt="EZVIZ"></div>
+        <div class="logo-item"><img src="https://raw.githubusercontent.com/Alby-On/Electric_JOSCAM/main/images/marcas/legrand.png" alt="Legrand"></div>
         <div class="logo-item"><img src="https://raw.githubusercontent.com/Alby-On/Electric_JOSCAM/main/images/marcas/schneider.png" alt="Schneider"></div>
-        <div class="logo-item"><img src="https://raw.githubusercontent.com/Alby-On/Electric_JOSCAM/main/images/marcas/tplink.png" alt="TP-Link"></div>
+        <div class="logo-item"><img src="https://raw.githubusercontent.com/Alby-On/Electric_JOSCAM/main/images/marcas/tplink.png" alt="TP-LINK"></div>
+        <div class="logo-item"><img src="https://raw.githubusercontent.com/Alby-On/Electric_JOSCAM/main/images/marcas/sonoff.png" alt="SONOFF"></div>
+        <div class="logo-item"><img src="https://raw.githubusercontent.com/Alby-On/Electric_JOSCAM/main/images/marcas/wd.png" alt="WD"></div>
+        <div class="logo-item"><img src="https://raw.githubusercontent.com/Alby-On/Electric_JOSCAM/main/images/marcas/hikvision.png" alt="Hikvision"></div>
+        <div class="logo-item"><img src="https://raw.githubusercontent.com/Alby-On/Electric_JOSCAM/main/images/marcas/axis.png" alt="AXIS"></div>
+        <div class="logo-item"><img src="https://raw.githubusercontent.com/Alby-On/Electric_JOSCAM/main/images/marcas/btcino.png" alt="Btcino"></div>
         <div class="logo-item"><img src="https://raw.githubusercontent.com/Alby-On/Electric_JOSCAM/main/images/marcas/dahua.png" alt="Dahua"></div>
     </div>
-</div>
+</section>
 
 <footer>
-    <img src="https://raw.githubusercontent.com/Alby-On/Electric_JOSCAM/main/images/Electric_JOSCAM_logo.png" alt="Logo" class="footer-logo">
-    <p>© 2026 Electric_JOSCAM SpA - Ingeniería Eléctrica y Seguridad</p>
+    <div class="footer-content">
+        <img src="https://raw.githubusercontent.com/Alby-On/Electric_JOSCAM/main/images/Electric_JOSCAM_logo.png" alt="Logo" class="footer-logo">
+        <p>© 2026 Electric_JOSCAM SpA - Ingeniería Eléctrica y Seguridad</p>
+    </div>
 </footer>
 
-<a href="https://wa.me/56926327255" class="whatsapp-float" target="_blank"><i class="fab fa-whatsapp"></i></a>
+<a href="https://wa.me/56926327255?text=Hola..." class="whatsapp-float" target="_blank"><i class="fab fa-whatsapp"></i><span class="tooltip-wsp">¿Necesitas soporte técnico?</span></a>
 
 <script>
     window.addEventListener('scroll', () => {
-        const scrollValue = window.pageYOffset;
-        // Navbar Active
+        let current = '';
         const sections = document.querySelectorAll('section, header');
         const navItems = document.querySelectorAll('.nav-links li a');
-        let current = '';
+        const scrollValue = window.pageYOffset;
 
-        sections.forEach(s => {
-            if (scrollValue >= (s.offsetTop - 150)) current = s.getAttribute('id');
+        sections.forEach(section => {
+            if (scrollValue >= (section.offsetTop - 150)) {
+                current = section.getAttribute('id');
+            }
         });
 
         navItems.forEach(a => {
@@ -387,11 +731,13 @@
             if (a.getAttribute('href').includes(current)) a.classList.add('active');
         });
 
-        // Parallax Shapes
         const s1 = document.querySelector('.shape-1');
         const s2 = document.querySelector('.shape-2');
-        if(s1) s1.style.transform = `translate(${scrollValue * 0.1}px) rotate(${45 + scrollValue * 0.05}deg)`;
-        if(s2) s2.style.transform = `scale(${1 + scrollValue * 0.0001})`;
+        const s3 = document.querySelector('.shape-3');
+
+        if(s1) s1.style.transform = `translate(${scrollValue * 0.1}px, ${scrollValue * 0.05}px) rotate(${45 + scrollValue * 0.1}deg)`;
+        if(s2) s2.style.transform = `translateY(${scrollValue * -0.08}px) scale(${1 + (scrollValue * 0.0002)})`;
+        if(s3) s3.style.transform = `translateX(${scrollValue * 0.12}px) rotate(-45deg)`;
     });
 </script>
 </body>
