@@ -543,6 +543,18 @@
 .map-container:hover iframe {
     filter: grayscale(0); /* Al pasar el mouse recupera el color total */
 }
+.contact-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Mitad y mitad */
+    gap: 2rem;
+    align-items: stretch; /* Esto hace que la info y el form tengan la misma altura visual */
+}
+
+@media (max-width: 900px) {
+    .contact-container {
+        grid-template-columns: 1fr; /* En celular una debajo de otra */
+    }
+}
 </style>
 </head>
 <body>
@@ -766,9 +778,14 @@
                 </div>
             </div>
 
-            <div class="map-container" style="margin-top: 2rem; border-radius: 15px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.1); border: 1px solid #ddd;">
+            <div class="map-container" style="margin-top: 2rem; border-radius: 15px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.1); border: 1px solid #ddd; width: 100%; line-height: 0;">
                 <iframe 
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d12840.121618758883!2d-72.66846575000001!3d-36.432647499999995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9668f5e8df68f8a9%3A0x27fea41b7e8f17a9!2sTreguaco%2C%20%C3%91uble!5e0!3m2!1ses!2scl!4v1769824491517!5m2!1ses!2scl"
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d12822.756209217038!2d-72.67448835!3d-36.4172421!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9668f99778e58641%3A0xc47e303496660d26!2zVHJlZ3VlYWNvLCDDkXVibGU!5e0!3m2!1ses!2scl!4v1700000000000!5m2!1ses!2scl" 
+                    width="100%" 
+                    height="350" 
+                    style="border:0; width: 100%;" 
+                    allowfullscreen="" 
+                    loading="lazy" 
                     referrerpolicy="no-referrer-when-downgrade">
                 </iframe>
             </div>
