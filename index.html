@@ -844,6 +844,79 @@ footer p {
     font-size: 0.9rem;
     opacity: 0.8;
 }
+/* Contenedor Principal */
+.why-choose-us {
+    background: var(--dark-light);
+    padding: 4rem 2rem;
+    text-align: center;
+}
+
+/* Grilla Responsiva */
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Tarjetas */
+.service-card {
+    background: var(--dark);
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.service-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+    border-color: var(--accent);
+}
+
+/* Estilo de Iconos */
+.icon-box {
+    font-size: 2.8rem;
+    margin-bottom: 1.2rem;
+    display: inline-block;
+}
+
+/* Colores específicos para Electric_JOSCAM */
+.color-1 { color: #00d4ff; } /* Azul cian tecnológico */
+.color-2 { color: #2ecc71; } /* Verde éxito/ahorro */
+.color-3 { color: #f1c40f; } /* Amarillo eléctrico/normativa */
+.color-4 { color: #e74c3c; } /* Rojo potencia/industrial */
+
+.service-card h4 {
+    margin-bottom: 1rem;
+    color: var(--white);
+    font-size: 1.25rem;
+}
+
+.service-card p {
+    font-size: 0.95rem;
+    color: var(--text-gray);
+    line-height: 1.6;
+}
+
+/* KEYFRAMES PARA ANIMACIÓN */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-up {
+    opacity: 0; /* Estado inicial para la animación */
+    animation: fadeInUp 0.8s ease forwards;
+}
 </style>
 </head>
 <body>
@@ -996,44 +1069,54 @@ footer p {
     </div>
 </section>
 
-<section id="porque-elegirnos" class="services" style="background: var(--dark-light); padding-top: 4rem; padding-bottom: 4rem;">
+<section id="porque-elegirnos" class="why-choose-us">
     <h2 class="section-title">¿Por qué elegirnos?</h2>
-    <div class="services-grid" style="grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));">
+    
+    <div class="services-grid">
         
-        <div style="text-align: center; padding: 1.5rem; background: var(--dark); border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.05);">
-            <div style="font-size: 2.5rem; color: var(--accent); margin-bottom: 1rem;">🎓</div>
-            <h4 style="margin-bottom: 0.8rem; color: var(--white);">Respaldo Profesional</h4>
-            <p style="font-size: 0.9rem; color: var(--text-gray);">
+        <div class="service-card animate-up">
+            <div class="icon-box color-1">
+                <i class="fas fa-user-graduate"></i>
+            </div>
+            <h4>Respaldo Profesional</h4>
+            <p>
                 Liderado por un <strong>Ingeniero en Automatización</strong> y <strong>Técnico Nivel Superior</strong>, garantizando rigor científico en cada proyecto.
             </p>
         </div>
 
-        <div style="text-align: center; padding: 1.5rem; background: var(--dark); border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.05);">
-            <div style="font-size: 2.5rem; color: var(--accent); margin-bottom: 1rem;">💰</div>
-            <h4 style="margin-bottom: 0.8rem; color: var(--white);">Ingeniería de Costos</h4>
-            <p style="font-size: 0.9rem; color: var(--text-gray);">
+        <div class="service-card animate-up" style="animation-delay: 0.1s;">
+            <div class="icon-box color-2">
+                <i class="fas fa-hand-holding-usd"></i>
+            </div>
+            <h4>Ingeniería de Costos</h4>
+            <p>
                 Desarrollamos presupuestos técnicos optimizados que se ajustan a su capacidad de inversión sin sacrificar calidad ni seguridad.
             </p>
         </div>
 
-        <div style="text-align: center; padding: 1.5rem; background: var(--dark); border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.05);">
-            <div style="font-size: 2.5rem; color: var(--accent); margin-bottom: 1rem;">📜</div>
-            <h4 style="margin-bottom: 0.8rem; color: var(--white);">Cumplimiento SEC</h4>
-            <p style="font-size: 0.9rem; color: var(--text-gray);">
+        <div class="service-card animate-up" style="animation-delay: 0.2s;">
+            <div class="icon-box color-3">
+                <i class="fas fa-file-contract"></i>
+            </div>
+            <h4>Cumplimiento SEC</h4>
+            <p>
                 Todas nuestras instalaciones eléctricas y de control se ejecutan bajo la <strong>estricta normativa vigente</strong> para su total tranquilidad.
             </p>
         </div>
 
-        <div style="text-align: center; padding: 1.5rem; background: var(--dark); border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.05);">
-            <div style="font-size: 2.5rem; color: var(--accent); margin-bottom: 1rem;">🏭</div>
-            <h4 style="margin-bottom: 0.8rem; color: var(--white);">Versatilidad Sectorial</h4>
-            <p style="font-size: 0.9rem; color: var(--text-gray);">
+        <div class="service-card animate-up" style="animation-delay: 0.3s;">
+            <div class="icon-box color-4">
+                <i class="fas fa-industry"></i>
+            </div>
+            <h4>Versatilidad Sectorial</h4>
+            <p>
                 Experiencia comprobada tanto en el sector <strong>domiciliario</strong> como en el <strong>industrial</strong> de alta exigencia.
             </p>
         </div>
 
     </div>
 </section>
+
 <section id="contacto" class="contact-section">
     <div class="contact-container">
         <div class="contact-info">
