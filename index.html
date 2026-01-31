@@ -792,8 +792,12 @@
         </div>
 
         <div class="contact-form-card">
-<form id="contact-form" name="contacto-joscam" method="POST" netlify>
-    <input type="hidden" name="form-name" value="contacto-joscam" />
+<form id="contact-form" action="https://api.web3forms.com/submit" method="POST">
+    <input type="hidden" name="access_key" value="65ebbdaf-9e90-4b21-bdc9-718db8349d6c">
+
+    <input type="hidden" name="subject" value="Nuevo mensaje de contacto - Joscam">
+
+    <input type="checkbox" name="botcheck" style="display: none;">
 
     <div class="form-group">
         <label>Nombre Completo</label>
