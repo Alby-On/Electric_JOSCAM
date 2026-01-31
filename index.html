@@ -792,13 +792,31 @@
         </div>
 
         <div class="contact-form-card">
-            <form action="#">
-                <div class="form-group"><label>Nombre Completo</label><input type="text" placeholder="Tu nombre..." required></div>
-                <div class="form-group"><label>Correo Electrónico</label><input type="email" placeholder="ejemplo@correo.com" required></div>
-                <div class="form-group"><label>Asunto</label><input type="text" placeholder="¿En qué podemos ayudarte?"></div>
-                <div class="form-group"><label>Mensaje</label><textarea rows="5" placeholder="Escribe los detalles de tu requerimiento..."></textarea></div>
-                <button type="submit" class="cta-button" style="width: 100%; border: none; cursor: pointer;">Enviar Mensaje</button>
-            </form>
+<form action="#" method="POST" data-netlify="true" name="contacto-joscam">
+    <div class="form-group">
+        <label>Nombre Completo</label>
+        <input type="text" name="nombre" placeholder="Tu nombre..." required>
+    </div>
+    
+    <div class="form-group">
+        <label>Correo Electrónico</label>
+        <input type="email" name="email" placeholder="ejemplo@correo.com" required>
+    </div>
+    
+    <div class="form-group">
+        <label>Asunto</label>
+        <input type="text" name="asunto" placeholder="¿En qué podemos ayudarte?">
+    </div>
+    
+    <div class="form-group">
+        <label>Mensaje</label>
+        <textarea name="mensaje" rows="5" placeholder="Escribe los detalles de tu requerimiento..."></textarea>
+    </div>
+    
+    <button type="submit" class="cta-button" style="width: 100%; border: none; cursor: pointer;">
+        Enviar Mensaje
+    </button>
+</form>
         </div>
     </div>
 </section>
