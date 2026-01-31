@@ -891,33 +891,49 @@
         if(s3) s3.style.transform = `translateX(${scrollValue * 0.12}px) rotate(-45deg)`;
     });
 
-document.querySelector('form[name="contacto-joscam"]').addEventListener("submit", function(e) {
-  e.preventDefault(); // Evita que la página se recargue
+document.getElementById("contact-form").addEventListener("submit", function(e) {
+  e.preventDefault(); // Evita que la página se recargue o se vaya a la web de Web3Forms
 
   const myForm = e.target;
   const formData = new FormData(myForm);
-  
-  fetch("/", {
+  const object = Object.fromEntries(formData);
+  const json = JSON.stringify(object);
+
+  // Cambiamos el fetch para que apunte a Web3Forms
+  fetch("https://api.web3forms.com/submit", {
     method: "POST",
-    headers: { "Content-Type": "application/x-www-form-urlencoded" },
-    body: new URLSearchParams(formData).toString(),
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+    },
+    body: json,
   })
-  .then(() => {
-    // 1. Mostrar el mensaje flotante
-    const toast = document.getElementById("toast-success");
-    toast.style.display = "block";
+  .then(async (response) => {
+    if (response.status == 200) {
+      // 1. Mostrar tu mensaje flotante (Toast)
+      const toast = document.getElementById("toast-success");
+      toast.style.display = "block";
+      toast.style.opacity = "1"; // Aseguramos que sea visible
 
-    // 2. Limpiar el formulario
-    myForm.reset();
+      // 2. Limpiar el formulario
+      myForm.reset();
 
-    // 3. Desaparecer el mensaje tras 5 segundos
-    setTimeout(() => {
-      toast.style.opacity = "0";
-      toast.style.transition = "opacity 0.5s ease";
-      setTimeout(() => { toast.style.display = "none"; toast.style.opacity = "1"; }, 500);
-    }, 5000);
+      // 3. Desaparecer el mensaje tras 5 segundos
+      setTimeout(() => {
+        toast.style.opacity = "0";
+        toast.style.transition = "opacity 0.5s ease";
+        setTimeout(() => { 
+          toast.style.display = "none"; 
+        }, 500);
+      }, 5000);
+    } else {
+      alert("Algo salió mal al enviar el mensaje.");
+    }
   })
-  .catch((error) => alert("Error al enviar: " + error));
+  .catch((error) => {
+    console.log(error);
+    alert("Error al enviar: " + error);
+  });
 });
 </script>
     <div id="toast-success" style="
