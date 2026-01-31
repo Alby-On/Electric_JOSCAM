@@ -535,6 +535,14 @@
         .logo-item { width: 200px; }
         @keyframes scroll-infinito { 0% { transform: translateX(0); } 100% { transform: translateX(calc(-200px * 10)); } }
     }
+.map-container iframe {
+    filter: grayscale(0.2); /* Suaviza los colores para que combinen con tu web */
+    transition: 0.3s;
+}
+
+.map-container:hover iframe {
+    filter: grayscale(0); /* Al pasar el mouse recupera el color total */
+}
 </style>
 </head>
 <body>
@@ -741,7 +749,7 @@
     <div class="contact-container">
         <div class="contact-info">
             <h2 class="section-title" style="text-align: left; margin-bottom: 1rem;">Contáctanos</h2>
-            <p>Estamos listos para asesorarte en tus proyectos de seguridad y electricidad.</p>
+            <p style="margin-bottom: 2rem;">Estamos listos para asesorarte en tus proyectos de seguridad y electricidad.</p>
             
             <div class="info-items">
                 <div class="info-item">
@@ -756,6 +764,13 @@
                     <i class="fas fa-map-marker-alt"></i>
                     <div><span>Ubicación</span><p>Treguaco, Ñuble, Chile</p></div>
                 </div>
+            </div>
+
+            <div class="map-container" style="margin-top: 2rem; border-radius: 15px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.1); border: 1px solid #ddd;">
+                <iframe 
+                    src=<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d12840.121618758883!2d-72.66846575000001!3d-36.432647499999995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9668f5e8df68f8a9%3A0x27fea41b7e8f17a9!2sTreguaco%2C%20%C3%91uble!5e0!3m2!1ses!2scl!4v1769824491517!5m2!1ses!2scl"
+                    referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
             </div>
         </div>
 
