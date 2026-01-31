@@ -876,6 +876,54 @@
         if(s2) s2.style.transform = `translateY(${scrollValue * -0.08}px) scale(${1 + (scrollValue * 0.0002)})`;
         if(s3) s3.style.transform = `translateX(${scrollValue * 0.12}px) rotate(-45deg)`;
     });
+
+    <script>
+document.querySelector('form[name="contacto-joscam"]').addEventListener("submit", function(e) {
+  e.preventDefault(); // Evita que la página se recargue
+
+  const myForm = e.target;
+  const formData = new FormData(myForm);
+  
+  fetch("/", {
+    method: "POST",
+    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+    body: new URLSearchParams(formData).toString(),
+  })
+  .then(() => {
+    // 1. Mostrar el mensaje flotante
+    const toast = document.getElementById("toast-success");
+    toast.style.display = "block";
+
+    // 2. Limpiar el formulario
+    myForm.reset();
+
+    // 3. Desaparecer el mensaje tras 5 segundos
+    setTimeout(() => {
+      toast.style.opacity = "0";
+      toast.style.transition = "opacity 0.5s ease";
+      setTimeout(() => { toast.style.display = "none"; toast.style.opacity = "1"; }, 500);
+    }, 5000);
+  })
+  .catch((error) => alert("Error al enviar: " + error));
+});
 </script>
+</script>
+    <div id="toast-success" style="
+    position: fixed; 
+    bottom: 100px; 
+    right: 30px; 
+    background: var(--accent); 
+    color: white; 
+    padding: 1rem 2rem; 
+    border-radius: 10px; 
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2); 
+    z-index: 10000; 
+    display: none; 
+    animation: fadeInUp 0.5s ease;
+    font-weight: 600;
+    border-left: 5px solid #006400;">
+    <i class="fas fa-check-circle" style="margin-right: 10px;"></i>
+    ¡Mensaje enviado con éxito! Nos contactaremos pronto.
+</div>
 </body>
 </html>
