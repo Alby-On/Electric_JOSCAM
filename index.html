@@ -555,6 +555,79 @@
         grid-template-columns: 1fr; /* En celular una debajo de otra */
     }
 }
+/* --- ESTILOS MENÚ MÓVIL --- */
+.mobile-menu-btn {
+    display: none; /* Oculto en PC */
+    background: none;
+    border: none;
+    color: var(--white);
+    font-size: 1.8rem;
+    cursor: pointer;
+    order: 3;
+}
+
+.mobile-overlay {
+    position: fixed;
+    top: 0;
+    right: -100%; /* Escondido a la derecha */
+    width: 80%;
+    max-width: 300px;
+    height: 100vh;
+    background: var(--navbar-bg);
+    z-index: 2000;
+    box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+    transition: 0.4s ease;
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+    border-left: 4px solid var(--accent);
+}
+
+.mobile-overlay.active {
+    right: 0; /* Se desliza hacia adentro */
+}
+
+.close-menu {
+    align-self: flex-end;
+    background: none;
+    border: none;
+    font-size: 2.5rem;
+    color: var(--accent);
+    cursor: pointer;
+    margin-bottom: 2rem;
+}
+
+.mobile-nav-links {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.mobile-nav-links li a {
+    text-decoration: none;
+    color: var(--white);
+    font-weight: 700;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+}
+
+.mobile-nav-links li a:hover {
+    color: var(--accent);
+}
+
+/* --- MEDIA QUERY PARA ACTIVARLO --- */
+@media (max-width: 1024px) {
+    .nav-links, .nav-social {
+        display: none; /* Oculta lo de PC */
+    }
+    .mobile-menu-btn {
+        display: block; /* Muestra hamburguesa */
+    }
+    .navbar {
+        padding: 0.5rem 5%;
+    }
+}
 </style>
 </head>
 <body>
@@ -579,7 +652,22 @@
         <a href="https://www.instagram.com/electric_joscam_spa/" target="_blank"><i class="fab fa-instagram"></i></a>
         <a href="https://wa.me/56926327255" target="_blank"><i class="fab fa-whatsapp"></i></a>
     </div>
+
+    <button class="mobile-menu-btn" id="open-menu">
+        <i class="fas fa-bars"></i>
+    </button>
 </nav>
+
+<div class="mobile-overlay" id="mobile-overlay">
+    <button class="close-menu" id="close-menu">&times;</button>
+    <ul class="mobile-nav-links">
+        <li><a href="#inicio">Inicio</a></li>
+        <li><a href="#nosotros">Quiénes Somos</a></li>
+        <li><a href="#servicios">Servicios</a></li>
+        <li><a href="#porque-elegirnos">Porque Elegirnos</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+    </ul>
+</div>
 
 <header id="inicio" class="hero">
         <div class="hero-bg-slideshow">
@@ -934,6 +1022,28 @@ document.getElementById("contact-form").addEventListener("submit", function(e) {
     console.log(error);
     alert("Error al enviar: " + error);
   });
+});
+// --- Lógica Menú Móvil ---
+const openBtn = document.getElementById('open-menu');
+const closeBtn = document.getElementById('close-menu');
+const overlay = document.getElementById('mobile-overlay');
+const mobileLinks = document.querySelectorAll('.mobile-nav-links a');
+
+// Abrir
+openBtn.addEventListener('click', () => {
+    overlay.classList.add('active');
+});
+
+// Cerrar
+const closeFunction = () => {
+    overlay.classList.remove('active');
+};
+
+closeBtn.addEventListener('click', closeFunction);
+
+// Cerrar cuando se hace clic en un link (para navegar a la sección)
+mobileLinks.forEach(link => {
+    link.addEventListener('click', closeFunction);
 });
 </script>
     <div id="toast-success" style="
