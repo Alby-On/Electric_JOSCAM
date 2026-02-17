@@ -469,24 +469,57 @@
         align-items: stretch; /* Hace que todas midan lo mismo de alto */
     }
 
-    /* Ajuste de las tarjetas para que no se deformen */
+    /* Ajuste de las tarjetas con nuevas animaciones */
     .why-choose-us .service-card {
         background: var(--dark);
         padding: 2.5rem 1.5rem;
         border-radius: 12px;
         border: 1px solid rgba(0, 0, 0, 0.05);
-        border-bottom: 4px solid var(--accent); /* Mantiene tu estilo */
+        border-bottom: 4px solid transparent; /* Inicialmente transparente para la animación */
         display: flex;
         flex-direction: column;
         justify-content: flex-start;
         height: auto;
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        position: relative;
+        overflow: hidden;
+        transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), 
+                    box-shadow 0.3s ease, 
+                    border-color 1s ease-in-out 0.5s;
+    }
+
+    /* Efecto de brillo al pasar el mouse */
+    .why-choose-us .service-card::after {
+        content: '';
+        position: absolute;
+        top: 0; left: -100%;
+        width: 100%; height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+        transition: 0.5s;
+    }
+
+    .why-choose-us .service-card:hover::after {
+        left: 100%;
+    }
+
+    .why-choose-us .service-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+    }
+
+    /* Se activa mediante JavaScript cuando es visible */
+    #porque-elegirnos .service-card.visible {
+        border-bottom: 4px solid var(--accent);
     }
 
     .why-choose-us .icon-box { 
         font-size: 3rem; 
         margin-bottom: 1.5rem; 
-        display: block; 
+        display: block;
+        transition: transform 0.5s ease;
+    }
+
+    .why-choose-us .service-card:hover .icon-box {
+        transform: rotateY(360deg) scale(1.1);
     }
 
     /* Colores de iconos */
@@ -511,7 +544,13 @@
     /* ANIMACIONES */
     .animate-up { 
         opacity: 0; 
-        animation: fadeInUp 0.8s ease forwards; 
+        transform: translateY(40px);
+        transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    }
+
+    .animate-up.visible { 
+        opacity: 1; 
+        transform: translateY(0); 
     }
 
     /* Responsivo para que no se amontonen en pantallas pequeñas */
@@ -704,6 +743,48 @@
     .about-intro .highlight-text {
         font-size: 1.2rem;
     }
+}
+/* Estilo base para las tarjetas de esta sección */
+#porque-elegirnos .service-card {
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    z-index: 1;
+}
+
+/* Efecto de brillo interior al pasar el mouse */
+#porque-elegirnos .service-card::after {
+    content: '';
+    position: absolute;
+    top: 0; left: -100%;
+    width: 100%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transition: 0.5s;
+}
+
+#porque-elegirnos .service-card:hover::after {
+    left: 100%;
+}
+
+/* Animación de los iconos */
+#porque-elegirnos .icon-box i {
+    transition: transform 0.5s ease;
+}
+
+#porque-elegirnos .service-card:hover .icon-box i {
+    transform: rotateY(360deg) scale(1.1);
+}
+
+/* Ajuste de la animación de entrada */
+.animate-up {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.animate-up.visible {
+    opacity: 1;
+    transform: translateY(0);
 }
 </style>
 </head>
@@ -1167,6 +1248,25 @@ document.addEventListener('DOMContentLoaded', () => {
     if (aboutSection) {
         aboutObserver.observe(aboutSection);
     }
+});
+document.addEventListener('DOMContentLoaded', () => {
+    const whyChooseObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                // Buscamos todas las tarjetas dentro de esta sección
+                const cards = entry.target.querySelectorAll('.animate-up');
+                cards.forEach((card) => {
+                    // La clase 'visible' activa la transición definida en el CSS
+                    card.classList.add('visible');
+                });
+                // Una vez activada, dejamos de observar para ahorrar recursos
+                whyChooseObserver.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.15 }); // Se activa al ver el 15% de la sección
+
+    const targetSection = document.querySelector('#porque-elegirnos');
+    if (targetSection) whyChooseObserver.observe(targetSection);
 });
 </script>
     <div id="toast-success" style="
