@@ -629,6 +629,44 @@
         padding: 0.5rem 5%;
     }
 }
+/* Animación de entrada para los ítems */
+.about-item {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.about-item.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Animación continua para los iconos (Efecto tecnológico) */
+.about-item i {
+    transition: all 0.4s ease;
+}
+
+.about-item:hover i {
+    transform: scale(1.2) rotate(10deg);
+    color: var(--accent-hover);
+    filter: drop-shadow(0 0 8px var(--accent));
+}
+
+/* Animación para los sellos del footer (Efecto entrada lateral) */
+.seal-modern {
+    opacity: 0;
+    transform: scale(0.8);
+    transition: all 0.5s ease-out;
+}
+
+.seal-modern.show {
+    opacity: 1;
+    transform: scale(1);
+}
+#nosotros .section-title {
+    opacity: 0;
+    transition: opacity 1s ease-in;
+}
 </style>
 </head>
 <body>
@@ -1045,6 +1083,43 @@ closeBtn.addEventListener('click', closeFunction);
 // Cerrar cuando se hace clic en un link (para navegar a la sección)
 mobileLinks.forEach(link => {
     link.addEventListener('click', closeFunction);
+});
+document.addEventListener('DOMContentLoaded', () => {
+    const observerOptions = {
+        threshold: 0.25 // Se activa cuando el 25% de la sección es visible
+    };
+
+    const aboutObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                // Animar el título y la intro primero
+                entry.target.querySelector('.section-title').style.opacity = "1";
+                
+                // Animar los ítems de la cuadrícula con delay secuencial
+                const items = entry.target.querySelectorAll('.about-item');
+                items.forEach((item, index) => {
+                    setTimeout(() => {
+                        item.classList.add('show');
+                    }, index * 200); // 200ms de diferencia entre cada uno
+                });
+
+                // Animar los sellos del final
+                const seals = entry.target.querySelectorAll('.seal-modern');
+                seals.forEach((seal, index) => {
+                    setTimeout(() => {
+                        seal.classList.add('show');
+                    }, 800 + (index * 150));
+                });
+
+                aboutObserver.unobserve(entry.target);
+            }
+        });
+    }, observerOptions);
+
+    const aboutSection = document.querySelector('#nosotros');
+    if (aboutSection) {
+        aboutObserver.observe(aboutSection);
+    }
 });
 </script>
     <div id="toast-success" style="
