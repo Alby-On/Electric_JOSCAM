@@ -667,6 +667,44 @@
     opacity: 0;
     transition: opacity 1s ease-in;
 }
+/* Estilo para la frase destacada de entrada */
+.about-intro .highlight-text {
+    font-size: 1.4rem;
+    color: var(--accent);
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    line-height: 1.4;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Estilo para los párrafos descriptivos */
+.about-description {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Divide el texto en dos columnas en PC */
+    gap: 2.5rem;
+    text-align: left;
+    max-width: 1000px;
+    margin: 0 auto 3rem auto;
+}
+
+.about-description p {
+    font-size: 1.05rem;
+    color: var(--text-gray);
+    line-height: 1.8;
+}
+
+/* Responsive para que en celular vuelva a una columna */
+@media (max-width: 768px) {
+    .about-description {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+    .about-intro .highlight-text {
+        font-size: 1.2rem;
+    }
+}
 </style>
 </head>
 <body>
@@ -737,12 +775,21 @@
     <div class="bg-shape shape-2"></div>
     <div class="bg-shape shape-3"></div>
 
-    <div class="container" style="position: relative; z-index: 2;">
-        <h2 class="section-title">Quiénes Somos</h2>
-        <div class="about-intro">
-            <p>En <strong>Electric_JOSCAM SpA</strong>, fusionamos la experiencia técnica con la innovación tecnológica para ofrecer resultados de excelencia.</p>
+   <div class="container" style="position: relative; z-index: 2;">
+    <h2 class="section-title">Quiénes Somos</h2>
+    <div class="about-intro">
+        <p class="highlight-text">
+            Nacimos en el corazón de la Región de Ñuble con la misión de elevar los estándares de seguridad y eficiencia energética en el sector residencial e industrial.
+        </p>
+        <div class="about-description">
+            <p>
+                En <strong>Electric_JOSCAM SpA</strong>, no solo instalamos equipos; diseñamos soluciones inteligentes. Combinamos la precisión de la <strong>Ingeniería en Automatización</strong> con la normativa técnica de excelencia, permitiéndonos abordar desde proyectos domiciliarios personalizados hasta sistemas de control industrial de alta complejidad.
+            </p>
+            <p>
+                Nuestra filosofía se basa en la <strong>continuidad operativa</strong>. Entendemos que la seguridad y la electricidad son el motor de su hogar o empresa, por lo que cada conexión y cada cámara configurada lleva el sello de un equipo certificado ante la SEC, garantizando legalidad, durabilidad y, sobre todo, tranquilidad para nuestros clientes.
+            </p>
         </div>
-
+    </div>
         <div class="about-grid">
             <div class="about-item">
                 <i class="fas fa-microchip"></i>
