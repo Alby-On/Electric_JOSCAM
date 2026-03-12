@@ -1,23 +1,8 @@
 /* ======================================================
-   2. NAVBAR
+    2. NAVBAR - ElectricJoscam (Corregida)
 ====================================================== */
 
-    .navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0.5rem 5%;
-    background: var(--navbar-bg);
-    position: fixed;
-    top: 0;           /* SOLUCIÓN: Pega la barra al inicio absoluto */
-    left: 0;          /* Asegura que cubra desde el borde izquierdo */
-    width: 100%;
-    z-index: 1000;
-    border-bottom: 3px solid var(--accent);
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-}
-
-/* IMPORTANTE: Agrega esto al inicio de tu CSS si no lo tienes */
+/* Reset Universal - Mantener siempre arriba */
 * {
     margin: 0;
     padding: 0;
@@ -26,76 +11,94 @@
 
 body {
     margin: 0;
-    padding-top: 80px; /* Evita que el contenido se esconda bajo la navbar fixed */
+    padding-top: 0; /* Cambiado de 80px a 0 para que el Hero pegue al techo */
+    overflow-x: hidden;
 }
 
-    .logo, .nav-social {
-        flex: 1; 
-        display: flex;
-        align-items: center;
-    }
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 5%;
+    /* Agregamos una leve transparencia para que el Hero se vea detrás */
+    background: rgba(26, 26, 26, 0.95); 
+    backdrop-filter: blur(10px); /* Efecto moderno de desenfoque */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    border-bottom: 3px solid var(--accent);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
 
-    .nav-links {
-        flex: 2;
-        display: flex;
-        justify-content: center;
-        list-style: none;
-        align-items: center;
-    }
+.logo, .nav-social {
+    flex: 1; 
+    display: flex;
+    align-items: center;
+}
 
-    .nav-social {
-        justify-content: flex-end;
-        gap: 1.2rem;
-    }
+.nav-links {
+    flex: 2;
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    align-items: center;
+}
 
-    .logo-img {
-        height: 55px;
-        width: auto;
-        display: block;
-        transition: transform 0.3s ease;
-    }
+.nav-social {
+    justify-content: flex-end;
+    gap: 1.2rem;
+}
 
-    .logo-img:hover {
-        transform: scale(1.05);
-    }
+.logo-img {
+    height: 55px;
+    width: auto;
+    display: block;
+    transition: transform 0.3s ease;
+}
 
-    .nav-links li a {
-        color: var(--white);
-        text-decoration: none;
-        margin: 0 1rem;
-        transition: 0.3s;
-        font-weight: 600;
-        text-transform: uppercase;
-        font-size: 0.85rem;
-    }
+.logo-img:hover {
+    transform: scale(1.05);
+}
 
-    .nav-links li a:hover {
-        color: var(--accent);
-    }
+.nav-links li a {
+    color: var(--white);
+    text-decoration: none;
+    margin: 0 1rem;
+    transition: 0.3s;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+}
 
-    .nav-links li a.active {
-        color: var(--accent);
-        font-weight: 900;
-        border-bottom: 2px solid var(--accent);
-        padding-bottom: 5px;
-    }
+.nav-links li a:hover {
+    color: var(--accent);
+}
 
-    .nav-social a {
-        color: var(--white);
-        font-size: 1.2rem;
-        transition: 0.3s;
-    }
+.nav-links li a.active {
+    color: var(--accent);
+    font-weight: 900;
+    border-bottom: 2px solid var(--accent);
+    padding-bottom: 5px;
+}
 
-    .nav-social a:hover {
-        color: var(--accent);
-        transform: translateY(-2px);
-    }
+.nav-social a {
+    color: var(--white);
+    font-size: 1.2rem;
+    transition: 0.3s;
+}
 
-    .btn-contacto {
-        background: var(--accent);
-        padding: 0.6rem 1.2rem;
-        border-radius: 5px;
-        color: #ffffff !important;
-    }
+.nav-social a:hover {
+    color: var(--accent);
+    transform: translateY(-2px);
+}
+
+.btn-contacto {
+    background: var(--accent);
+    padding: 0.6rem 1.2rem;
+    border-radius: 5px;
+    color: #ffffff !important;
+}
 
 
