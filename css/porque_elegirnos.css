@@ -1,1 +1,19 @@
 
+/* ======================================================
+   10. SECCIÓN POR QUÉ ELEGIRNOS
+====================================================== */
+
+    .why-choose-us { 
+        background: var(--dark-light); 
+        padding: 6rem 5%; 
+        text-align: center; 
+    }
+
+    .why-choose-us .services-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr); 
+        gap: 1.5rem;
+        max-width: 1250px;
+        margin: 0 auto;
+        align-items: stretch;
+    }
