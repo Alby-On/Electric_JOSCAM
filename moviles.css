@@ -1,0 +1,33 @@
+
+/* ======================================================
+   13. MENÚ MÓVIL
+====================================================== */
+
+    .mobile-menu-btn {
+        display:none;
+        background:none;
+        border:none;
+        color:var(--white);
+        font-size:1.8rem;
+        cursor:pointer;
+        order:3;
+    }
+
+    .mobile-overlay {
+        position:fixed;
+        top:0;
+        right:-100%;
+        width:80%;
+        max-width:300px;
+        height:100vh;
+        background:var(--navbar-bg);
+        z-index:2000;
+        box-shadow:-5px 0 15px rgba(0,0,0,0.1);
+        transition:0.4s ease;
+        display:flex;
+        flex-direction:column;
+        padding:2rem;
+        border-left:4px solid var(--accent);
+    }
+
+    .mobile-overlay.active { right:0; }
