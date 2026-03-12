@@ -1,0 +1,41 @@
+
+/* ======================================================
+   6. LOGOS DE MARCAS
+====================================================== */
+
+    .logos-section {
+        padding:3rem 0;
+        background:var(--dark-light);
+        overflow:hidden;
+        position:relative;
+        display:flex;
+        align-items:center;
+    }
+
+    .logos-slider {
+        display:flex;
+        width:calc(300px * 20);
+        animation:scroll-infinito 30s linear infinite;
+    }
+
+    .logo-item {
+        width:300px;
+        flex-shrink:0;
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        padding:0 20px;
+    }
+
+    .logo-item img {
+        height:50px;
+        width:auto;
+        transition:transform 0.3s ease;
+    }
+
+    .logo-item img:hover { transform:scale(1.15); }
+
+    @keyframes scroll-infinito {
+        0%{transform:translateX(0);}
+        100%{transform:translateX(calc(-300px * 10));}
+    }
