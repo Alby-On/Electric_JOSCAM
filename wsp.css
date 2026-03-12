@@ -1,0 +1,61 @@
+
+/* ======================================================
+   5. BOTÓN WHATSAPP
+====================================================== */
+
+    .whatsapp-float {
+        position:fixed;
+        width:60px;height:60px;
+        bottom:30px;right:30px;
+        background-color:#25d366;
+        color:#FFF;
+        border-radius:50px;
+        text-align:center;
+        font-size:30px;
+        box-shadow:0 0 0 0 rgba(37,211,102,0.7);
+        z-index:9999;
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        text-decoration:none;
+        transition:0.3s;
+        animation:wsp-pulse 2s infinite;
+    }
+
+    .whatsapp-float:hover { transform:scale(1.1); background-color:#128c7e; animation:none; }
+
+    .whatsapp-float i { animation:icon-wiggle 5s infinite; }
+
+    .tooltip-wsp {
+        position:absolute;
+        right:75px;
+        background-color:#ffffff;
+        color:#1a1a1a;
+        padding:8px 15px;
+        border-radius:5px;
+        font-size:14px;
+        white-space:nowrap;
+        opacity:0;
+        visibility:hidden;
+        transition:0.3s;
+        border:1px solid var(--accent);
+        box-shadow:0 2px 10px rgba(0,0,0,0.1);
+    }
+
+    .whatsapp-float:hover .tooltip-wsp { opacity:1; visibility:visible; }
+
+    @keyframes wsp-pulse {
+        0%{transform:scale(0.95);box-shadow:0 0 0 0 rgba(37,211,102,0.7);}
+        70%{transform:scale(1);box-shadow:0 0 0 15px rgba(37,211,102,0);}
+        100%{transform:scale(0.95);box-shadow:0 0 0 0 rgba(37,211,102,0);}
+    }
+
+    @keyframes icon-wiggle {
+        0%,90%{transform:rotate(0deg);}
+        92%{transform:rotate(15deg);}
+        94%{transform:rotate(-15deg);}
+        96%{transform:rotate(15deg);}
+        98%{transform:rotate(-15deg);}
+        100%{transform:rotate(0deg);}
+    }
+
