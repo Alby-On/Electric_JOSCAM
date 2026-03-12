@@ -1,133 +1,116 @@
 /* ======================================================
    SECCIÓN ¿POR QUÉ ELEGIRNOS? - ElectricJoscam
 ====================================================== */
-
-.why-choose-us{
-    padding:100px 20px;
-    background:var(--dark-light);
-    text-align:center;
+/* --- Sección: ¿Por qué elegirnos? --- */
+.why-choose-us {
+    padding: 80px 10%;
+    background-color: #f9f9f9; /* Fondo suave para contrastar */
+    text-align: center;
 }
 
-/* CONTENEDOR GRID */
-
-.services-grid{
-    max-width:1000px;
-    margin:60px auto 0;
-
-    display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:40px;
+.section-title {
+    font-size: 2.5rem;
+    color: #2c3e50;
+    margin-bottom: 10px;
+    position: relative;
+    display: inline-block;
 }
 
-/* TARJETAS */
-
-.service-card{
-    background:#fff;
-    padding:40px 35px;
-    border-radius:12px;
-
-    border:1px solid rgba(0,0,0,0.05);
-    box-shadow:0 8px 25px rgba(0,0,0,0.05);
-
-    transition:all .35s ease;
+/* Subtítulo descriptivo */
+.section-subtitle {
+    font-size: 1.1rem;
+    color: #666;
+    margin-bottom: 50px;
+    line-height: 1.6;
 }
 
-.service-card:hover{
-    transform:translateY(-8px);
-    box-shadow:0 15px 40px rgba(0,0,0,0.08);
+/* Grid de Servicios */
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    margin-top: 20px;
 }
 
-/* ICONO */
-
-.icon-box{
-    width:70px;
-    height:70px;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    margin:0 auto 20px;
-
-    border-radius:50%;
-    font-size:28px;
-
-    color:#fff;
+/* Tarjetas individuales */
+.service-card {
+    background: #ffffff;
+    padding: 40px 30px;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-bottom: 4px solid transparent;
 }
 
-/* COLORES ICONOS */
-
-.color-1{
-    background:var(--accent);
+.service-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 45px rgba(0, 0, 0, 0.1);
+    border-bottom: 4px solid #3498db; /* Color de acento al pasar el mouse */
 }
 
-.color-2{
-    background:#2ecc71;
+/* Contenedor de Iconos */
+.icon-box {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    font-size: 1.8rem;
+    transition: transform 0.3s ease;
 }
 
-.color-3{
-    background:#27ae60;
+.service-card:hover .icon-box {
+    transform: scale(1.1);
 }
 
-.color-4{
-    background:#16a085;
+/* Colores personalizados para los iconos */
+.color-1 { background-color: rgba(52, 152, 219, 0.1); color: #3498db; }
+.color-2 { background-color: rgba(46, 204, 113, 0.1); color: #2ecc71; }
+.color-3 { background-color: rgba(241, 196, 15, 0.1); color: #f1c40f; }
+.color-4 { background-color: rgba(231, 76, 60, 0.1); color: #e74c3c; }
+
+.service-card h4 {
+    font-size: 1.4rem;
+    color: #333;
+    margin-bottom: 15px;
+    font-weight: 600;
 }
 
-/* TITULO */
-
-.service-card h4{
-    font-size:1.25rem;
-    margin-bottom:12px;
-    color:var(--white);
+.service-card p {
+    font-size: 0.95rem;
+    color: #666;
+    line-height: 1.7;
 }
 
-/* TEXTO */
-
-.service-card p{
-    font-size:0.95rem;
-    line-height:1.6;
-    color:var(--text-gray);
+/* --- Animación de Entrada (animate-up) --- */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
-/* ANIMACION */
-
-.animate-up{
-    opacity:0;
-    transform:translateY(30px);
-    animation:fadeUp .8s forwards;
+.animate-up {
+    opacity: 0; /* Inicialmente invisible para la animación */
+    animation: fadeInUp 0.8s ease forwards;
 }
 
-@keyframes fadeUp{
-
-from{
-opacity:0;
-transform:translateY(30px);
-}
-
-to{
-opacity:1;
-transform:translateY(0);
-}
-
-}
-
-/* ======================================================
-   RESPONSIVE
-====================================================== */
-
-@media (max-width:768px){
-
-.services-grid{
-grid-template-columns:1fr;
-gap:25px;
-}
-
-.why-choose-us{
-padding:70px 20px;
-}
-
-.service-card{
-padding:30px 25px;
-}
-
+/* Responsividad */
+@media (max-width: 768px) {
+    .why-choose-us {
+        padding: 50px 5%;
+    }
+    
+    .section-title {
+        font-size: 2rem;
+    }
 }
