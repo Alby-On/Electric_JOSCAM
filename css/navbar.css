@@ -1,8 +1,23 @@
 /* ======================================================
-    2. NAVBAR - ElectricJoscam (Corregida)
+    2. NAVBAR - ElectricJoscam
 ====================================================== */
 
-/* Reset Universal - Mantener siempre arriba */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 5%;
+    background: var(--navbar-bg); /* Mantenemos tu variable original */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    border-bottom: 3px solid var(--accent);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+/* IMPORTANTE: Agrega esto al inicio de tu CSS si no lo tienes */
 * {
     margin: 0;
     padding: 0;
@@ -11,25 +26,8 @@
 
 body {
     margin: 0;
-    padding-top: 0; /* Cambiado de 80px a 0 para que el Hero pegue al techo */
-    overflow-x: hidden;
-}
-
-.navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0.5rem 5%;
-    /* Agregamos una leve transparencia para que el Hero se vea detrás */
-    background: rgba(26, 26, 26, 0.95); 
-    backdrop-filter: blur(10px); /* Efecto moderno de desenfoque */
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 1000;
-    border-bottom: 3px solid var(--accent);
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    /* CAMBIO: Se elimina el padding-top de 80px para quitar la franja blanca */
+    padding-top: 0; 
 }
 
 .logo, .nav-social {
@@ -100,5 +98,4 @@ body {
     border-radius: 5px;
     color: #ffffff !important;
 }
-
 
