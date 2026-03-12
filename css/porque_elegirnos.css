@@ -1,53 +1,58 @@
 /* ======================================================
-   SECCIÓN ¿POR QUÉ ELEGIRNOS?
-   Electric_JOSCAM
+   SECCIÓN ¿POR QUÉ ELEGIRNOS? - ElectricJoscam
 ====================================================== */
 
 .why-choose-us{
     padding:100px 20px;
-    background:#ffffff;
+    background:var(--dark-light);
     text-align:center;
 }
 
-/* GRID */
+/* CONTENEDOR GRID */
 
 .services-grid{
-    max-width:1200px;
+    max-width:1000px;
     margin:60px auto 0;
+
     display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-    gap:35px;
+    grid-template-columns:repeat(2,1fr);
+    gap:40px;
 }
 
 /* TARJETAS */
 
 .service-card{
     background:#fff;
-    padding:40px 30px;
+    padding:40px 35px;
     border-radius:12px;
+
     border:1px solid rgba(0,0,0,0.05);
-    box-shadow:0 6px 20px rgba(0,0,0,0.06);
+    box-shadow:0 8px 25px rgba(0,0,0,0.05);
+
     transition:all .35s ease;
-    position:relative;
 }
 
 .service-card:hover{
     transform:translateY(-8px);
-    box-shadow:0 14px 35px rgba(0,0,0,0.08);
+    box-shadow:0 15px 40px rgba(0,0,0,0.08);
 }
 
-/* ICONOS */
+/* ICONO */
 
 .icon-box{
-    width:65px;
-    height:65px;
+    width:70px;
+    height:70px;
+
     display:flex;
     align-items:center;
     justify-content:center;
+
     margin:0 auto 20px;
+
     border-radius:50%;
-    font-size:26px;
-    color:white;
+    font-size:28px;
+
+    color:#fff;
 }
 
 /* COLORES ICONOS */
@@ -61,17 +66,17 @@
 }
 
 .color-3{
-    background:#16a085;
-}
-
-.color-4{
     background:#27ae60;
 }
 
-/* TITULOS */
+.color-4{
+    background:#16a085;
+}
+
+/* TITULO */
 
 .service-card h4{
-    font-size:1.2rem;
+    font-size:1.25rem;
     margin-bottom:12px;
     color:var(--white);
 }
@@ -84,7 +89,7 @@
     color:var(--text-gray);
 }
 
-/* ANIMACIÓN */
+/* ANIMACION */
 
 .animate-up{
     opacity:0;
@@ -106,20 +111,23 @@ transform:translateY(0);
 
 }
 
-/* RESPONSIVE */
+/* ======================================================
+   RESPONSIVE
+====================================================== */
 
-@media(max-width:768px){
+@media (max-width:768px){
+
+.services-grid{
+grid-template-columns:1fr;
+gap:25px;
+}
 
 .why-choose-us{
 padding:70px 20px;
 }
 
-.services-grid{
-gap:25px;
-}
-
 .service-card{
-padding:30px 20px;
+padding:30px 25px;
 }
 
 }
