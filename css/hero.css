@@ -2,7 +2,6 @@
    3. HERO / PORTADA
 ====================================================== */
 
-    /* HERO */
     .hero {
         height: 100vh;
         position: relative;
@@ -101,12 +100,13 @@
         animation: none;
     }
 
-    @keyframes imageFade { 0%, 100% { opacity: 0; } 5%, 25% { opacity: 1; } 30% { opacity: 0; } }
-    @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes imageFade { 0%,100%{opacity:0;}5%,25%{opacity:1;}30%{opacity:0;} }
+    @keyframes fadeInUp { from{opacity:0;transform:translateY(30px);} to{opacity:1;transform:translateY(0);} }
 
     @keyframes heroBtnPulse {
-        0% { box-shadow: 0 0 0 0 rgba(0, 179, 0, 0.7); }
-        70% { box-shadow: 0 0 0 20px rgba(0, 179, 0, 0); }
-        100% { box-shadow: 0 0 0 0 rgba(0, 179, 0, 0); }
+        0%{box-shadow:0 0 0 0 rgba(0,179,0,0.7);}
+        70%{box-shadow:0 0 0 20px rgba(0,179,0,0);}
+        100%{box-shadow:0 0 0 0 rgba(0,179,0,0);}
     }
+
 
