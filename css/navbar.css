@@ -3,17 +3,31 @@
 ====================================================== */
 
     .navbar {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 0.5rem 5%;
-        background: var(--navbar-bg);
-        position: fixed;
-        width: 100%;
-        z-index: 1000;
-        border-bottom: 3px solid var(--accent);
-        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    }
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 5%;
+    background: var(--navbar-bg);
+    position: fixed;
+    top: 0;           /* SOLUCIÓN: Pega la barra al inicio absoluto */
+    left: 0;          /* Asegura que cubra desde el borde izquierdo */
+    width: 100%;
+    z-index: 1000;
+    border-bottom: 3px solid var(--accent);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+/* IMPORTANTE: Agrega esto al inicio de tu CSS si no lo tienes */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding-top: 80px; /* Evita que el contenido se esconda bajo la navbar fixed */
+}
 
     .logo, .nav-social {
         flex: 1; 
