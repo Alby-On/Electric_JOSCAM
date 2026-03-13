@@ -19,33 +19,40 @@ async function loadComponent(id, path) {
     }
 }
 
-// --- 2. Lógica Menú Móvil (Encapsulada para evitar errores de null) ---
+// --- Lógica Menú Móvil (Mejorada para carga dinámica) ---
 function initMobileMenu() {
     const openBtn = document.getElementById('open-menu');
     const closeBtn = document.getElementById('close-menu');
     const overlay = document.getElementById('mobile-overlay');
     const mobileLinks = document.querySelectorAll('.mobile-nav-links a');
 
+    // Función para cerrar (reutilizable)
+    const closeFunction = () => {
+        if (overlay) overlay.classList.remove('active');
+        document.body.style.overflow = 'auto'; // Rehabilitar scroll al cerrar
+    };
+
     if (openBtn && overlay) {
         openBtn.addEventListener('click', () => {
             overlay.classList.add('active');
+            document.body.style.overflow = 'hidden'; // Evitar scroll al estar abierto
         });
     }
-
-    const closeFunction = () => {
-        if (overlay) overlay.classList.remove('active');
-    };
 
     if (closeBtn) {
         closeBtn.addEventListener('click', closeFunction);
     }
 
+    // Cerrar al hacer clic en enlaces o fuera del menú
     if (mobileLinks) {
         mobileLinks.forEach(link => {
             link.addEventListener('click', closeFunction);
         });
     }
 }
+
+// IMPORTANTE: Si cargas el header con fetch(), debes llamar a initMobileMenu() 
+// dentro del .then() de la carga para que los IDs existan en el DOM.
 
 // --- 3. Eventos Globales y Scroll ---
 window.addEventListener('scroll', () => {
