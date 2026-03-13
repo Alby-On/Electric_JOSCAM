@@ -20,37 +20,61 @@ async function loadComponent(id, path) {
 }
 
 // --- Lógica Menú Móvil (Mejorada y Sincronizada) ---
+// --- Lógica Menú Móvil Actualizada (Función Toggle) ---
 function initMobileMenu() {
     const openBtn = document.getElementById('open-menu');
     const closeBtn = document.getElementById('close-menu');
     const overlay = document.getElementById('mobile-overlay');
     
-    // Usamos querySelectorAll dentro de init para asegurar que los encuentre tras el fetch
+    // Volvemos a capturar los links para asegurar que el DOM esté listo
     const mobileLinks = document.querySelectorAll('.mobile-nav-links a');
 
+    // Función unificada para cerrar
     const closeFunction = () => {
         if (overlay) {
             overlay.classList.remove('active');
             document.body.style.overflow = 'auto'; 
+            
+            // Volver el icono a barras si existe
+            const icon = openBtn ? openBtn.querySelector('i') : null;
+            if (icon) icon.className = 'fas fa-bars';
+        }
+    };
+
+    // Función unificada para abrir
+    const openFunction = () => {
+        if (overlay) {
+            overlay.classList.add('active');
+            document.body.style.overflow = 'hidden'; 
+            
+            // Cambiar el icono a X si existe
+            const icon = openBtn ? openBtn.querySelector('i') : null;
+            if (icon) icon.className = 'fas fa-times';
         }
     };
 
     if (openBtn && overlay) {
-        openBtn.onclick = null; // Limpiamos eventos previos si existen
+        openBtn.onclick = null; // Limpiar manejadores previos
         openBtn.addEventListener('click', (e) => {
             e.preventDefault();
-            overlay.classList.add('active');
-            document.body.style.overflow = 'hidden'; 
+            
+            // Si el menú ya tiene la clase 'active', lo cerramos. Si no, lo abrimos.
+            if (overlay.classList.contains('active')) {
+                closeFunction();
+            } else {
+                openFunction();
+            }
         });
     }
 
+    // El botón cerrar (X interna) siempre ejecuta cerrar
     if (closeBtn) {
-        closeBtn.addEventListener('click', closeFunction);
+        closeBtn.onclick = closeFunction;
     }
 
-    // Importante: Asignar el cierre a los enlaces del overlay
+    // Los enlaces del menú siempre ejecutan cerrar al hacer clic
     mobileLinks.forEach(link => {
-        link.addEventListener('click', closeFunction);
+        link.onclick = closeFunction;
     });
 }
 
