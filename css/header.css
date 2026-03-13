@@ -25,7 +25,7 @@ body {
 
 .top-bar-container {
     display: flex;
-    /* VOLVEMOS A: space-between para separar los dos bloques */
+    /* Mantiene los datos a la izquierda y redes a la derecha */
     justify-content: space-between; 
     align-items: center;
     max-width: 1200px;
@@ -43,15 +43,16 @@ body {
     display: flex;
     align-items: center;
     gap: 8px;
-    transition: 0.3s;
+    transition: 0.3s ease;
 }
 
+/* Hover general para los textos y enlaces de contacto */
 .contact-info a:hover {
-    color: var(--accent);
+    color: #25d366; /* Cambiado a verde para consistencia */
 }
 
 .contact-info i {
-    color: var(--accent);
+    color: var(--accent); /* Mantiene el color de acento original para los iconos de texto */
 }
 
 .social-icons {
@@ -60,26 +61,25 @@ body {
     align-items: center;
 }
 
-/* Estilos para los enlaces de redes sociales en topbar */
+/* --- Unificación de Iconos Sociales --- */
+
 .social-icons a {
-    color: var(--text-gray);
+    color: var(--text-gray) !important; /* Todos inician en gris */
     text-decoration: none;
-    transition: 0.3s;
+    transition: all 0.3s ease;
     font-size: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
+/* Todos cambian a verde al pasar el mouse */
 .social-icons a:hover {
-    color: var(--accent);
+    color: #25d366 !important; 
+    transform: translateY(-2px);
 }
 
-/* Estilo específico para resaltar el icono de WhatsApp en la topbar */
-.social-icons a.top-wsp i {
-    color: #25d366;
-}
-
-.social-icons a.top-wsp:hover i {
-    color: #ffffff;
-}
+/* Eliminadas las reglas específicas de .top-wsp para que herede el comportamiento general */
 
 /* Responsive: Ocultar en móviles */
 @media (max-width: 768px) {
