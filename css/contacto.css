@@ -1,67 +1,139 @@
-
 /* ======================================================
-   7. CONTACTO
+    7. CONTACTO - Reorganizado para Electric_JOSCAM
 ====================================================== */
 
-    .contact-section { padding:6rem 5%; background-color:var(--dark-light); }
+.contact-section { 
+    padding: 6rem 5%; 
+    background-color: var(--dark-light); 
+}
 
+/* Ajuste para que el título de la sección ocupe todo el ancho y esté centrado */
+.contact-section .section-title {
+    text-align: center;
+    margin-bottom: 3rem;
+    width: 100%;
+}
+
+.contact-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    /* 1fr para la info y mapa, 1.2fr para el formulario */
+    grid-template-columns: 1fr 1.2fr;
+    gap: 4rem;
+    align-items: start;
+}
+
+/* --- Información de Contacto (Izquierda) --- */
+
+.info-items { 
+    display: flex; 
+    flex-direction: column; 
+    gap: 1.5rem; 
+}
+
+.info-item { 
+    display: flex; 
+    align-items: flex-start; /* Alineación superior para textos largos */
+    gap: 1.2rem; 
+}
+
+.info-item i {
+    min-width: 45px; 
+    height: 45px;
+    background: var(--accent); /* Fondo verde para resaltar el icono */
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px; /* Look moderno cuadradito redondeado */
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    font-size: 1.1rem;
+}
+
+/* Etiquetas (Email, Teléfono, Ubicación) */
+.info-item span { 
+    display: block; 
+    font-weight: bold; 
+    font-size: 0.85rem; 
+    color: var(--accent); /* Verde para las etiquetas */
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Textos de los datos reales */
+.info-item p {
+    color: var(--white);
+    font-size: 1rem;
+    margin-top: 2px;
+}
+
+/* --- Contenedor del Mapa --- */
+
+.map-container {
+    margin-top: 2.5rem;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    border: 1px solid rgba(255,255,255,0.1);
+    line-height: 0; /* Quita espacios fantasma bajo el iframe */
+}
+
+/* --- Tarjeta del Formulario (Derecha) --- */
+
+.contact-form-card {
+    background: white;
+    padding: 3rem;
+    border-radius: 25px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+}
+
+.form-group { 
+    margin-bottom: 1.5rem; 
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.6rem;
+    font-weight: 600;
+    font-size: 0.9rem;
+    /* CAMBIO CRÍTICO: Texto oscuro para que se vea sobre el fondo blanco */
+    color: #333; 
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    border: 2px solid #edf2f7;
+    border-radius: 8px;
+    outline: none;
+    transition: 0.3s;
+    font-family: inherit;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 4px rgba(0, 179, 0, 0.1);
+}
+
+/* --- Responsive --- */
+
+@media (max-width: 968px) {
     .contact-container {
-        max-width:1100px;
-        margin:0 auto;
-        display:grid;
-        grid-template-columns:1fr 1.2fr;
-        gap:4rem;
-        align-items:start;
+        grid-template-columns: 1fr; /* Una sola columna en tablets/móviles */
+        gap: 3rem;
     }
-
-    .info-items { display:flex; flex-direction:column; gap:1.5rem; }
-
-    .info-item { display:flex; align-items:center; gap:1rem; }
-
-    .info-item i {
-        width:45px;height:45px;
-        background:white;
-        color:var(--accent);
-        display:flex;
-        align-items:center;
-        justify-content:center;
-        border-radius:50%;
-        box-shadow:0 4px 10px rgba(0,0,0,0.05);
-        font-size:1.2rem;
-    }
-
-    .info-item span { display:block;font-weight:bold;font-size:0.9rem;color:var(--white); }
-
+    
     .contact-form-card {
-        background:white;
-        padding:2.5rem;
-        border-radius:20px;
-        box-shadow:0 15px 40px rgba(0,0,0,0.08);
+        padding: 2rem;
     }
+}
 
-    .form-group { margin-bottom:1.5rem; }
-
-    .form-group label {
-        display:block;
-        margin-bottom:0.5rem;
-        font-weight:600;
-        font-size:0.9rem;
-        color:var(--white);
+@media (max-width: 480px) {
+    .contact-section {
+        padding: 4rem 5%;
     }
-
-    .form-group input,
-    .form-group textarea {
-        width:100%;
-        padding:0.8rem 1rem;
-        border:2px solid #edf2f7;
-        border-radius:8px;
-        outline:none;
-        transition:0.3s;
-    }
-
-    .form-group input:focus,
-    .form-group textarea:focus {
-        border-color:var(--accent);
-        box-shadow:0 0 0 4px rgba(0,179,0,0.1);
-    }
+}
 
