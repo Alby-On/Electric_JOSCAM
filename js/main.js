@@ -149,40 +149,43 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // main.js
 
+// main.js
+
+// 1. Función de carga mejorada
 async function loadComponent(id, path) {
     const container = document.getElementById(id);
-    if (!container) return; // Seguridad por si el ID no existe en el HTML
+    if (!container) return; 
 
     try {
         const response = await fetch(path);
-        if (!response.ok) throw new Error(`Error al cargar ${path}`);
+        if (!response.ok) throw new Error(`No se encontró ${path}`);
         const html = await response.text();
         container.innerHTML = html;
-
-        // IMPORTANTE: Disparamos un aviso de que el componente está listo
-        document.dispatchEvent(new CustomEvent('componentLoaded', { detail: id }));
+        
+        // Opcional: Avisar que cargó (útil para depurar)
+        console.log(`Componente ${id} cargado con éxito.`);
     } catch (error) {
-        console.error("Error:", error);
+        console.error("Error cargando componentes:", error);
     }
 }
 
-// Ejecutar las cargas
+// 2. Ejecutar cargas
 loadComponent('header-component', 'components/header.html');
 loadComponent('footer-component', 'components/footer.html');
 
-// AQUÍ CORREGIMOS EL ERROR: 
-// No busques botones directamente, espera a que carguen.
-document.addEventListener('componentLoaded', (e) => {
-    if (e.detail === 'header-component') {
-        // Toda la lógica que use elementos del HEADER va aquí dentro
-        console.log("El header ya existe en el DOM");
-        
-        // Ejemplo de lo que daba error antes:
-        const btnContacto = document.querySelector('.btn-contacto');
-        if (btnContacto) {
-            btnContacto.addEventListener('click', () => {
-                console.log("Click en contacto!");
-            });
-        }
+// 3. LA SOLUCIÓN AL ERROR DE LA LÍNEA 78: Delegación de Eventos
+// En lugar de buscar el botón directamente, escuchamos el click en todo el documento
+// y filtramos si el clic fue en el elemento que nos interesa.
+document.addEventListener('click', function (event) {
+    
+    // Si el clic fue en el botón de contacto (ajusta la clase según tu HTML)
+    if (event.target.matches('.btn-contacto') || event.target.closest('.btn-contacto')) {
+        console.log("Clic detectado en el botón de contacto");
+        // Aquí va la lógica que tenías en la línea 78
+    }
+
+    // Ejemplo para otro botón que esté dentro de un componente
+    if (event.target.matches('.cta-button')) {
+        console.log("Clic en el botón del Hero");
     }
 });
