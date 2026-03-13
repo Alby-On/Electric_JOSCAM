@@ -147,16 +147,42 @@ document.addEventListener('DOMContentLoaded', () => {
     if (targetSection) whyChooseObserver.observe(targetSection);
 });
 
-async function loadComponent(id, path) {
-            try {
-                const response = await fetch(path);
-                const html = await response.text();
-                document.getElementById(id).innerHTML = html;
-            } catch (error) {
-                console.error("Error cargando el componente:", error);
-            }
-        }
+// main.js
 
-        // Llamamos a las funciones al cargar la página
-        loadComponent('header-component', 'components/header.html');
-        loadComponent('footer-component', 'components/footer.html');
+async function loadComponent(id, path) {
+    const container = document.getElementById(id);
+    if (!container) return; // Seguridad por si el ID no existe en el HTML
+
+    try {
+        const response = await fetch(path);
+        if (!response.ok) throw new Error(`Error al cargar ${path}`);
+        const html = await response.text();
+        container.innerHTML = html;
+
+        // IMPORTANTE: Disparamos un aviso de que el componente está listo
+        document.dispatchEvent(new CustomEvent('componentLoaded', { detail: id }));
+    } catch (error) {
+        console.error("Error:", error);
+    }
+}
+
+// Ejecutar las cargas
+loadComponent('header-component', 'components/header.html');
+loadComponent('footer-component', 'components/footer.html');
+
+// AQUÍ CORREGIMOS EL ERROR: 
+// No busques botones directamente, espera a que carguen.
+document.addEventListener('componentLoaded', (e) => {
+    if (e.detail === 'header-component') {
+        // Toda la lógica que use elementos del HEADER va aquí dentro
+        console.log("El header ya existe en el DOM");
+        
+        // Ejemplo de lo que daba error antes:
+        const btnContacto = document.querySelector('.btn-contacto');
+        if (btnContacto) {
+            btnContacto.addEventListener('click', () => {
+                console.log("Click en contacto!");
+            });
+        }
+    }
+});
