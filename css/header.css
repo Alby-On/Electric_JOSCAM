@@ -7,19 +7,29 @@
 
 body {
     margin: 0;
-    padding-top: 0; 
+    /* EMPUJAMOS EL CONTENIDO: Al usar fixed, debemos dar espacio arriba 
+       para que el Hero no se esconda detrás del menú */
+    padding-top: 110px !important; 
+}
+
+/* En móviles el padding es menor porque ocultamos la top-bar */
+@media (max-width: 768px) {
+    body {
+        padding-top: 70px !important; 
+    }
 }
 
 /* ======================================================
-    NUEVO: Contenedor Padre (FORZADO PARA SCROLL)
+    NUEVO: Contenedor Padre (USAMOS FIXED)
 ====================================================== */
 .header-wrapper {
-    /* Usamos sticky con !important para asegurar que baje con el scroll */
-    position: sticky !important;
+    /* Fixed asegura que el componente flote sobre el index.html */
+    position: fixed !important;
     top: 0 !important;
-    z-index: 2000 !important; /* Valor alto para que nada pase por encima */
+    left: 0 !important;
     width: 100% !important;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    z-index: 9999 !important; /* Prioridad máxima sobre cualquier sección */
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
     display: block !important;
 }
 
@@ -33,7 +43,6 @@ body {
     font-size: 0.85rem;
     padding: 8px 5%;
     position: relative; 
-    z-index: 2001;
 }
 
 .top-bar-container {
@@ -103,11 +112,10 @@ body {
     padding: 0.5rem 5%;
     background: var(--navbar-bg);
     
-    /* IMPORTANTE: Relative para que siga al wrapper sin saltos */
+    /* Relative respecto al .header-wrapper */
     position: relative !important; 
     width: 100% !important;
-    top: auto !important;
-    z-index: 2000;
+    z-index: 9998;
     border-bottom: 3px solid var(--accent);
 }
 
@@ -157,17 +165,6 @@ body {
     padding-bottom: 5px;
 }
 
-.nav-social a {
-    color: var(--white);
-    font-size: 1.2rem;
-    transition: 0.3s;
-}
-
-.nav-social a:hover {
-    color: var(--accent);
-    transform: translateY(-2px);
-}
-
 .btn-contacto {
     background: var(--accent);
     padding: 0.6rem 1.2rem;
@@ -179,5 +176,5 @@ body {
 /* Ajuste adicional para el anclaje de secciones */
 html {
     scroll-behavior: smooth;
-    scroll-padding-top: 140px; /* Evita que la cabecera tape los títulos */
+    scroll-padding-top: 140px; 
 }
