@@ -10,7 +10,6 @@ body {
     /* CAMBIO: Se elimina el padding-top de 80px para quitar la franja blanca */
     padding-top: 0; 
 }
-
 /* ======================================================
     1. TOP BAR - Datos de Contacto
 ====================================================== */
@@ -20,19 +19,17 @@ body {
     color: var(--text-gray);
     font-size: 0.85rem;
     padding: 8px 5%;
-    position: relative; /* Asegura que ocupe su lugar en el flujo */
+    position: relative; 
     z-index: 1001;
 }
 
 .top-bar-container {
     display: flex;
-    /* CAMBIO: De space-between a flex-start para agrupar a la izquierda */
-    justify-content: flex-start; 
+    /* VOLVEMOS A: space-between para separar los dos bloques */
+    justify-content: space-between; 
     align-items: center;
     max-width: 1200px;
     margin: 0 auto;
-    /* Añadimos un gap para que los iconos sociales no queden pegados al texto */
-    gap: 30px; 
 }
 
 .contact-info {
@@ -60,6 +57,7 @@ body {
 .social-icons {
     display: flex;
     gap: 15px;
+    align-items: center;
 }
 
 /* Estilos para los enlaces de redes sociales en topbar */
@@ -67,10 +65,20 @@ body {
     color: var(--text-gray);
     text-decoration: none;
     transition: 0.3s;
+    font-size: 1rem;
 }
 
 .social-icons a:hover {
     color: var(--accent);
+}
+
+/* Estilo específico para resaltar el icono de WhatsApp en la topbar */
+.social-icons a.top-wsp i {
+    color: #25d366;
+}
+
+.social-icons a.top-wsp:hover i {
+    color: #ffffff;
 }
 
 /* Responsive: Ocultar en móviles */
