@@ -14,7 +14,8 @@ body {
     1. TOP BAR - Datos de Contacto
 ====================================================== */
 .top-bar {
-    background-color: var(--dark);
+    /* CAMBIO: Se ajusta al color del footer para equilibrio visual */
+    background-color: var(--dark-light); 
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     color: var(--text-gray);
     font-size: 0.85rem;
@@ -48,11 +49,11 @@ body {
 
 /* Hover general para los textos y enlaces de contacto */
 .contact-info a:hover {
-    color: #25d366; /* Cambiado a verde para consistencia */
+    color: #25d366; /* Verde consistente */
 }
 
 .contact-info i {
-    color: var(--accent); /* Mantiene el color de acento original para los iconos de texto */
+    color: var(--accent); /* Iconos de texto mantienen el azul técnico */
 }
 
 .social-icons {
@@ -64,7 +65,7 @@ body {
 /* --- Unificación de Iconos Sociales --- */
 
 .social-icons a {
-    color: var(--text-gray) !important; /* Todos inician en gris */
+    color: var(--text-gray) !important; /* Inician en gris igual al footer */
     text-decoration: none;
     transition: all 0.3s ease;
     font-size: 1rem;
@@ -79,15 +80,12 @@ body {
     transform: translateY(-2px);
 }
 
-/* Eliminadas las reglas específicas de .top-wsp para que herede el comportamiento general */
-
 /* Responsive: Ocultar en móviles */
 @media (max-width: 768px) {
     .top-bar {
         display: none;
     }
 }
-
 /* ======================================================
     2. NAVBAR - ElectricJoscam
 ====================================================== */
