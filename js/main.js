@@ -19,23 +19,28 @@ async function loadComponent(id, path) {
     }
 }
 
-// --- Lógica Menú Móvil (Mejorada para carga dinámica) ---
+// --- Lógica Menú Móvil (Mejorada y Sincronizada) ---
 function initMobileMenu() {
     const openBtn = document.getElementById('open-menu');
     const closeBtn = document.getElementById('close-menu');
     const overlay = document.getElementById('mobile-overlay');
+    
+    // Usamos querySelectorAll dentro de init para asegurar que los encuentre tras el fetch
     const mobileLinks = document.querySelectorAll('.mobile-nav-links a');
 
-    // Función para cerrar (reutilizable)
     const closeFunction = () => {
-        if (overlay) overlay.classList.remove('active');
-        document.body.style.overflow = 'auto'; // Rehabilitar scroll al cerrar
+        if (overlay) {
+            overlay.classList.remove('active');
+            document.body.style.overflow = 'auto'; 
+        }
     };
 
     if (openBtn && overlay) {
-        openBtn.addEventListener('click', () => {
+        openBtn.onclick = null; // Limpiamos eventos previos si existen
+        openBtn.addEventListener('click', (e) => {
+            e.preventDefault();
             overlay.classList.add('active');
-            document.body.style.overflow = 'hidden'; // Evitar scroll al estar abierto
+            document.body.style.overflow = 'hidden'; 
         });
     }
 
@@ -43,12 +48,10 @@ function initMobileMenu() {
         closeBtn.addEventListener('click', closeFunction);
     }
 
-    // Cerrar al hacer clic en enlaces o fuera del menú
-    if (mobileLinks) {
-        mobileLinks.forEach(link => {
-            link.addEventListener('click', closeFunction);
-        });
-    }
+    // Importante: Asignar el cierre a los enlaces del overlay
+    mobileLinks.forEach(link => {
+        link.addEventListener('click', closeFunction);
+    });
 }
 
 // IMPORTANTE: Si cargas el header con fetch(), debes llamar a initMobileMenu() 
