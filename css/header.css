@@ -11,14 +11,16 @@ body {
 }
 
 /* ======================================================
-    NUEVO: Contenedor Padre (Para que bajen juntos)
+    NUEVO: Contenedor Padre (FORZADO PARA SCROLL)
 ====================================================== */
 .header-wrapper {
-    position: sticky;
-    top: 0;
-    z-index: 1100;
-    width: 100%;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    /* Usamos sticky con !important para asegurar que baje con el scroll */
+    position: sticky !important;
+    top: 0 !important;
+    z-index: 2000 !important; /* Valor alto para que nada pase por encima */
+    width: 100% !important;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    display: block !important;
 }
 
 /* ======================================================
@@ -26,12 +28,12 @@ body {
 ====================================================== */
 .top-bar {
     background-color: var(--dark-light); 
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     color: var(--text-gray);
     font-size: 0.85rem;
     padding: 8px 5%;
     position: relative; 
-    z-index: 1001;
+    z-index: 2001;
 }
 
 .top-bar-container {
@@ -101,10 +103,11 @@ body {
     padding: 0.5rem 5%;
     background: var(--navbar-bg);
     
-    /* CAMBIO: Ahora es relativo al wrapper para no separarse */
-    position: relative; 
-    width: 100%;
-    z-index: 1000;
+    /* IMPORTANTE: Relative para que siga al wrapper sin saltos */
+    position: relative !important; 
+    width: 100% !important;
+    top: auto !important;
+    z-index: 2000;
     border-bottom: 3px solid var(--accent);
 }
 
@@ -175,5 +178,6 @@ body {
 
 /* Ajuste adicional para el anclaje de secciones */
 html {
-    scroll-padding-top: 130px; /* Evita que la cabecera tape los títulos */
+    scroll-behavior: smooth;
+    scroll-padding-top: 140px; /* Evita que la cabecera tape los títulos */
 }
