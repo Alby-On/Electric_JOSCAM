@@ -52,23 +52,24 @@
     gap: 15px;
 }
 
-.info-item i {
+/* Seleccionamos solo los iconos que son hijos de .info-item */
+.info-items .info-item i {
     width: 50px;
     height: 50px;
-    background: var(--accent);
-    color: white !important; /* Forzamos color blanco */
-    display: flex !important; /* Forzamos el centrado */
+    background: var(--accent); /* Verde JOSCAM */
+    color: white !important;
+    display: flex !important;
     align-items: center;
     justify-content: center;
     border-radius: 10px;
     font-size: 1.2rem;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
     
-    /* SEGURIDAD: Aseguramos que use la fuente de iconos */
+    /* Forzamos la fuente por si acaso */
     font-family: "Font Awesome 6 Free", "Font Awesome 5 Free", sans-serif;
-    font-weight: 900; 
-    font-style: normal;
+    font-weight: 900;
 }
+    
 
 .info-item span {
     display: block;
