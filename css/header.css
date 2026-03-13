@@ -201,7 +201,7 @@ html {
 
 
 /* ======================================================
-    MENU MÓVIL (Hamburguesa y Overlay) - Optimizado
+    7. MENU MÓVIL (Hamburguesa y Overlay) - Optimizado
 ====================================================== */
 
 /* Botón hamburguesa: Visible solo en móviles mediante Media Query */
@@ -213,7 +213,7 @@ html {
     font-size: 1.8rem;
     cursor: pointer;
     transition: color 0.3s ease;
-    z-index: 2001; /* Aumentado para asegurar visibilidad sobre otros elementos */
+    z-index: 2001; /* Asegura visibilidad sobre otros elementos */
     padding: 10px;
     line-height: 1;
 }
@@ -226,7 +226,7 @@ html {
 .mobile-overlay {
     position: fixed;
     top: 0;
-    right: -100%;
+    right: -100%; /* Escondido a la derecha */
     width: 85%;
     max-width: 400px;
     height: 100vh;
@@ -236,19 +236,24 @@ html {
     display: flex;
     flex-direction: column;
     
-    /* Aumentamos significativamente el espacio superior */
-    /* El primer valor (140px) empuja todo el contenido hacia abajo */
+    /* Bajamos el contenido para que empiece DEBAJO de la navbar */
     padding: 140px 40px 40px 40px !important; 
     
     box-shadow: -10px 0 30px rgba(0,0,0,0.5);
-    visibility: hidden;
-    overflow-y: auto; /* Permite scroll si el menú es muy largo */
+    visibility: hidden; /* Evita clics accidentales mientras está oculto */
+    overflow-y: auto; /* Permite scroll si hay muchos links */
 }
 
-/* Bajamos el botón de cerrar para que no choque con la Navbar o el botón burger */
+/* Estado activo: Se desliza desde la derecha */
+.mobile-overlay.active {
+    right: 0 !important;
+    visibility: visible !important;
+}
+
+/* Botón de cerrar (X) */
 .close-menu {
     position: absolute;
-    top: 40px !important; /* Bajamos la X considerablemente */
+    top: 40px !important; /* Bajamos la X considerablemente para que no se tape */
     right: 30px;
     background: none;
     border: none;
@@ -257,13 +262,7 @@ html {
     cursor: pointer;
     line-height: 1;
     z-index: 10000;
-}
-
-/* Aseguramos que la lista de links tenga un margen extra si es necesario */
-.mobile-nav-links {
-    margin-top: 20px;
-    list-style: none;
-    padding: 0;
+    transition: color 0.3s ease;
 }
 
 .close-menu:hover {
@@ -274,7 +273,7 @@ html {
 .mobile-nav-links {
     list-style: none;
     padding: 0;
-    margin: 0;
+    margin: 20px 0 0 0; /* Margen extra superior */
 }
 
 .mobile-nav-links li {
@@ -284,12 +283,12 @@ html {
     transition: 0.4s ease;
 }
 
+/* Animación de entrada escalonada cuando se activa */
 .mobile-overlay.active .mobile-nav-links li {
     opacity: 1;
     transform: translateX(0);
 }
 
-/* Delay escalonado */
 .mobile-overlay.active li:nth-child(1) { transition-delay: 0.1s; }
 .mobile-overlay.active li:nth-child(2) { transition-delay: 0.2s; }
 .mobile-overlay.active li:nth-child(3) { transition-delay: 0.3s; }
@@ -322,11 +321,11 @@ html {
         display: flex !important; /* Forzamos flex para centrar icono */
         align-items: center;
         justify-content: center;
-        min-width: 44px; /* Tamaño mínimo recomendado para clics en móvil */
+        min-width: 44px;
         min-height: 44px;
     }
 
-    /* Aseguramos que la navbar no corte el botón */
+    /* Aseguramos que el contenedor padre no corte el botón */
     .navbar {
         overflow: visible !important;
     }
