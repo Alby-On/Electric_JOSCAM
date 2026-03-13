@@ -83,55 +83,41 @@
 
 /* --- Responsividad Mejorada --- */
 
+/* --- Responsividad para móviles (Apilado vertical) --- */
+
 @media (max-width: 1024px) {
-    .why-choose-us {
-        padding: 60px 8%;
-    }
     .services-grid {
+        /* En tablets medianas, mostramos 2 columnas */
         grid-template-columns: repeat(2, 1fr);
         gap: 25px;
     }
 }
 
 @media (max-width: 768px) {
-    .why-choose-us {
-        padding: 50px 5%; /* Menos padding lateral para aprovechar pantalla */
-    }
-
-    .section-title {
-        font-size: 1.8rem; /* Título más acorde a móvil */
-        margin-bottom: 15px;
-    }
-
-    .section-subtitle {
-        font-size: 1rem;
-        margin-bottom: 35px;
-        line-height: 1.6;
-    }
-
+    /* Esta es la regla clave para el apilado vertical */
     .services-grid {
-        grid-template-columns: 1fr;
-        gap: 20px;
+        grid-template-columns: 1fr !important; /* Una sola columna */
+        gap: 20px; /* Espacio vertical entre las cards */
+    }
+
+    .why-choose-us {
+        padding: 50px 5%; /* Menos espacio en los bordes para ganar ancho */
     }
 
     .service-card {
-        padding: 30px 20px; /* Reducimos padding para que el texto no quede muy apretado */
+        padding: 30px 20px; /* Reducimos padding interno */
+        width: 100%; /* Aseguramos que ocupe todo el ancho disponible */
     }
 
     .service-card p {
-        text-align: left; /* El justificado en móvil genera huecos blancos feos */
+        text-align: left; /* Alineación natural para lectura móvil */
         font-size: 0.95rem;
     }
 
+    /* Ajustamos el tamaño de los iconos para que no dominen toda la pantalla */
     .icon-box {
         width: 70px;
         height: 70px;
         font-size: 1.8rem;
-        margin-bottom: 15px;
-    }
-
-    .service-card h4 {
-        font-size: 1.2rem;
-        margin-bottom: 10px;
     }
 }
