@@ -26,10 +26,13 @@ body {
 
 .top-bar-container {
     display: flex;
-    justify-content: space-between;
+    /* CAMBIO: De space-between a flex-start para agrupar a la izquierda */
+    justify-content: flex-start; 
     align-items: center;
     max-width: 1200px;
     margin: 0 auto;
+    /* Añadimos un gap para que los iconos sociales no queden pegados al texto */
+    gap: 30px; 
 }
 
 .contact-info {
