@@ -200,7 +200,11 @@ html {
 
 
 
-/* Botón hamburguesa oculto por defecto */
+/* ======================================================
+    MENU MÓVIL (Hamburguesa y Overlay)
+====================================================== */
+
+/* Botón hamburguesa: Visible solo en móviles mediante Media Query */
 .mobile-menu-btn {
     display: none;
     background: none;
@@ -208,6 +212,12 @@ html {
     color: var(--white);
     font-size: 1.8rem;
     cursor: pointer;
+    transition: color 0.3s ease;
+    z-index: 1001; /* Por encima de la navbar */
+}
+
+.mobile-menu-btn:hover {
+    color: var(--accent);
 }
 
 /* Menú lateral (Overlay) */
@@ -215,56 +225,93 @@ html {
     position: fixed;
     top: 0;
     right: -100%; /* Escondido a la derecha */
-    width: 80%;
+    width: 85%; /* Ocupa la mayor parte de la pantalla */
+    max-width: 400px;
     height: 100vh;
     background-color: var(--dark-light);
-    z-index: 3000;
-    transition: 0.4s ease;
+    z-index: 9999; /* Máxima prioridad */
+    transition: all 0.4s cubic-bezier(0.77, 0, 0.175, 1);
     display: flex;
     flex-direction: column;
     padding: 100px 40px;
     box-shadow: -10px 0 30px rgba(0,0,0,0.5);
 }
 
+/* Estado activo: Se desliza desde la derecha */
 .mobile-overlay.active {
-    right: 0; /* Aparece en pantalla */
+    right: 0;
 }
 
 /* Botón de cerrar (X) */
 .close-menu {
     position: absolute;
-    top: 20px;
+    top: 25px;
     right: 30px;
     background: none;
     border: none;
-    color: white;
-    font-size: 3rem;
+    color: var(--white);
+    font-size: 2.5rem;
     cursor: pointer;
+    line-height: 1;
+    transition: color 0.3s ease;
 }
 
+.close-menu:hover {
+    color: var(--accent);
+}
+
+/* Lista de enlaces móviles */
 .mobile-nav-links {
     list-style: none;
+    padding: 0;
+    margin: 0;
 }
 
 .mobile-nav-links li {
-    margin-bottom: 25px;
+    margin-bottom: 30px;
+    opacity: 0;
+    transform: translateX(20px);
+    transition: 0.4s ease;
 }
 
+/* Animación de entrada para los enlaces cuando el menú está activo */
+.mobile-overlay.active .mobile-nav-links li {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* Delay escalonado para los enlaces */
+.mobile-overlay.active li:nth-child(1) { transition-delay: 0.1s; }
+.mobile-overlay.active li:nth-child(2) { transition-delay: 0.2s; }
+.mobile-overlay.active li:nth-child(3) { transition-delay: 0.3s; }
+.mobile-overlay.active li:nth-child(4) { transition-delay: 0.4s; }
+.mobile-overlay.active li:nth-child(5) { transition-delay: 0.5s; }
+
 .mobile-nav-links li a {
-    color: white;
+    color: var(--white);
     text-decoration: none;
-    font-size: 1.4rem;
+    font-size: 1.2rem;
     font-weight: 600;
     text-transform: uppercase;
+    letter-spacing: 1px;
+    display: block;
+    transition: color 0.3s ease;
+}
+
+.mobile-nav-links li a:hover {
+    color: var(--accent);
+    padding-left: 10px; /* Efecto sutil de desplazamiento al pasar el mouse */
 }
 
 /* --- RESPONSIVE --- */
 @media (max-width: 968px) {
+    /* Ocultamos los enlaces normales de escritorio */
     .nav-links {
-        display: none; /* Ocultamos el menú de escritorio */
+        display: none !important; 
     }
 
+    /* Mostramos el botón hamburguesa */
     .mobile-menu-btn {
-        display: block; /* Mostramos el botón hamburguesa */
+        display: block;
     }
 }
