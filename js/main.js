@@ -54,17 +54,23 @@ window.addEventListener('scroll', () => {
     const navItems = document.querySelectorAll('.nav-links li a');
     const scrollValue = window.pageYOffset;
 
+    // Ajustamos a 180 para considerar la altura de la Top Bar + Navbar
     sections.forEach(section => {
-        if (scrollValue >= (section.offsetTop - 150)) {
+        const sectionTop = section.offsetTop;
+        if (scrollValue >= (sectionTop - 180)) {
             current = section.getAttribute('id');
         }
     });
 
     navItems.forEach(a => {
         a.classList.remove('active');
-        if (a.getAttribute('href').includes(current)) a.classList.add('active');
+        // Solo añadimos 'active' si hay un ID actual detectado
+        if (current && a.getAttribute('href').includes(current)) {
+            a.classList.add('active');
+        }
     });
 
+    // --- Efectos Parallax (Shapes) ---
     const s1 = document.querySelector('.shape-1');
     const s2 = document.querySelector('.shape-2');
     const s3 = document.querySelector('.shape-3');
