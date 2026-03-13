@@ -201,19 +201,21 @@ html {
 
 
 /* ======================================================
-    MENU MÓVIL (Hamburguesa y Overlay)
+    MENU MÓVIL (Hamburguesa y Overlay) - Optimizado
 ====================================================== */
 
 /* Botón hamburguesa: Visible solo en móviles mediante Media Query */
 .mobile-menu-btn {
-    display: none;
+    display: none; /* Se activa en el media query abajo */
     background: none;
     border: none;
     color: var(--white);
     font-size: 1.8rem;
     cursor: pointer;
     transition: color 0.3s ease;
-    z-index: 1001; /* Por encima de la navbar */
+    z-index: 2001; /* Aumentado para asegurar visibilidad sobre otros elementos */
+    padding: 10px;
+    line-height: 1;
 }
 
 .mobile-menu-btn:hover {
@@ -225,21 +227,23 @@ html {
     position: fixed;
     top: 0;
     right: -100%; /* Escondido a la derecha */
-    width: 85%; /* Ocupa la mayor parte de la pantalla */
+    width: 85%; 
     max-width: 400px;
     height: 100vh;
     background-color: var(--dark-light);
-    z-index: 9999; /* Máxima prioridad */
+    z-index: 9999; 
     transition: all 0.4s cubic-bezier(0.77, 0, 0.175, 1);
     display: flex;
     flex-direction: column;
     padding: 100px 40px;
     box-shadow: -10px 0 30px rgba(0,0,0,0.5);
+    visibility: hidden; /* Evita clics accidentales cuando está oculto */
 }
 
 /* Estado activo: Se desliza desde la derecha */
 .mobile-overlay.active {
     right: 0;
+    visibility: visible;
 }
 
 /* Botón de cerrar (X) */
@@ -274,13 +278,12 @@ html {
     transition: 0.4s ease;
 }
 
-/* Animación de entrada para los enlaces cuando el menú está activo */
 .mobile-overlay.active .mobile-nav-links li {
     opacity: 1;
     transform: translateX(0);
 }
 
-/* Delay escalonado para los enlaces */
+/* Delay escalonado */
 .mobile-overlay.active li:nth-child(1) { transition-delay: 0.1s; }
 .mobile-overlay.active li:nth-child(2) { transition-delay: 0.2s; }
 .mobile-overlay.active li:nth-child(3) { transition-delay: 0.3s; }
@@ -300,18 +303,25 @@ html {
 
 .mobile-nav-links li a:hover {
     color: var(--accent);
-    padding-left: 10px; /* Efecto sutil de desplazamiento al pasar el mouse */
+    padding-left: 10px;
 }
 
-/* --- RESPONSIVE --- */
+/* --- RESPONSIVE - FORZAR VISIBILIDAD --- */
 @media (max-width: 968px) {
-    /* Ocultamos los enlaces normales de escritorio */
     .nav-links {
         display: none !important; 
     }
 
-    /* Mostramos el botón hamburguesa */
     .mobile-menu-btn {
-        display: block;
+        display: flex !important; /* Forzamos flex para centrar icono */
+        align-items: center;
+        justify-content: center;
+        min-width: 44px; /* Tamaño mínimo recomendado para clics en móvil */
+        min-height: 44px;
+    }
+
+    /* Aseguramos que la navbar no corte el botón */
+    .navbar {
+        overflow: visible !important;
     }
 }
