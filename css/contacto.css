@@ -1,139 +1,164 @@
 /* ======================================================
-    7. CONTACTO - Reorganizado para Electric_JOSCAM
+   7. SECCIÓN CONTACTO - Electric_JOSCAM
 ====================================================== */
 
-.contact-section { 
-    padding: 6rem 5%; 
-    background-color: var(--dark-light); 
-}
-
-/* Ajuste para que el título de la sección ocupe todo el ancho y esté centrado */
-.contact-section .section-title {
-    text-align: center;
-    margin-bottom: 3rem;
+.contact-section {
+    padding: 80px 5%;
+    background-color: var(--dark-light);
     width: 100%;
 }
 
+/* Título: Fuera del grid para centrarse en toda la pantalla */
+.contact-section .section-title {
+    text-align: center;
+    margin-bottom: 50px;
+    color: var(--white);
+    font-size: 2.5rem;
+}
+
+/* Contenedor Principal: El que crea las dos columnas */
 .contact-container {
-    max-width: 1100px;
+    max-width: 1200px;
     margin: 0 auto;
     display: grid;
-    /* 1fr para la info y mapa, 1.2fr para el formulario */
-    grid-template-columns: 1fr 1.2fr;
-    gap: 4rem;
+    /* Columna 1 (Info+Mapa): 1 fracción | Columna 2 (Form): 1.1 fracciones */
+    grid-template-columns: 1fr 1.1fr; 
+    gap: 60px;
     align-items: start;
 }
 
-/* --- Información de Contacto (Izquierda) --- */
-
-.info-items { 
-    display: flex; 
-    flex-direction: column; 
-    gap: 1.5rem; 
+/* --- BLOQUE IZQUIERDO: Info y Mapa --- */
+.contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
 }
 
-.info-item { 
-    display: flex; 
-    align-items: flex-start; /* Alineación superior para textos largos */
-    gap: 1.2rem; 
+.contact-info > p {
+    color: var(--text-gray);
+    font-size: 1.1rem;
+    line-height: 1.6;
+}
+
+.info-items {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.info-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
 }
 
 .info-item i {
-    min-width: 45px; 
-    height: 45px;
-    background: var(--accent); /* Fondo verde para resaltar el icono */
+    width: 50px;
+    height: 50px;
+    background: var(--accent);
     color: white;
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 12px; /* Look moderno cuadradito redondeado */
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-    font-size: 1.1rem;
+    border-radius: 10px;
+    font-size: 1.2rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
-/* Etiquetas (Email, Teléfono, Ubicación) */
-.info-item span { 
-    display: block; 
-    font-weight: bold; 
-    font-size: 0.85rem; 
-    color: var(--accent); /* Verde para las etiquetas */
+.info-item span {
+    display: block;
+    color: var(--accent);
+    font-weight: 800;
+    font-size: 0.8rem;
     text-transform: uppercase;
-    letter-spacing: 1px;
 }
 
-/* Textos de los datos reales */
 .info-item p {
     color: var(--white);
+    margin: 0;
     font-size: 1rem;
-    margin-top: 2px;
 }
 
-/* --- Contenedor del Mapa --- */
-
+/* El Mapa: Ahora con altura garantizada */
 .map-container {
-    margin-top: 2.5rem;
+    width: 100%;
+    height: 350px;
     border-radius: 20px;
     overflow: hidden;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-    border: 1px solid rgba(255,255,255,0.1);
-    line-height: 0; /* Quita espacios fantasma bajo el iframe */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-/* --- Tarjeta del Formulario (Derecha) --- */
+.map-container iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
 
+/* --- BLOQUE DERECHO: Tarjeta Formulario --- */
 .contact-form-card {
     background: white;
-    padding: 3rem;
+    padding: 40px;
     border-radius: 25px;
-    box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
 }
 
-.form-group { 
-    margin-bottom: 1.5rem; 
+.form-group {
+    margin-bottom: 20px;
 }
 
 .form-group label {
     display: block;
-    margin-bottom: 0.6rem;
+    margin-bottom: 8px;
     font-weight: 600;
+    color: #333 !important; /* Forzamos texto oscuro sobre fondo blanco */
     font-size: 0.9rem;
-    /* CAMBIO CRÍTICO: Texto oscuro para que se vea sobre el fondo blanco */
-    color: #333; 
 }
 
-.form-group input,
+.form-group input, 
 .form-group textarea {
     width: 100%;
-    padding: 0.8rem 1rem;
-    border: 2px solid #edf2f7;
-    border-radius: 8px;
+    padding: 12px 15px;
+    border: 2px solid #e1e8ef;
+    border-radius: 10px;
     outline: none;
     transition: 0.3s;
     font-family: inherit;
+    color: #333;
 }
 
-.form-group input:focus,
+.form-group input:focus, 
 .form-group textarea:focus {
     border-color: var(--accent);
     box-shadow: 0 0 0 4px rgba(0, 179, 0, 0.1);
 }
 
-/* --- Responsive --- */
-
-@media (max-width: 968px) {
-    .contact-container {
-        grid-template-columns: 1fr; /* Una sola columna en tablets/móviles */
-        gap: 3rem;
-    }
-    
-    .contact-form-card {
-        padding: 2rem;
-    }
+/* Botón del formulario */
+.contact-form-card .cta-button {
+    background: var(--accent);
+    color: white;
+    padding: 15px;
+    border-radius: 10px;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: 0.3s;
 }
 
-@media (max-width: 480px) {
+.contact-form-card .cta-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    filter: brightness(1.1);
+}
+
+/* --- RESPONSIVE --- */
+@media (max-width: 992px) {
+    .contact-container {
+        grid-template-columns: 1fr; /* Una columna en tablets y móviles */
+        gap: 40px;
+    }
+
     .contact-section {
-        padding: 4rem 5%;
+        padding: 60px 5%;
     }
 }
 
