@@ -146,3 +146,17 @@ document.addEventListener('DOMContentLoaded', () => {
     const targetSection = document.querySelector('#porque-elegirnos');
     if (targetSection) whyChooseObserver.observe(targetSection);
 });
+
+async function loadComponent(id, path) {
+            try {
+                const response = await fetch(path);
+                const html = await response.text();
+                document.getElementById(id).innerHTML = html;
+            } catch (error) {
+                console.error("Error cargando el componente:", error);
+            }
+        }
+
+        // Llamamos a las funciones al cargar la página
+        loadComponent('header-component', 'components/header.html');
+        loadComponent('footer-component', 'components/footer.html');
