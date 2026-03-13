@@ -1,5 +1,5 @@
 /* ======================================================
-   SECCIÓN ¿POR QUÉ ELEGIRNOS? - ElectricJoscam (3 Cols)
+   SECCIÓN ¿POR QUÉ ELEGIRNOS? - ElectricJoscam (Optimizado)
 ====================================================== */
 
 .why-choose-us {
@@ -32,14 +32,14 @@
 
 .service-card {
     background: #ffffff;
-    padding: 45px 35px; /* Más espacio interno para textos largos */
+    padding: 45px 35px;
     border-radius: 15px;
     box-shadow: 0 12px 40px rgba(0, 0, 0, 0.06);
     transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
     display: flex;
     flex-direction: column;
     align-items: center;
-    border-top: 5px solid transparent; /* Efecto visual superior */
+    border-top: 5px solid transparent;
 }
 
 .service-card:hover {
@@ -58,6 +58,7 @@
     margin-bottom: 25px;
     font-size: 2.2rem;
     transition: transform 0.3s ease;
+    flex-shrink: 0; /* Evita que el icono se achique */
 }
 
 /* Colores de Iconos */
@@ -76,23 +77,61 @@
     font-size: 1rem;
     color: #666;
     line-height: 1.7;
-    text-align: justify; /* Opcional: da un look más formal a párrafos largos */
+    text-align: justify;
     hyphens: auto;
 }
 
-/* --- Responsividad --- */
+/* --- Responsividad Mejorada --- */
 
 @media (max-width: 1024px) {
+    .why-choose-us {
+        padding: 60px 8%;
+    }
     .services-grid {
-        grid-template-columns: repeat(2, 1fr); /* 2 columnas en tablets */
+        grid-template-columns: repeat(2, 1fr);
+        gap: 25px;
     }
 }
 
 @media (max-width: 768px) {
-    .services-grid {
-        grid-template-columns: 1fr; /* 1 columna en móviles */
-    }
     .why-choose-us {
-        padding: 60px 5%;
+        padding: 50px 5%; /* Menos padding lateral para aprovechar pantalla */
+    }
+
+    .section-title {
+        font-size: 1.8rem; /* Título más acorde a móvil */
+        margin-bottom: 15px;
+    }
+
+    .section-subtitle {
+        font-size: 1rem;
+        margin-bottom: 35px;
+        line-height: 1.6;
+    }
+
+    .services-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .service-card {
+        padding: 30px 20px; /* Reducimos padding para que el texto no quede muy apretado */
+    }
+
+    .service-card p {
+        text-align: left; /* El justificado en móvil genera huecos blancos feos */
+        font-size: 0.95rem;
+    }
+
+    .icon-box {
+        width: 70px;
+        height: 70px;
+        font-size: 1.8rem;
+        margin-bottom: 15px;
+    }
+
+    .service-card h4 {
+        font-size: 1.2rem;
+        margin-bottom: 10px;
     }
 }
