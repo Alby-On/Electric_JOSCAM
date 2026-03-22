@@ -1,4 +1,18 @@
-.projects-section { padding: 80px 5%; background: #fdfdfd; }
+.projects-section { 
+    padding: 80px 5%; 
+    background: #fdfdfd; 
+    /* Aseguramos que el contenido interno se centre */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Este es el contenedor que limita el ancho */
+.projects-section .container {
+    width: 100%;
+    max-width: 1200px; /* Ajusta este valor según el ancho de tu Navbar/Hero */
+    margin: 0 auto;
+}
 
 .project-card {
     display: flex;
@@ -7,8 +21,9 @@
     margin-bottom: 80px;
     background: #fff;
     border-radius: 20px;
-    padding: 30px;
+    padding: 40px; /* Aumenté un poco el padding para que respire mejor */
     box-shadow: 0 15px 40px rgba(0,0,0,0.05);
+    width: 100%; /* Ocupa el 100% de los 1200px del contenedor */
 }
 
 /* LA MAGIA DEL REVERSE */
@@ -21,7 +36,7 @@
     position: relative;
     border-radius: 15px;
     overflow: hidden;
-    height: 400px;
+    height: 450px; /* Un poco más alto para aprovechar el espacio */
     background: #000;
 }
 
@@ -47,18 +62,19 @@
 
 /* Estilos de Info */
 .project-tag { color: var(--accent); font-weight: 700; text-transform: uppercase; font-size: 0.8rem; }
-.project-info h3 { font-size: 2rem; color: var(--dark-light); margin: 15px 0; }
+.project-info h3 { font-size: 2.2rem; color: var(--dark-light); margin: 15px 0; line-height: 1.2; }
 .project-story p { margin-bottom: 15px; color: #555; line-height: 1.6; }
 .project-specs { list-style: none; padding: 0; display: flex; gap: 15px; margin-top: 25px; flex-wrap: wrap; }
-.project-specs li { background: #f0f0f0; padding: 8px 15px; border-radius: 5px; font-size: 0.85rem; border-left: 3px solid var(--accent); }
+.project-specs li { background: #f8f8f8; padding: 8px 15px; border-radius: 5px; font-size: 0.85rem; border-left: 3px solid var(--accent); color: #333; }
 
 /* --- RESPONSIVE --- */
 @media (max-width: 992px) {
     .project-card, .project-card.reverse {
-        flex-direction: column; /* Todo a una columna en móvil/tablet */
+        flex-direction: column; 
         padding: 20px;
-        gap: 30px;
+        gap: 25px;
     }
     .project-visual, .project-info { width: 100%; }
-    .project-slider { height: 300px; }
+    .project-slider { height: 320px; }
+    .project-info h3 { font-size: 1.8rem; }
 }
