@@ -1,26 +1,13 @@
-function initProjectSliders() {
-    const projectCards = document.querySelectorAll('.project-card');
+function moveSlide(sliderId, direction) {
+    const slider = document.getElementById(sliderId);
+    const slides = slider.querySelectorAll('.p-slide');
+    let activeIndex = Array.from(slides).findIndex(s => s.classList.contains('active'));
 
-    projectCards.forEach(card => {
-        const images = card.querySelectorAll('.slider-wrapper img');
-        const nextBtn = card.querySelector('.next');
-        const prevBtn = card.querySelector('.prev');
-        let index = 0;
+    slides[activeIndex].classList.remove('active');
+    
+    activeIndex += direction;
+    if (activeIndex >= slides.length) activeIndex = 0;
+    if (activeIndex < 0) activeIndex = slides.length - 1;
 
-        const changeImage = (newIndex) => {
-            images[index].classList.remove('active');
-            index = (newIndex + images.length) % images.length;
-            images[index].classList.add('active');
-        };
-
-        if(nextBtn) nextBtn.addEventListener('click', () => changeImage(index + 1));
-        if(prevBtn) prevBtn.addEventListener('click', () => changeImage(index - 1));
-
-        // Rotación automática
-        setInterval(() => {
-            changeImage(index + 1);
-        }, 4000);
-    });
+    slides[activeIndex].classList.add('active');
 }
-
-// Llama a esta función dentro de tu DOMContentLoaded o después de cargar el componente.
