@@ -2,69 +2,136 @@
    4. SERVICIOS
 ====================================================== */
 
-    .services { padding:6rem 5%; background:var(--dark-light); text-align:center; }
+.services { 
+    padding: 6rem 5%; 
+    background: var(--dark-light); 
+    text-align: center;
+}
 
-    .services-grid {
-        display:grid;
-        grid-template-columns:repeat(3,1fr);
-        gap:2rem;
-        max-width:1200px;
-        margin:0 auto;
-    }
+/* =========================
+   GRID
+========================= */
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
 
-    .service-card {
-        background:#ffffff;
-        border-radius:15px;
-        overflow:hidden;
-        border-bottom:5px solid var(--accent);
-        transition:all 0.3s ease;
-        box-shadow:0 10px 25px rgba(0,0,0,0.05);
-        display:flex;
-        flex-direction:column;
-        height:100%;
-    }
+/* =========================
+   CARDS
+========================= */
+.service-card {
+    background: #ffffff;
+    border-radius: 15px;
+    overflow: hidden;
 
-    .service-card:hover {
-        transform:translateY(-10px);
-        box-shadow:0 15px 35px rgba(0,0,0,0.12);
-    }
+    /* Más presencia visual */
+    border-bottom: 5px solid var(--accent);
+    border: 1px solid rgba(0,0,0,0.05);
 
-    .service-img {
-        width:100%;
-        height:220px;
-        overflow:hidden;
-        position:relative;
-    }
+    box-shadow: 0 10px 25px rgba(0,0,0,0.06);
+    transition: all 0.35s ease;
 
-    .service-img img {
-        width:100%;
-        height:100%;
-        object-fit:cover;
-        transition:transform 0.5s ease;
-    }
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    position: relative;
+}
 
-    .service-card:hover .service-img img { transform:scale(1.1); }
+/* Línea superior sutil de acento */
+.service-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, var(--accent), transparent);
+    opacity: 0.8;
+}
 
-    .service-info {
-        padding:2rem;
-        flex-grow:1;
-        display:flex;
-        flex-direction:column;
-        justify-content:center;
-    }
+.service-card:hover {
+    transform: translateY(-10px) scale(1.01);
 
-    .service-card h3 {
-        margin-bottom:1rem;
-        color:var(--white);
-        font-size:1.4rem;
-        font-weight:700;
-    }
+    /* Sombra más profunda */
+    box-shadow: 0 20px 45px rgba(0,0,0,0.15);
 
-    .service-card p {
-        font-size:0.95rem;
-        color:var(--text-gray);
-        line-height:1.6;
-    }
+    border-color: rgba(0,0,0,0.08);
+}
+
+/* =========================
+   IMAGEN
+========================= */
+.service-img {
+    width: 100%;
+    height: 220px;
+    overflow: hidden;
+    position: relative;
+}
+
+/* Overlay oscuro para contraste */
+.service-img::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.45), rgba(0,0,0,0.05));
+    opacity: 0.6;
+    transition: opacity 0.3s ease;
+}
+
+.service-card:hover .service-img::after {
+    opacity: 0.8;
+}
+
+.service-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease, filter 0.5s ease;
+}
+
+.service-card:hover .service-img img { 
+    transform: scale(1.1);
+    filter: brightness(0.9) contrast(1.1);
+}
+
+/* =========================
+   TEXTO
+========================= */
+.service-info {
+    padding: 2rem;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* TÍTULO más fuerte */
+.service-card h3 {
+    margin-bottom: 1rem;
+
+    font-size: 1.4rem;
+    font-weight: 800;
+
+    color: #0f172a; /* más contraste que blanco */
+    letter-spacing: 0.3px;
+}
+
+/* TEXTO más legible */
+.service-card p {
+    font-size: 0.95rem;
+    color: #475569; /* gris moderno */
+    line-height: 1.6;
+}
+
+/* =========================
+   EFECTO EXTRA (DETALLE PRO)
+========================= */
+.service-card:hover h3 {
+    color: var(--accent); /* cambia al color de marca */
+}
 
 
 
