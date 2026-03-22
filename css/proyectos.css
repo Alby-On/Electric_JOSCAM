@@ -1,9 +1,19 @@
 /* ======================================================
-   SECCIÓN PROYECTOS - ESQUEMA DE COLOR PREMIUM
+   SECCIÓN PROYECTOS - DISEÑO FINAL REFINADO
 ====================================================== */
 .projects-section { 
     padding: 80px 5%; 
-    background: #ffffff; /* Blanco puro para limpieza */
+    background: #ffffff; 
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centra el contenido en pantallas anchas */
+}
+
+/* CONTENEDOR DE ANCHO (Evita que se expanda al infinito) */
+.projects-section .container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
 .project-card {
@@ -14,48 +24,39 @@
     background: #ffffff;
     border-radius: 24px;
     padding: 40px;
-    /* Sombra más profunda y definida para efecto flotante */
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.07);
-    border: 1px solid rgba(0, 0, 0, 0.03);
+    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.08);
+    border: 1px solid #f0f0f0;
     transition: all 0.4s ease;
+    width: 100%;
 }
 
-.project-card:hover {
-    box-shadow: 0 30px 70px rgba(0, 0, 0, 0.12);
-    transform: translateY(-5px);
-}
-
-/* LA MAGIA DEL REVERSE */
 .project-card.reverse { flex-direction: row-reverse; }
 
 .project-visual, .project-info { flex: 1; width: 50%; }
 
-/* Slider con borde de acento */
+/* Slider */
 .project-slider {
     position: relative;
     border-radius: 20px;
     overflow: hidden;
     height: 420px;
     background: #1a1a1a;
-    /* Un borde sutil que resalta la imagen */
-    border: 4px solid #f8f9fa;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    border: 1px solid #eee;
 }
 
 .p-slide img { 
     width: 100%; 
     height: 100%; 
     object-fit: cover; 
-    filter: brightness(0.95); /* Un toque de oscuridad para que resalten los textos */
 }
 
-/* Botones Flechas con el color de marca */
+/* Botones Flechas */
 .project-slider button {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    background: var(--accent); /* Tu color principal */
-    color: white;
+    background: var(--accent);
+    color: white !important; /* Forzamos blanco en el icono */
     border: none;
     width: 45px;
     height: 45px;
@@ -64,55 +65,46 @@
     justify-content: center;
     cursor: pointer;
     z-index: 10;
-    transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    font-size: 1.2rem;
+    border-radius: 50%;
     box-shadow: 0 4px 15px rgba(0,0,0,0.2);
 }
 
-.project-slider button:hover {
-    background: var(--dark-light);
-    transform: translateY(-50%) scale(1.1);
-}
+/* --- TEXTOS (CORRECCIÓN DE VISIBILIDAD) --- */
 
-.project-slider .prev { left: 15px; border-radius: 50%; }
-.project-slider .next { right: 15px; border-radius: 50%; }
-
-/* Estilos de Info con más contraste */
 .project-tag { 
-    color: var(--accent); 
-    background: rgba(var(--accent-rgb), 0.1); /* Requiere definir variable rgb o usar hex */
+    color: var(--accent) !important; 
+    background: rgba(0, 0, 0, 0.05); /* Fondo gris suave para resaltar */
     padding: 6px 15px;
     border-radius: 50px;
     font-weight: 800; 
     text-transform: uppercase; 
     font-size: 0.75rem; 
-    letter-spacing: 1.5px;
+    letter-spacing: 1.2px;
     display: inline-block;
 }
 
 .project-info h3 { 
     font-size: 2.4rem; 
-    color: var(--dark-light); /* Casi negro */
+    color: #1a1a1a !important; /* Negro intenso para el título */
     margin: 20px 0; 
     font-weight: 800;
     line-height: 1.1;
 }
 
-/* Iconos de la historia con color de impacto */
-.project-story p strong i {
-    color: var(--accent);
-    margin-right: 8px;
-    font-size: 1.1rem;
-}
-
 .project-story p { 
     margin-bottom: 18px; 
-    color: #4a4a4a; 
+    color: #333333 !important; /* Gris oscuro muy legible */
     line-height: 1.7; 
     font-size: 1.05rem;
 }
 
-/* Specs: Bloques de color sólido para impacto */
+/* Iconos dentro de los párrafos */
+.project-story i {
+    color: var(--accent) !important;
+    margin-right: 8px;
+}
+
+/* Etiquetas de especificaciones (Cajas oscuras con texto claro) */
 .project-specs { 
     list-style: none; 
     padding: 0; 
@@ -123,24 +115,25 @@
 }
 
 .project-specs li { 
-    background: var(--dark-light); /* Fondo oscuro */
-    color: #ffffff; /* Texto blanco */
+    background: #2c3e50; /* Azul oscuro/Gris industrial */
+    color: #ffffff !important; /* Texto blanco puro */
     padding: 10px 18px; 
-    border-radius: 12px; 
+    border-radius: 10px; 
     font-size: 0.85rem; 
-    font-weight: 600;
-    border-bottom: 3px solid var(--accent); /* Línea de acento abajo */
-    transition: 0.3s;
+    font-weight: 500;
+    border-left: 4px solid var(--accent); /* Detalle de marca lateral */
 }
 
-.project-specs li strong { color: var(--accent); }
+.project-specs li strong {
+    color: #ffffff; /* Evitamos que el strong se pierda */
+}
 
 /* --- RESPONSIVE --- */
 @media (max-width: 992px) {
     .project-card, .project-card.reverse {
         flex-direction: column; 
         padding: 30px 20px;
-        gap: 35px;
+        gap: 30px;
     }
     .project-visual, .project-info { width: 100%; }
     .project-slider { height: 320px; }
