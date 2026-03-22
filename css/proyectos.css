@@ -1,30 +1,43 @@
 /* ======================================================
    SECCIÓN PROYECTOS - DISEÑO FINAL REFINADO
 ====================================================== */
+
+/* =========================
+   CONTENEDOR GENERAL
+========================= */
 .projects-section { 
     padding: 80px 5%; 
     background: #ffffff; 
     display: flex;
     flex-direction: column;
-    align-items: center; /* Centra el contenido en pantallas anchas */
-}
-.section-title, .section-subtitle {
-    text-align: center; /* Asegura que el texto en sí esté centrado */
-    width: 100%;        /* Ocupa todo el ancho para poder centrarse */
+    align-items: center;
 }
 
-.section-subtitle {
-    max-width: 700px;   /* Opcional: para que el texto no sea una sola línea infinita */
-    margin-bottom: 40px; 
-    color: #666;        /* Color gris típico de subtítulos */
-}
-/* CONTENEDOR DE ANCHO (Evita que se expanda al infinito) */
+/* Contenedor interno (ancho máximo) */
 .projects-section .container {
     width: 100%;
     max-width: 1200px;
     margin: 0 auto;
 }
 
+/* =========================
+   TÍTULOS
+========================= */
+.section-title,
+.section-subtitle {
+    text-align: center;
+    width: 100%;
+}
+
+.section-subtitle {
+    max-width: 700px;
+    margin-bottom: 40px; 
+    color: #666;
+}
+
+/* =========================
+   TARJETAS DE PROYECTO
+========================= */
 .project-card {
     display: flex;
     align-items: center;
@@ -33,135 +46,53 @@
     background: #ffffff;
     border-radius: 24px;
     padding: 40px;
-    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.08);
-    border: 1px solid #f0f0f0;
-    transition: all 0.4s ease;
     width: 100%;
+
+    border: 1px solid #f0f0f0;
+    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.08);
+    transition: all 0.4s ease;
 }
 
-.project-card.reverse { flex-direction: row-reverse; }
+.project-card.reverse {
+    flex-direction: row-reverse;
+}
 
-.project-visual, .project-info { flex: 1; width: 50%; }
+.project-visual,
+.project-info {
+    flex: 1;
+    width: 50%;
+}
 
-/* Slider */
+/* =========================
+   SLIDER
+========================= */
 .project-slider {
     position: relative;
-    border-radius: 20px;
-    overflow: hidden;
     height: 420px;
+    overflow: hidden;
+
+    border-radius: 20px;
     background: #1a1a1a;
     border: 1px solid #eee;
 }
 
-.p-slide img { 
-    width: 100%; 
-    height: 100%; 
-    object-fit: cover; 
-}
-
-/* Botones Flechas */
-.project-slider button {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background: var(--accent);
-    color: white !important; /* Forzamos blanco en el icono */
-    border: none;
-    width: 45px;
-    height: 45px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    z-index: 10;
-    border-radius: 50%;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-}
-
-/* --- TEXTOS (CORRECCIÓN DE VISIBILIDAD) --- */
-
-.project-tag { 
-    color: var(--accent) !important; 
-    background: rgba(0, 0, 0, 0.05); /* Fondo gris suave para resaltar */
-    padding: 6px 15px;
-    border-radius: 50px;
-    font-weight: 800; 
-    text-transform: uppercase; 
-    font-size: 0.75rem; 
-    letter-spacing: 1.2px;
-    display: inline-block;
-}
-
-.project-info h3 { 
-    font-size: 2.4rem; 
-    color: #1a1a1a !important; /* Negro intenso para el título */
-    margin: 20px 0; 
-    font-weight: 800;
-    line-height: 1.1;
-}
-
-.project-story p { 
-    margin-bottom: 18px; 
-    color: #333333 !important; /* Gris oscuro muy legible */
-    line-height: 1.7; 
-    font-size: 1.05rem;
-}
-
-/* Iconos dentro de los párrafos */
-.project-story i {
-    color: var(--accent) !important;
-    margin-right: 8px;
-}
-
-/* Etiquetas de especificaciones (Cajas oscuras con texto claro) */
-.project-specs { 
-    list-style: none; 
-    padding: 0; 
-    display: flex; 
-    gap: 12px; 
-    margin-top: 30px; 
-    flex-wrap: wrap; 
-}
-
-.project-specs li { 
-    background: #2c3e50; /* Azul oscuro/Gris industrial */
-    color: #ffffff !important; /* Texto blanco puro */
-    padding: 10px 18px; 
-    border-radius: 10px; 
-    font-size: 0.85rem; 
-    font-weight: 500;
-    border-left: 4px solid var(--accent); /* Detalle de marca lateral */
-}
-
-.project-specs li strong {
-    color: #ffffff; /* Evitamos que el strong se pierda */
-}
-
-/* --- RESPONSIVE --- */
-@media (max-width: 992px) {
-    .project-card, .project-card.reverse {
-        flex-direction: column; 
-        padding: 30px 20px;
-        gap: 30px;
-    }
-    .project-visual, .project-info { width: 100%; }
-    .project-slider { height: 320px; }
-    .project-info h3 { font-size: 1.8rem; }
-}
+/* Slides */
 .p-slide {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    opacity: 0; /* Oculta por defecto */
+
+    opacity: 0;
     visibility: hidden;
-    transition: opacity 0.8s ease-in-out, visibility 0.8s; /* Animación suave */
     z-index: 1;
+
+    transition: opacity 0.8s ease-in-out, visibility 0.8s;
 }
 
 .p-slide.active {
-    opacity: 1; /* Muestra con suavidad */
+    opacity: 1;
     visibility: visible;
     z-index: 2;
 }
@@ -170,4 +101,126 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
+}
+
+/* Botones del slider */
+.project-slider button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+
+    width: 45px;
+    height: 45px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: var(--accent);
+    color: #ffffff !important;
+    border: none;
+    border-radius: 50%;
+
+    cursor: pointer;
+    z-index: 10;
+
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+/* =========================
+   TEXTOS
+========================= */
+.project-tag { 
+    display: inline-block;
+
+    padding: 6px 15px;
+    border-radius: 50px;
+
+    font-size: 0.75rem; 
+    font-weight: 800; 
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+
+    color: var(--accent) !important; 
+    background: rgba(0, 0, 0, 0.05);
+}
+
+.project-info h3 { 
+    margin: 20px 0; 
+
+    font-size: 2.4rem; 
+    font-weight: 800;
+    line-height: 1.1;
+
+    color: #1a1a1a !important;
+}
+
+.project-story p { 
+    margin-bottom: 18px; 
+
+    font-size: 1.05rem;
+    line-height: 1.7;
+
+    color: #333333 !important;
+}
+
+/* Iconos dentro del texto */
+.project-story i {
+    margin-right: 8px;
+    color: var(--accent) !important;
+}
+
+/* =========================
+   ESPECIFICACIONES
+========================= */
+.project-specs { 
+    list-style: none; 
+    padding: 0; 
+    margin-top: 30px; 
+
+    display: flex; 
+    gap: 12px; 
+    flex-wrap: wrap; 
+}
+
+.project-specs li { 
+    padding: 10px 18px; 
+    border-radius: 10px; 
+
+    font-size: 0.85rem; 
+    font-weight: 500;
+
+    background: #2c3e50;
+    color: #ffffff !important;
+
+    border-left: 4px solid var(--accent);
+}
+
+.project-specs li strong {
+    color: #ffffff;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+@media (max-width: 992px) {
+    .project-card,
+    .project-card.reverse {
+        flex-direction: column; 
+        padding: 30px 20px;
+        gap: 30px;
+    }
+
+    .project-visual,
+    .project-info {
+        width: 100%;
+    }
+
+    .project-slider {
+        height: 320px;
+    }
+
+    .project-info h3 {
+        font-size: 1.8rem;
+    }
 }
