@@ -247,47 +247,71 @@
 </section>
 <section id="proyectos" class="projects-section">
     <div class="container">
-        <h2 class="section-title">Proyectos Destacados</h2>
-        <p class="section-subtitle">Soluciones eléctricas y de seguridad ejecutadas con precisión técnica.</p>
+        <h2 class="section-title">Casos de Éxito</h2>
+        <p class="section-subtitle">Soluciones técnicas reales para desafíos eléctricos y de climatización.</p>
 
-        <div class="projects-grid">
-            <div class="project-card">
-                <div class="project-slider">
-                    <div class="slider-wrapper">
-                        <img src="images/proyectos/proyecto_residencias/1c.webp" class="active" alt="Instalación Residencial 1">
-                        <img src="images/proyectos/proyecto_residencias/2c.webp" alt="Instalación Residencial 2">
-                        <img src="images/proyectos/proyecto_residencias/3c.webp" alt="Instalación Residencial 3">
-                        <img src="images/proyectos/proyecto_residencias/4c.webp" alt="Instalación Residencial 4">
-                        <img src="images/proyectos/proyecto_residencias/5c.webp" alt="Instalación Residencial 5">
-                        <img src="images/proyectos/proyecto_residencias/6c.webp" alt="Instalación Residencial 6">
-                    </div>
-                    <button class="slider-btn prev"><i class="fas fa-chevron-left"></i></button>
-                    <button class="slider-btn next"><i class="fas fa-chevron-right"></i></button>
-                </div>
-                <div class="project-content">
-                    <span class="project-tag">Residencial</span>
-                    <h4>Instalaciones en Domicilios</h4>
-                    <p>Proyectos de cableado, tableros y certificación TE1 para viviendas particulares en la región.</p>
+        <div class="project-card">
+            <div class="project-visual">
+                <div class="project-slider" id="slider-p1">
+                    <div class="p-slide active"><img src="images/proyectos/proyecto_residencias/1c.webp" alt="1c"></div>
+                    <div class="p-slide"><img src="images/proyectos/proyecto_residencias/2c.webp" alt="2c"></div>
+                    <div class="p-slide"><img src="images/proyectos/proyecto_residencias/3c.webp" alt="3c"></div>
+                    <div class="p-slide"><img src="images/proyectos/proyecto_residencias/4c.webp" alt="4c"></div>
+                    <div class="p-slide"><img src="images/proyectos/proyecto_residencias/5c.webp" alt="5c"></div>
+                    <div class="p-slide"><img src="images/proyectos/proyecto_residencias/6c.webp" alt="6c"></div>
+                    <button class="prev" onclick="moveSlide('slider-p1', -1)">&#10094;</button>
+                    <button class="next" onclick="moveSlide('slider-p1', 1)">&#10095;</button>
+                    <div class="slider-dots"></div>
                 </div>
             </div>
+            <div class="project-info">
+                <span class="project-tag">Seguridad Electrónica</span>
+                <h3>Sistema de Cámaras para Casa de Acogida</h3>
 
-            <div class="project-card">
-                <div class="project-slider">
-                    <div class="slider-wrapper">
-                        <img src="images/proyectos/empalme/1e.webp" class="active" alt="1e">
-                        <img src="images/proyectos/empalme/2e.webp" alt="2e">
-                        <img src="images/proyectos/empalme/3e.webp" alt="3e">
-                        <img src="images/proyectos/empalme/4e.webp" alt="4e">
-                        <img src="images/proyectos/empalme/5e.webp" alt="5e">
-                    </div>
-                    <button class="slider-btn prev"><i class="fas fa-chevron-left"></i></button>
-                    <button class="slider-btn next"><i class="fas fa-chevron-right"></i></button>
+            <div class="project-story">
+                <p><strong><i class="fas fa-exclamation-circle"></i> Desafío:</strong> Mejorar la seguridad y supervisión en una casa de acogida para estudiantes, resguardando espacios comunes y accesos.</p>
+        
+                <p><strong><i class="fas fa-tools"></i> Solución:</strong> Instalación de sistema de 5 cámaras de seguridad con grabación continua, monitoreo remoto y correcta distribución estratégica de puntos de vigilancia.</p>
+        
+                <p><strong><i class="fas fa-chart-line"></i> Resultado:</strong> Mayor control y seguridad en el recinto, permitiendo monitoreo en tiempo real y respaldo de grabaciones para una gestión más segura.</p>
+            </div>
+
+                <ul class="project-specs">
+                <li><strong>Ubicación:</strong> 607 Otto Schoeffer, Chillán</li>
+                <li><strong>Sistema:</strong> 5 Cámaras CCTV</li>
+            </ul>
+            </div>
+        </div>
+
+        <div class="project-card reverse">
+            <div class="project-visual">
+                <div class="project-slider" id="slider-p6">
+                    <div class="p-slide active"><img src="images/proyectos/empalme/1e.webp" alt="1e"></div>
+                    <div class="p-slide"><img src="images/proyectos/empalme/2e.webp" alt="2e"></div>
+                    <div class="p-slide"><img src="images/proyectos/empalme/3e.webp" alt="3e"></div>
+                    <div class="p-slide"><img src="images/proyectos/empalme/4e.webp" alt="4e"></div>
+                    <div class="p-slide"><img src="images/proyectos/empalme/5e.webp" alt="5e"></div>
+                    <button class="prev" onclick="moveSlide('slider-p6', -1)">&#10094;</button>
+                    <button class="next" onclick="moveSlide('slider-p6', 1)">&#10095;</button>
+                    <div class="slider-dots"></div>
                 </div>
-                <div class="project-content">
-                    <span class="project-tag">Seguridad</span>
-                    <h4>Sistemas de Vigilancia</h4>
-                    <p>Instalación de cámaras IP de alta resolución y sistemas de alarma con monitoreo móvil.</p>
+            </div>
+                <div class="project-info">
+                <span class="project-tag">Empalme Eléctrico</span>
+                <h3>Empalme Monofásico en Treguaco</h3>
+
+                <div class="project-story">
+                <p><strong><i class="fas fa-exclamation-circle"></i> Desafío:</strong> Habilitar suministro eléctrico en sector sin conexión previa, cumpliendo normativa vigente y condiciones de seguridad.</p>
+        
+                <p><strong><i class="fas fa-tools"></i> Solución:</strong> Instalación de empalme monofásico con tablero de protección, puesta a tierra y coordinación con la compañía eléctrica.</p>
+        
+                <p><strong><i class="fas fa-chart-line"></i> Resultado:</strong> Suministro eléctrico seguro, continuo y certificado, permitiendo la correcta operación de la vivienda.</p>
                 </div>
+
+                <ul class="project-specs">
+                <li><strong>Ubicación:</strong> Juan Mackenna S/N, Treguaco</li>
+                <li><strong>Tipo:</strong> Empalme Monofásico</li>
+                </ul>
             </div>
         </div>
     </div>
