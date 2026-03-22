@@ -139,3 +139,26 @@
     .project-slider { height: 320px; }
     .project-info h3 { font-size: 1.8rem; }
 }
+.p-slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0; /* Oculta por defecto */
+    visibility: hidden;
+    transition: opacity 0.8s ease-in-out, visibility 0.8s; /* Animación suave */
+    z-index: 1;
+}
+
+.p-slide.active {
+    opacity: 1; /* Muestra con suavidad */
+    visibility: visible;
+    z-index: 2;
+}
+
+.p-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
