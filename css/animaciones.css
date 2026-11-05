@@ -31,8 +31,8 @@
 .hero h1 .text-brand::after {
     content: '';
     position: absolute;
-    left: 0; right: 0; bottom: .02em;
-    height: .12em;
+    left: 0; right: 0; bottom: -.04em;
+    height: .1em;
     border-radius: 99px;
     background: linear-gradient(90deg, var(--brand), rgba(0, 179, 0, .25));
     transform: scaleX(0);
