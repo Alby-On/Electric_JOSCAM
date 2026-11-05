@@ -74,3 +74,9 @@
 @media (max-width: 640px) {
     .why-choose-us { padding: 80px 0; }
 }
+
+/* Lista de puntos concretos */
+.why-card > p { margin-bottom: 18px; }
+.why-list { list-style: none; display: grid; gap: 10px; padding-top: 18px; border-top: 1px solid var(--night-line); }
+.why-list li { display: flex; gap: 10px; font-size: .94rem; color: var(--on-night); line-height: 1.45; }
+.why-list i { color: var(--brand); margin-top: 4px; font-size: .8rem; }

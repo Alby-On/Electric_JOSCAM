@@ -242,3 +242,9 @@ a.info-item:hover .icon-chip {
 @keyframes gridDrift { to { background-position: 44px 44px, 44px 44px; } }
 @keyframes current { to { background-position: 240px 0; } }
 @keyframes nudgeUp { 50% { transform: translateY(-3px); } }
+
+/* En pantallas angostas el texto destacado puede partirse en dos líneas */
+@media (max-width: 600px) {
+    .hero h1 .text-brand { white-space: normal; }
+    .hero h1 .text-brand::after { display: none; }
+}
