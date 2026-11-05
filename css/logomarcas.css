@@ -1,41 +1,62 @@
-
 /* ======================================================
-   6. LOGOS DE MARCAS
+   9. LOGOS DE MARCAS (carrusel infinito)
 ====================================================== */
 
-    .logos-section {
-        padding:3rem 0;
-        background:var(--dark-light);
-        overflow:hidden;
-        position:relative;
-        display:flex;
-        align-items:center;
-    }
+.logos-section {
+    padding: 48px 0;
+    background: var(--bg);
+    border-top: 1px solid var(--line);
+    overflow: hidden;
+}
 
-    .logos-slider {
-        display:flex;
-        width:calc(300px * 20);
-        animation:scroll-infinito 30s linear infinite;
-    }
+.logos-title {
+    text-align: center;
+    font-family: var(--font-head);
+    font-size: .8rem;
+    font-weight: 700;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+    margin-bottom: 26px;
+}
 
-    .logo-item {
-        width:300px;
-        flex-shrink:0;
-        display:flex;
-        justify-content:center;
-        align-items:center;
-        padding:0 20px;
-    }
+.logos-track {
+    mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
+}
 
-    .logo-item img {
-        height:50px;
-        width:auto;
-        transition:transform 0.3s ease;
-    }
+.logos-slider {
+    display: flex;
+    width: max-content;
+    animation: logosScroll 40s linear infinite;
+}
+.logos-track:hover .logos-slider { animation-play-state: paused; }
 
-    .logo-item img:hover { transform:scale(1.15); }
+.logo-item {
+    width: 200px;
+    flex-shrink: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 28px;
+}
+.logo-item img {
+    max-height: 44px;
+    max-width: 140px;
+    width: auto;
+    object-fit: contain;
+    filter: grayscale(1);
+    opacity: .7;
+    transition: filter .3s, opacity .3s, transform .3s;
+}
+.logo-item img:hover { filter: none; opacity: 1; transform: scale(1.08); }
 
-    @keyframes scroll-infinito {
-        0%{transform:translateX(0);}
-        100%{transform:translateX(calc(-300px * 10));}
-    }
+@keyframes logosScroll {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+}
+
+@media (max-width: 640px) {
+    .logo-item { width: 150px; padding: 0 18px; }
+    .logo-item img { max-height: 36px; }
+}

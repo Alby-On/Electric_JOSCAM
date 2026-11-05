@@ -1,185 +1,63 @@
 /* ======================================================
-   SECCIÓN QUIÉNES SOMOS
-   Electric_JOSCAM
+   4. QUIÉNES SOMOS
 ====================================================== */
 
-.about-section{
-    position:relative;
-    padding:100px 20px;
-    background:var(--dark-light);
-    overflow:hidden;
+.about-section { padding: 110px 0; background: var(--bg); }
+
+.about-layout {
+    display: grid;
+    grid-template-columns: 1.15fr 1fr;
+    gap: 64px;
+    align-items: center;
 }
 
-/* CONTENEDOR */
+.about-text p { margin-bottom: 16px; }
 
-.about-section .container{
-    max-width:1100px;
-    margin:auto;
-    text-align:center;
+.highlight-text {
+    font-size: 1.2rem;
+    line-height: 1.55;
+    color: var(--ink) !important;
+    font-weight: 500;
+    padding-left: 18px;
+    border-left: 4px solid var(--brand);
+    margin-bottom: 22px !important;
 }
 
-/* TITULO */
-
-.section-title{
-    font-size:2.4rem;
-    font-weight:800;
-    margin-bottom:40px;
-    color:var(--white);
-    position:relative;
+.about-seals { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 26px; }
+.seal {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 9px 16px;
+    border-radius: 999px;
+    border: 1px solid var(--line);
+    background: var(--surface);
+    font-family: var(--font-head);
+    font-weight: 700;
+    font-size: .84rem;
+    color: var(--ink);
 }
+.seal i { color: var(--brand-strong); }
 
-.section-title::after{
-    content:"";
-    width:70px;
-    height:4px;
-    background:var(--accent);
-    display:block;
-    margin:15px auto 0;
-    border-radius:5px;
+.about-grid { display: grid; gap: 16px; }
+
+.about-item {
+    display: flex;
+    gap: 18px;
+    padding: 24px;
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-sm);
+    transition: transform .3s, box-shadow .3s, border-color .3s;
 }
-
-/* INTRO */
-
-.about-intro{
-    max-width:900px;
-    margin:auto;
+.about-item:hover {
+    transform: translateX(6px);
+    border-color: rgba(0, 179, 0, .45);
+    box-shadow: var(--shadow-md);
 }
+.about-item h3 { font-size: 1.12rem; margin-bottom: 6px; }
+.about-item p { font-size: .96rem; }
 
-.highlight-text{
-    font-size:1.2rem;
-    font-weight:600;
-    color:var(--accent);
-    margin-bottom:25px;
+@media (max-width: 920px) {
+    .about-section { padding: 80px 0; }
+    .about-layout { grid-template-columns: 1fr; gap: 40px; }
 }
-
-.about-description{
-    color:var(--text-gray);
-    line-height:1.8;
-    font-size:1rem;
-}
-
-.about-description p{
-    margin-bottom:20px;
-}
-
-/* GRID */
-
-.about-grid{
-    margin-top:60px;
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
-    gap:30px;
-}
-
-/* ITEMS */
-
-.about-item{
-    background:white;
-    padding:35px 25px;
-    border-radius:12px;
-    transition:all .35s ease;
-    border:1px solid rgba(0,0,0,0.05);
-    box-shadow:0 5px 18px rgba(0,0,0,0.05);
-}
-
-.about-item:hover{
-    transform:translateY(-6px);
-    box-shadow:0 12px 30px rgba(0,0,0,0.08);
-}
-
-/* ICONOS */
-
-.about-item i{
-    font-size:34px;
-    color:var(--accent);
-    margin-bottom:15px;
-}
-
-/* TITULOS */
-
-.about-item h3{
-    font-size:1.2rem;
-    margin-bottom:10px;
-    color:var(--white);
-}
-
-/* TEXTO */
-
-.about-item p{
-    font-size:.95rem;
-    color:var(--text-gray);
-}
-
-/* FOOTER SELLOS */
-
-.about-footer{
-    margin-top:55px;
-    display:flex;
-    justify-content:center;
-    gap:15px;
-    flex-wrap:wrap;
-}
-
-.seal-modern{
-    padding:8px 18px;
-    border:2px solid var(--accent);
-    border-radius:30px;
-    font-size:.85rem;
-    font-weight:600;
-    color:var(--accent);
-    transition:.3s;
-}
-
-.seal-modern:hover{
-    background:var(--accent);
-    color:white;
-}
-
-/* FORMAS DECORATIVAS */
-
-.bg-shape{
-    position:absolute;
-    border-radius:50%;
-    opacity:.08;
-    background:var(--accent);
-}
-
-.shape-1{
-    width:300px;
-    height:300px;
-    top:-80px;
-    left:-80px;
-}
-
-.shape-2{
-    width:200px;
-    height:200px;
-    bottom:-60px;
-    right:-60px;
-}
-
-.shape-3{
-    width:120px;
-    height:120px;
-    top:40%;
-    left:10%;
-}
-
-/* RESPONSIVE */
-
-@media(max-width:768px){
-
-.about-section{
-padding:70px 20px;
-}
-
-.section-title{
-font-size:2rem;
-}
-
-.highlight-text{
-font-size:1.1rem;
-}
-
-}
-

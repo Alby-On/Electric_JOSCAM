@@ -1,213 +1,230 @@
-// --- 1. Funciones de Carga de Componentes ---
+/* ======================================================
+   Electric_JOSCAM · Script principal
+====================================================== */
+
+// --- 1. Carga de componentes (header y footer) ---
 async function loadComponent(id, path) {
     const container = document.getElementById(id);
-    if (!container) return; 
-
+    if (!container) return;
     try {
         const response = await fetch(path);
         if (!response.ok) throw new Error(`No se encontró ${path}`);
-        const html = await response.text();
-        container.innerHTML = html;
-        console.log(`Componente ${id} cargado con éxito.`);
-
-        // Si cargamos el header, inicializamos el menú móvil
-        if (id === 'header-component') {
-            initMobileMenu();
-        }
+        container.innerHTML = await response.text();
     } catch (error) {
-        console.error("Error cargando componentes:", error);
+        console.error('Error cargando componentes:', error);
     }
 }
 
-// --- Lógica Menú Móvil (Mejorada y Sincronizada) ---
-// --- Lógica Menú Móvil Actualizada (Función Toggle) ---
+// --- 2. Menú móvil ---
 function initMobileMenu() {
     const openBtn = document.getElementById('open-menu');
     const closeBtn = document.getElementById('close-menu');
     const overlay = document.getElementById('mobile-overlay');
-    
-    // Volvemos a capturar los links para asegurar que el DOM esté listo
-    const mobileLinks = document.querySelectorAll('.mobile-nav-links a');
+    if (!openBtn || !overlay) return;
 
-    // Función unificada para cerrar
-    const closeFunction = () => {
-        if (overlay) {
-            overlay.classList.remove('active');
-            document.body.style.overflow = 'auto'; 
-            
-            // Volver el icono a barras si existe
-            const icon = openBtn ? openBtn.querySelector('i') : null;
-            if (icon) icon.className = 'fas fa-bars';
-        }
+    const setOpen = (open) => {
+        overlay.classList.toggle('active', open);
+        overlay.setAttribute('aria-hidden', String(!open));
+        openBtn.setAttribute('aria-expanded', String(open));
+        document.body.style.overflow = open ? 'hidden' : '';
+        if (open && closeBtn) closeBtn.focus();
     };
 
-    // Función unificada para abrir
-    const openFunction = () => {
-        if (overlay) {
-            overlay.classList.add('active');
-            document.body.style.overflow = 'hidden'; 
-            
-            // Cambiar el icono a X si existe
-            const icon = openBtn ? openBtn.querySelector('i') : null;
-            if (icon) icon.className = 'fas fa-times';
-        }
-    };
+    openBtn.addEventListener('click', () => setOpen(true));
+    if (closeBtn) closeBtn.addEventListener('click', () => setOpen(false));
 
-    if (openBtn && overlay) {
-        openBtn.onclick = null; // Limpiar manejadores previos
-        openBtn.addEventListener('click', (e) => {
-            e.preventDefault();
-            
-            // Si el menú ya tiene la clase 'active', lo cerramos. Si no, lo abrimos.
-            if (overlay.classList.contains('active')) {
-                closeFunction();
-            } else {
-                openFunction();
-            }
-        });
-    }
-
-    // El botón cerrar (X interna) siempre ejecuta cerrar
-    if (closeBtn) {
-        closeBtn.onclick = closeFunction;
-    }
-
-    // Los enlaces del menú siempre ejecutan cerrar al hacer clic
-    mobileLinks.forEach(link => {
-        link.onclick = closeFunction;
+    // Cerrar al tocar el fondo oscuro o un enlace
+    overlay.addEventListener('click', (e) => {
+        if (e.target === overlay || e.target.closest('a')) setOpen(false);
+    });
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && overlay.classList.contains('active')) setOpen(false);
     });
 }
 
-// IMPORTANTE: Si cargas el header con fetch(), debes llamar a initMobileMenu() 
-// dentro del .then() de la carga para que los IDs existan en el DOM.
+// --- 3. Header: sombra al hacer scroll + enlace activo ---
+function initHeaderState() {
+    const header = document.getElementById('site-header');
+    const onScroll = () => {
+        if (header) header.classList.toggle('scrolled', window.scrollY > 40);
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
 
-// --- 3. Eventos Globales y Scroll ---
-window.addEventListener('scroll', () => {
-    let current = '';
-    const sections = document.querySelectorAll('section, header');
-    const navItems = document.querySelectorAll('.nav-links li a');
-    const scrollValue = window.pageYOffset;
+    const links = document.querySelectorAll('.nav-links a');
+    const sections = document.querySelectorAll('main section[id]');
+    if (!links.length || !sections.length) return;
 
-    // Ajustamos a 180 para considerar la altura de la Top Bar + Navbar
-    sections.forEach(section => {
-        const sectionTop = section.offsetTop;
-        if (scrollValue >= (sectionTop - 180)) {
-            current = section.getAttribute('id');
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
+            const id = entry.target.id;
+            links.forEach((a) => a.classList.toggle('active', a.getAttribute('href') === `#${id}`));
+        });
+    }, { rootMargin: '-45% 0px -50% 0px' });
+
+    sections.forEach((s) => observer.observe(s));
+}
+
+// --- 4. Animaciones al aparecer ---
+function initReveal() {
+    const items = document.querySelectorAll('.reveal');
+    if (!('IntersectionObserver' in window)) {
+        items.forEach((el) => el.classList.add('visible'));
+        return;
+    }
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
+            const el = entry.target;
+            // Escalonar tarjetas hermanas
+            const siblings = Array.from(el.parentElement.children).filter((c) => c.classList.contains('reveal'));
+            const index = siblings.indexOf(el);
+            el.style.transitionDelay = `${Math.min(index, 5) * 90}ms`;
+            el.classList.add('visible');
+            observer.unobserve(el);
+        });
+    }, { threshold: 0.12 });
+    items.forEach((el) => observer.observe(el));
+}
+
+// --- 5. Aviso (toast) ---
+let toastTimer;
+function showToast(message, isError = false) {
+    const toast = document.getElementById('toast');
+    if (!toast) return;
+    toast.querySelector('.toast-text').textContent = message;
+    toast.querySelector('i').className = isError ? 'fas fa-circle-exclamation' : 'fas fa-circle-check';
+    toast.classList.toggle('error', isError);
+    toast.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => toast.classList.remove('show'), 5000);
+}
+
+// --- 6. Formulario de contacto (Web3Forms) ---
+function initContactForm() {
+    const form = document.getElementById('contact-form');
+    if (!form) return;
+
+    const messages = {
+        nombre: 'Ingresa tu nombre (mínimo 3 letras).',
+        telefono: 'Ingresa los 9 dígitos de tu móvil, por ejemplo 912345678.',
+        email: 'Ingresa un correo válido.',
+        asunto: 'Indica el asunto de tu mensaje.',
+        mensaje: 'Cuéntanos un poco más (mínimo 10 caracteres).'
+    };
+
+    const validateField = (field) => {
+        const group = field.closest('.form-group');
+        if (!group) return true;
+        let error = group.querySelector('.field-error');
+        if (field.checkValidity()) {
+            group.classList.remove('invalid');
+            if (error) error.remove();
+            return true;
         }
+        group.classList.add('invalid');
+        if (!error) {
+            error = document.createElement('span');
+            error.className = 'field-error';
+            group.appendChild(error);
+        }
+        error.textContent = messages[field.name] || 'Revisa este campo.';
+        return false;
+    };
+
+    const fields = form.querySelectorAll('input[required], textarea[required]');
+    fields.forEach((f) => {
+        f.addEventListener('blur', () => validateField(f));
+        f.addEventListener('input', () => {
+            if (f.closest('.form-group').classList.contains('invalid')) validateField(f);
+        });
     });
 
-    navItems.forEach(a => {
-        a.classList.remove('active');
-        // Solo añadimos 'active' si hay un ID actual detectado
-        if (current && a.getAttribute('href').includes(current)) {
-            a.classList.add('active');
-        }
-    });
-
-    // --- Efectos Parallax (Shapes) ---
-    const s1 = document.querySelector('.shape-1');
-    const s2 = document.querySelector('.shape-2');
-    const s3 = document.querySelector('.shape-3');
-
-    if(s1) s1.style.transform = `translate(${scrollValue * 0.1}px, ${scrollValue * 0.05}px) rotate(${45 + scrollValue * 0.1}deg)`;
-    if(s2) s2.style.transform = `translateY(${scrollValue * -0.08}px) scale(${1 + (scrollValue * 0.0002)})`;
-    if(s3) s3.style.transform = `translateX(${scrollValue * 0.12}px) rotate(-45deg)`;
-});
-
-// --- 4. Formulario de Contacto ---
-const contactForm = document.getElementById("contact-form");
-if (contactForm) {
-    contactForm.addEventListener("submit", function(e) {
+    form.addEventListener('submit', async (e) => {
         e.preventDefault();
-        const myForm = e.target;
-        const formData = new FormData(myForm);
-        const object = Object.fromEntries(formData);
-        const json = JSON.stringify(object);
 
-        fetch("https://api.web3forms.com/submit", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                "Accept": "application/json",
-            },
-            body: json,
-        })
-        .then(async (response) => {
-            if (response.status == 200) {
-                const toast = document.getElementById("toast-success");
-                if (toast) {
-                    toast.style.display = "block";
-                    toast.style.opacity = "1";
-                    setTimeout(() => {
-                        toast.style.opacity = "0";
-                        toast.style.transition = "opacity 0.5s ease";
-                        setTimeout(() => { toast.style.display = "none"; }, 500);
-                    }, 5000);
-                }
-                myForm.reset();
+        let firstInvalid = null;
+        fields.forEach((f) => {
+            if (!validateField(f) && !firstInvalid) firstInvalid = f;
+        });
+        if (firstInvalid) {
+            firstInvalid.focus();
+            return;
+        }
+
+        const button = form.querySelector('button[type="submit"]');
+        const label = button.querySelector('.btn-label');
+        const original = label.textContent;
+        button.disabled = true;
+        label.textContent = 'Enviando...';
+
+        try {
+            const response = await fetch('https://api.web3forms.com/submit', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+                body: JSON.stringify(Object.fromEntries(new FormData(form)))
+            });
+            if (response.ok) {
+                showToast('¡Mensaje enviado con éxito! Nos contactaremos pronto.');
+                form.reset();
             } else {
-                alert("Algo salió mal al enviar el mensaje.");
+                showToast('No pudimos enviar el mensaje. Intenta de nuevo o escríbenos por WhatsApp.', true);
             }
-        })
-        .catch((error) => {
-            console.log(error);
-            alert("Error al enviar: " + error);
+        } catch (error) {
+            console.error(error);
+            showToast('Sin conexión. Revisa tu internet o escríbenos por WhatsApp.', true);
+        } finally {
+            button.disabled = false;
+            label.textContent = original;
+        }
+    });
+}
+
+// --- 7. Animaciones interactivas ---
+function initMotion() {
+    const progress = document.getElementById('scroll-progress');
+    const toTop = document.getElementById('back-to-top');
+    let ticking = false;
+
+    const update = () => {
+        const max = document.documentElement.scrollHeight - window.innerHeight;
+        const ratio = max > 0 ? window.scrollY / max : 0;
+        if (progress) progress.style.transform = `scaleX(${ratio})`;
+        if (toTop) toTop.classList.toggle('show', window.scrollY > 700);
+        ticking = false;
+    };
+    window.addEventListener('scroll', () => {
+        if (!ticking) { requestAnimationFrame(update); ticking = true; }
+    }, { passive: true });
+    update();
+
+    if (toTop) toTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+    // Foco de luz que sigue al mouse en las tarjetas oscuras
+    document.querySelectorAll('.why-card').forEach((card) => {
+        card.addEventListener('mousemove', (e) => {
+            const r = card.getBoundingClientRect();
+            card.style.setProperty('--mx', `${e.clientX - r.left}px`);
+            card.style.setProperty('--my', `${e.clientY - r.top}px`);
         });
     });
 }
 
-// --- 5. Delegación de Clics (Botones en componentes) ---
-document.addEventListener('click', function (event) {
-    if (event.target.matches('.btn-contacto') || event.target.closest('.btn-contacto')) {
-        console.log("Clic detectado en el botón de contacto");
-    }
-    if (event.target.matches('.cta-button')) {
-        console.log("Clic en el botón del Hero");
-    }
-});
+// --- 8. Inicio ---
+document.addEventListener('DOMContentLoaded', async () => {
+    initReveal();
+    initContactForm();
+    initMotion();
 
-// --- 6. Inicialización al cargar el DOM ---
-document.addEventListener('DOMContentLoaded', () => {
-    // Carga de componentes
-    loadComponent('header-component', 'components/header.html');
-    loadComponent('footer-component', 'components/footer.html');
+    await Promise.all([
+        loadComponent('header-component', 'components/header.html'),
+        loadComponent('footer-component', 'components/footer.html')
+    ]);
 
-    // Observador Nosotros
-    const observerOptions = { threshold: 0.25 };
-    const aboutObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const title = entry.target.querySelector('.section-title');
-                if (title) title.style.opacity = "1";
-                
-                const items = entry.target.querySelectorAll('.about-item');
-                items.forEach((item, index) => {
-                    setTimeout(() => { item.classList.add('show'); }, index * 200);
-                });
+    initMobileMenu();
+    initHeaderState();
 
-                const seals = entry.target.querySelectorAll('.seal-modern');
-                seals.forEach((seal, index) => {
-                    setTimeout(() => { seal.classList.add('show'); }, 800 + (index * 150));
-                });
-                aboutObserver.unobserve(entry.target);
-            }
-        });
-    }, observerOptions);
-
-    const aboutSection = document.querySelector('#nosotros');
-    if (aboutSection) aboutObserver.observe(aboutSection);
-
-    // Observador Porque Elegirnos
-    const whyChooseObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const cards = entry.target.querySelectorAll('.animate-up');
-                cards.forEach((card) => { card.classList.add('visible'); });
-                whyChooseObserver.unobserve(entry.target);
-            }
-        });
-    }, { threshold: 0.15 });
-
-    const targetSection = document.querySelector('#porque-elegirnos');
-    if (targetSection) whyChooseObserver.observe(targetSection);
+    const year = document.getElementById('year');
+    if (year) year.textContent = new Date().getFullYear();
 });

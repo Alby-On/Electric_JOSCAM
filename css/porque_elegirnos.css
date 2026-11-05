@@ -1,123 +1,76 @@
 /* ======================================================
-   SECCIÓN ¿POR QUÉ ELEGIRNOS? - ElectricJoscam (Optimizado)
+   6. ¿POR QUÉ ELEGIRNOS? (banda oscura)
 ====================================================== */
 
 .why-choose-us {
-    padding: 80px 10%;
-    background-color: #f9f9f9;
-    text-align: center;
+    position: relative;
+    padding: 110px 0;
+    background:
+        radial-gradient(900px 400px at 85% -10%, rgba(0, 179, 0, .16), transparent 60%),
+        radial-gradient(700px 360px at -10% 110%, rgba(0, 179, 0, .10), transparent 60%),
+        var(--night);
+    color: var(--on-night-2);
+    overflow: hidden;
 }
-
-.section-title {
-    font-size: 2.5rem;
-    color: #2c3e50;
-    margin-bottom: 20px;
-    font-weight: 700;
+/* Retícula sutil tipo plano técnico */
+.why-choose-us::before {
+    content: '';
+    position: absolute; inset: 0;
+    background-image:
+        linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px);
+    background-size: 44px 44px;
+    mask-image: linear-gradient(180deg, #000 0%, transparent 85%);
+    -webkit-mask-image: linear-gradient(180deg, #000 0%, transparent 85%);
+    pointer-events: none;
 }
+.why-choose-us .container { position: relative; }
 
-.section-subtitle {
-    font-size: 1.15rem;
-    color: #555;
-    max-width: 900px;
-    margin: 0 auto 50px;
-    line-height: 1.8;
-}
+.why-choose-us .section-title { color: #fff; }
+.why-choose-us .section-subtitle { color: var(--on-night-2); }
+.why-choose-us strong { color: #fff; }
 
-/* Grid configurado para 3 columnas */
-.services-grid {
+.why-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 30px;
+    gap: 24px;
 }
 
-.service-card {
-    background: #ffffff;
-    padding: 45px 35px;
-    border-radius: 15px;
-    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.06);
-    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+.why-card {
+    background: var(--night-2);
+    border: 1px solid var(--night-line);
+    border-radius: var(--radius);
+    padding: 32px 28px;
+    transition: transform .35s, border-color .35s, background .35s;
+}
+.why-card:hover {
+    transform: translateY(-6px);
+    border-color: rgba(0, 179, 0, .55);
+    background: #18291f;
+}
+
+.why-top {
     display: flex;
-    flex-direction: column;
+    justify-content: space-between;
     align-items: center;
-    border-top: 5px solid transparent;
+    margin-bottom: 24px;
 }
-
-.service-card:hover {
-    transform: translateY(-12px);
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.12);
-    border-top: 5px solid #3498db;
+.why-num {
+    font-family: var(--font-head);
+    font-weight: 800;
+    font-size: 2.6rem;
+    line-height: 1;
+    color: transparent;
+    -webkit-text-stroke: 1.5px rgba(0, 179, 0, .7);
 }
+.why-card .icon-chip { background: rgba(0, 179, 0, .14); color: #5fe05f; }
 
-.icon-box {
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 25px;
-    font-size: 2.2rem;
-    transition: transform 0.3s ease;
-    flex-shrink: 0; /* Evita que el icono se achique */
+.why-card h3 { color: #fff; font-size: 1.2rem; margin-bottom: 14px; }
+.why-card p { font-size: .95rem; line-height: 1.7; color: var(--on-night-2); }
+
+@media (max-width: 1000px) {
+    .why-grid { grid-template-columns: 1fr; max-width: 720px; margin: 0 auto; }
 }
-
-/* Colores de Iconos */
-.color-1 { background-color: rgba(52, 152, 219, 0.12); color: #3498db; }
-.color-2 { background-color: rgba(46, 204, 113, 0.12); color: #2ecc71; }
-.color-3 { background-color: rgba(241, 196, 15, 0.12); color: #f1c40f; }
-
-.service-card h4 {
-    font-size: 1.4rem;
-    color: #222;
-    margin-bottom: 20px;
-    font-weight: 600;
-}
-
-.service-card p {
-    font-size: 1rem;
-    color: #666;
-    line-height: 1.7;
-    text-align: justify;
-    hyphens: auto;
-}
-
-/* --- Responsividad Mejorada --- */
-
-/* --- Responsividad para móviles (Apilado vertical) --- */
-
-@media (max-width: 1024px) {
-    .services-grid {
-        /* En tablets medianas, mostramos 2 columnas */
-        grid-template-columns: repeat(2, 1fr);
-        gap: 25px;
-    }
-}
-
-@media (max-width: 768px) {
-    /* Esta es la regla clave para el apilado vertical */
-    .services-grid {
-        grid-template-columns: 1fr !important; /* Una sola columna */
-        gap: 20px; /* Espacio vertical entre las cards */
-    }
-
-    .why-choose-us {
-        padding: 50px 5%; /* Menos espacio en los bordes para ganar ancho */
-    }
-
-    .service-card {
-        padding: 30px 20px; /* Reducimos padding interno */
-        width: 100%; /* Aseguramos que ocupe todo el ancho disponible */
-    }
-
-    .service-card p {
-        text-align: left; /* Alineación natural para lectura móvil */
-        font-size: 0.95rem;
-    }
-
-    /* Ajustamos el tamaño de los iconos para que no dominen toda la pantalla */
-    .icon-box {
-        width: 70px;
-        height: 70px;
-        font-size: 1.8rem;
-    }
+@media (max-width: 640px) {
+    .why-choose-us { padding: 80px 0; }
 }
